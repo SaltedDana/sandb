@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מוספי בטון — שוק גלובלי, ישראל וחדשנות | שיכון ובינוי</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --card: #263248;
+    --border: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
+    --teal: #14b8a6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    direction: rtl;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* COVER PAGE */
+  #cover {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: url('./assets/concrete-factory.jpg') center center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.70);
+    z-index: 0;
+  }
+
+  /* teal accent strip for differentiation from precast report */
+  #cover-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--teal));
+  }
+
+  #cover-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 40px 0 40px;
+  }
+
+  #cover-top .client-tag {
+    background: var(--teal);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  #cover-top .logo-wrap img {
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  }
+
+  #cover-center {
+    position: relative;
+    z-index: 1;
+    padding: 60px 80px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 920px;
+  }
+
+  #cover-center .report-category {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 18px;
+  }
+
+  #cover-center h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  #cover-center h1 span {
+    color: var(--teal);
+  }
+
+  #cover-center .subtitle {
+    font-size: 20px;
+    color: #cbd5e1;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  #cover-center .goals-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  #cover-center ul.goals {
+    list-style: none;
+    padding: 0;
+  }
+
+  #cover-center ul.goals li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 15px;
+    color: #e2e8f0;
+  }
+
+  #cover-center ul.goals li:last-child { border-bottom: none; }
+
+  #cover-center ul.goals li::before {
+    content: '▸';
+    color: var(--teal);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  #cover-bottom {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+  }
+
+  #cover-bottom .date {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  #cover-bottom .brand {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  #cover-bottom .brand strong {
+    color: #e2e8f0;
+  }
+
+  /* LAYOUT */
+  #layout {
+    display: flex;
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 28px 0;
+    flex-shrink: 0;
+  }
+
+  #sidebar .sidebar-logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  #sidebar .sidebar-logo img {
+    height: 44px;
+    object-fit: contain;
+    filter: brightness(0.9);
+  }
+
+  #sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border-right: 3px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+
+  #sidebar nav a:hover {
+    color: var(--text);
+    background: rgba(20,184,166,0.08);
+    border-right-color: var(--teal);
+  }
+
+  #sidebar nav a.active {
+    color: var(--teal);
+    background: rgba(20,184,166,0.1);
+    border-right-color: var(--teal);
+  }
+
+  #sidebar nav .nav-icon {
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  #sidebar nav .nav-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--border);
+    padding: 14px 20px 6px 20px;
+  }
+
+  /* MAIN CONTENT */
+  #main {
+    flex: 1;
+    padding: 48px 52px;
+    max-width: calc(100% - 240px);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 72px;
+    scroll-margin-top: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .section-header h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    position: relative;
+  }
+
+  .section-header h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--teal);
+    margin-top: 6px;
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 32px 0 16px 0;
+    padding-right: 14px;
+    border-right: 3px solid var(--teal);
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--teal);
+    margin: 20px 0 10px 0;
+  }
+
+  p {
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.75;
+  }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--teal);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .stat-card.blue::before { background: var(--blue); }
+  .stat-card.green::before { background: var(--green); }
+  .stat-card.amber::before { background: var(--amber); }
+  .stat-card.purple::before { background: var(--purple); }
+  .stat-card.red::before { background: var(--red); }
+
+  .stat-card .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .stat-card .stat-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* TABLES */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--surface);
+  }
+
+  thead th {
+    padding: 12px 16px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(51,65,85,0.6);
+    transition: background 0.15s;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(30,41,59,0.4);
+  }
+
+  tbody tr:hover {
+    background: rgba(20,184,166,0.05);
+  }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--muted);
+    text-align: right;
+    vertical-align: top;
+  }
+
+  tbody td strong {
+    color: var(--text);
+  }
+
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* INFO CARDS */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .info-card .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-card .card-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .info-card .dot.blue { background: var(--blue); }
+  .info-card .dot.green { background: var(--green); }
+  .info-card .dot.amber { background: var(--amber); }
+  .info-card .dot.purple { background: var(--purple); }
+  .info-card .dot.red { background: var(--red); }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card ul li {
+    padding: 5px 0;
+    color: var(--muted);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .info-card ul li:last-child { border-bottom: none; }
+
+  .info-card ul li::before {
+    content: '—';
+    color: var(--border);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    background: rgba(20,184,166,0.08);
+    border: 1px solid rgba(20,184,166,0.25);
+    border-right: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .callout.blue {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.25);
+    border-right-color: var(--blue);
+  }
+
+  .callout.amber {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.25);
+    border-right-color: var(--amber);
+  }
+
+  .callout.green {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.25);
+    border-right-color: var(--green);
+  }
+
+  .callout.red {
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.25);
+    border-right-color: var(--red);
+  }
+
+  .callout-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .callout.blue .callout-title { color: var(--blue); }
+  .callout.amber .callout-title { color: var(--amber); }
+  .callout.green .callout-title { color: var(--green); }
+  .callout.red .callout-title { color: var(--red); }
+
+  /* ADMIXTURE TYPE CARDS */
+  .admix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .admix-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    border-top: 3px solid var(--teal);
+  }
+
+  .admix-card.blue { border-top-color: var(--blue); }
+  .admix-card.green { border-top-color: var(--green); }
+  .admix-card.amber { border-top-color: var(--amber); }
+  .admix-card.purple { border-top-color: var(--purple); }
+
+  .admix-card .admix-type {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .admix-card.blue .admix-type { color: var(--blue); }
+  .admix-card.green .admix-type { color: var(--green); }
+  .admix-card.amber .admix-type { color: var(--amber); }
+  .admix-card.purple .admix-type { color: var(--purple); }
+
+  .admix-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px 0;
+  }
+
+  .admix-card p {
+    font-size: 13px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  /* SWOT */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .swot-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .swot-card .swot-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+
+  .swot-card.s .swot-label { background: rgba(16,185,129,0.15); color: var(--green); }
+  .swot-card.w .swot-label { background: rgba(239,68,68,0.15); color: var(--red); }
+  .swot-card.o .swot-label { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .swot-card.t .swot-label { background: rgba(245,158,11,0.15); color: var(--amber); }
+
+  .swot-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .swot-card ul li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(51,65,85,0.4);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .swot-card ul li:last-child { border-bottom: none; }
+  .swot-card ul li::before { content: '•'; flex-shrink: 0; color: var(--border); }
+
+  /* COMPARISON TABLE (Lab) */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .compare-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .compare-card .cc-header {
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compare-card.external .cc-header { background: rgba(59,130,246,0.1); color: var(--blue); border-bottom: 1px solid rgba(59,130,246,0.2); }
+  .compare-card.internal .cc-header { background: rgba(16,185,129,0.1); color: var(--green); border-bottom: 1px solid rgba(16,185,129,0.2); }
+
+  .compare-card .cc-body {
+    padding: 14px 18px;
+  }
+
+  .compare-card .cc-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(51,65,85,0.4);
+    font-size: 13px;
+  }
+
+  .compare-card .cc-row:last-child { border-bottom: none; }
+
+  .compare-card .cc-row .cc-label { color: var(--muted); }
+  .compare-card .cc-row .cc-value { color: var(--text); font-weight: 600; text-align: left; }
+
+  /* INNOVATION CARDS */
+  .innovation-row {
+    display: flex;
+    gap: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .inno-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 44px;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .inno-content h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 6px 0;
+  }
+
+  .inno-content p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* PROJECT CARDS */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border-right: 4px solid var(--teal);
+  }
+
+  .project-card.blue { border-right-color: var(--blue); }
+  .project-card.green { border-right-color: var(--green); }
+  .project-card.amber { border-right-color: var(--amber); }
+
+  .project-card .pc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .project-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .project-card .pc-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: rgba(20,184,166,0.15);
+    color: var(--teal);
+    border: 1px solid rgba(20,184,166,0.25);
+    white-space: nowrap;
+  }
+
+  .project-card.blue .pc-tag { background: rgba(59,130,246,0.15); color: var(--blue); border-color: rgba(59,130,246,0.25); }
+  .project-card.green .pc-tag { background: rgba(16,185,129,0.15); color: var(--green); border-color: rgba(16,185,129,0.25); }
+  .project-card.amber .pc-tag { background: rgba(245,158,11,0.15); color: var(--amber); border-color: rgba(245,158,11,0.25); }
+
+  /* ACTION LIST */
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+  }
+
+  .action-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .action-list li:last-child { border-bottom: none; }
+
+  .action-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .action-num.blue { border-color: var(--blue); color: var(--blue); }
+  .action-num.amber { border-color: var(--amber); color: var(--amber); }
+
+  /* SOURCES */
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 32px;
+  }
+
+  .sources h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    color: var(--teal);
+  }
+
+  .sources ul {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    gap: 20px;
+  }
+
+  .sources ul li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(51,65,85,0.4);
+  }
+
+  .sources ul li::before {
+    content: '◦ ';
+    color: var(--border);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  footer strong { color: var(--text); }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: rgba(20,184,166,0.12);
+    color: var(--teal);
+    border: 1px solid rgba(20,184,166,0.25);
+    margin: 2px;
+  }
+
+  .tag.blue { background: rgba(59,130,246,0.12); color: var(--blue); border-color: rgba(59,130,246,0.25); }
+  .tag.amber { background: rgba(245,158,11,0.12); color: var(--amber); border-color: rgba(245,158,11,0.25); }
+  .tag.green { background: rgba(16,185,129,0.12); color: var(--green); border-color: rgba(16,185,129,0.25); }
+
+  /* ASTM TABLE HIGHLIGHT */
+  .astm-highlight {
+    background: rgba(20,184,166,0.08);
+    font-weight: 700;
+    color: var(--text) !important;
+  }
+
+  /* Timeline / Action phases */
+  .phase-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--teal);
+  }
+
+  .phase-block.phase-mid::before { background: var(--blue); }
+  .phase-block.phase-long::before { background: var(--purple); }
+
+  .phase-block .phase-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .phase-block.phase-mid .phase-label { color: var(--blue); }
+  .phase-block.phase-long .phase-label { color: var(--purple); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── MOBILE NAV ── */
+  #mobile-nav {
+    display: none;
+    position: sticky;
+    top: 34px;
+    z-index: 900;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 8px;
+  }
+  #mobile-nav::-webkit-scrollbar { display: none; }
+  #mobile-nav a {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #mobile-nav { display: block; }
+    #main { max-width: 100%; padding: 24px 20px; }
+    #cover-center { padding: 40px 28px; }
+    #cover-center h1 { font-size: 28px; }
+    .swot-grid, .compare-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    #cover-center h1 { font-size: 22px; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .section-header h2 { font-size: 20px; }
+    #cover-center { padding: 28px 20px; }
+  }
+  @media (max-width: 480px) {
+    #main { padding: 16px 14px; }
+    #cover-center h1 { font-size: 18px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .section { padding: 28px 0; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+
+<div id="mobile-nav">
+  <a href="#s1">📊 סיכום</a>
+  <a href="#s2">🌍 שוק גלובלי</a>
+  <a href="#s3">🏢 שחקנים</a>
+  <a href="#s4">🔬 סוגי מוספים</a>
+  <a href="#s5">🇮🇱 ישראל</a>
+  <a href="#s6">⚗️ מעבדה</a>
+  <a href="#s7">🚀 חדשנות</a>
+  <a href="#s8">📋 המלצות</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════════════════ -->
+<div id="cover">
+  <div id="cover-overlay"></div>
+
+  <div id="cover-top">
+    <span class="client-tag">שיכון ובינוי</span>
+    <div class="logo-wrap">
+      <span style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <span style="background:#3b82f6;color:#fff;font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px;letter-spacing:.05em;font-family:Segoe UI,Arial,sans-serif">SM</span>
+        <span style="color:#f1f5f9;font-size:17px;font-weight:700;letter-spacing:.02em;font-family:Segoe UI,Arial,sans-serif">Salted <span style="color:#3b82f6">Mind</span></span>
+      </span>
+    </div>
+  </div>
+
+  <div id="cover-center">
+    <div class="report-category">Strategic Research Report · 2026</div>
+    <h1>מוספי בטון (Concrete Admixtures)<br><span>שוק גלובלי, ישראל וחדשנות</span></h1>
+    <div class="subtitle">מחקר מעמיק: ספקים, מעבדות, פרויקטים ואסטרטגיה 2024–2026</div>
+    <div style="margin-top:14px;font-size:13px;color:#f59e0b;opacity:.85">⚠ הדוח נערך ללא מידע פנימי של החברה — על בסיס מידע ציבורי פתוח לכל בלבד.</div>
+
+    <div class="goals-label">נושאים עיקריים בדוח</div>
+    <ul class="goals">
+      <li>ניתוח שוק מוספי הבטון הגלובלי: $22.78 מיליארד (2024) ← $42.9 מיליארד (2032)</li>
+      <li>מיפוי ספקים ומצב השוק הישראלי</li>
+      <li>השוואת מעבדה פנימית מול מעבדה חיצונית — המלצה אסטרטגית</li>
+      <li>מגמות חדשנות וטכנולוגיה לשנים 2024–2026</li>
+    </ul>
+  </div>
+
+  <div id="cover-bottom">
+    <div class="date">17 במרץ 2026</div>
+    <div class="brand"><strong>Made by Salted Mind</strong> | דנה ממן</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN LAYOUT
+═══════════════════════════════════════════════════════ -->
+<div id="layout">
+
+  <!-- SIDEBAR NAV -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <span style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <span style="background:#3b82f6;color:#fff;font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px;letter-spacing:.05em;font-family:Segoe UI,Arial,sans-serif">SM</span>
+        <span style="color:#f1f5f9;font-size:17px;font-weight:700;letter-spacing:.02em;font-family:Segoe UI,Arial,sans-serif">Salted <span style="color:#3b82f6">Mind</span></span>
+      </span>
+    </div>
+    <nav>
+      <div class="nav-section-label">פרקי הדוח</div>
+      <a href="#s1"><span class="nav-icon">📊</span> סיכום מנהלים</a>
+      <a href="#s2"><span class="nav-icon">🌍</span> שוק גלובלי</a>
+      <a href="#s3"><span class="nav-icon">🏢</span> שחקנים עיקריים</a>
+      <a href="#s4"><span class="nav-icon">🔬</span> סוגי מוספים</a>
+      <a href="#s5"><span class="nav-icon">🇮🇱</span> שוק ישראל</a>
+      <div class="nav-section-label">ניתוח</div>
+      <a href="#s6"><span class="nav-icon">⚗️</span> מעבדה: פנימית vs. חיצונית</a>
+      <a href="#s7"><span class="nav-icon">🚀</span> חדשנות 2024–2026</a>
+      <a href="#s7-1"><span class="nav-icon">💧</span> SCC בטון דביק-עצמי</a>
+      <a href="#s7-2"><span class="nav-icon">💪</span> UHPC בטון אולטרה</a>
+      <a href="#s7-3"><span class="nav-icon">⚛️</span> ננו-חומרים וגרפן</a>
+      <a href="#s7-4"><span class="nav-icon">🌿</span> מוספים ירוקים</a>
+      <a href="#s7-5"><span class="nav-icon">♻️</span> CO₂ Curing</a>
+      <a href="#s8"><span class="nav-icon">🏗️</span> פרויקטים ישראליים</a>
+      <a href="#s9"><span class="nav-icon">📋</span> המלצות אסטרטגיות</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+
+    <!-- ═══ SECTION 1: Executive Summary ═══ -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>סיכום מנהלים</h2>
+      </div>
+
+      <p>
+        <strong>מוסף בטון (Concrete Admixture)</strong> הוא חומר המתווסף לתערובת הבטון (מלבד מלט, אגרגטים ומים) כדי לשנות תכונות מסוימות — נוזליות, זמן קשייה, חוזק, עמידות. המוספים הפכו ממרכיב אופציונלי לכלי הנדסי חיוני.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">שוק גלובלי 2024</div>
+          <div class="stat-value">$22.78B</div>
+          <div class="stat-sub">מיליארד דולר</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">תחזית 2032</div>
+          <div class="stat-value">$42.9B</div>
+          <div class="stat-sub">Fortune Business Insights</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">CAGR גלובלי</div>
+          <div class="stat-value">8.9–10.2%</div>
+          <div class="stat-sub">צמיחה שנתית ממוצעת</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-label">מנהיג שוק</div>
+          <div class="stat-value">Sika AG</div>
+          <div class="stat-sub">נתח שוק ~17%</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">מנהיג מס׳ 2</div>
+          <div class="stat-value">BASF SE</div>
+          <div class="stat-sub">נתח שוק ~14%</div>
+        </div>
+      </div>
+
+      <h3>עיקרי ממצאי ישראל</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot"></span> ייצור מקומי</div>
+          <ul>
+            <li>Enermit + Chemocrete שולטות בשוק הסטנדרטי</li>
+            <li>פעילות ייצוא מסוימת מישראל</li>
+            <li>הסמכה לתקנים ישראליים ובינלאומיים</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot amber"></span> מוספים מתקדמים</div>
+          <ul>
+            <li>UHPC, גרפן, ננו-סיליקה — מיובאים כמעט לחלוטין</li>
+            <li>תלות ביבוא = חשיפה למחיר ולזמינות</li>
+            <li>הזדמנות לפיתוח מקומי</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot blue"></span> ביקוש גדל</div>
+          <ul>
+            <li>מטרו $49B → SCC + UHPC + Waterproofing</li>
+            <li>שיקום צפון/עזה → מאיצים + SRA</li>
+            <li>תשתיות חוף → מעכבי קורוזיה</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 2: Global Market ═══ -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>שוק גלובלי — היקף ותחזיות</h2>
+      </div>
+
+      <h3>גודל שוק</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>מקור</th><th>שוק 2024</th><th>תחזית 2032</th><th>CAGR</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Fortune Business Insights</strong></td><td>$22.78B</td><td>$42.9B</td><td>10.2%</td></tr>
+            <tr><td><strong>Grand View Research</strong></td><td>$21.5B</td><td>$40.8B</td><td>8.9%</td></tr>
+            <tr><td><strong>IMARC Group</strong></td><td>$22B+</td><td>$38–41B</td><td>9.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>פיצול גיאוגרפי</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>אזור</th><th>נתח שוק</th><th>מגמה</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>אסיה-פסיפיק</strong></td><td><strong style="color: var(--teal);">64.57%</strong></td><td>צמיחה מהירה ביותר (סין, הודו, אינדונזיה)</td></tr>
+            <tr><td><strong>צפון אמריקה</strong></td><td>~18%</td><td>שוק בשל; חידוש תשתיות</td></tr>
+            <tr><td><strong>אירופה</strong></td><td>~13%</td><td>תקנות פחמן + UHPC</td></tr>
+            <tr><td><strong>מזרח תיכון ואפריקה</strong></td><td>~4%</td><td>גידול מואץ עם תשתיות</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>פיצול לפי סוג מוצר</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>סוג מוסף</th><th>נתח שוק</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>מפחיתי מים (Water Reducers)</strong></td><td><strong style="color: var(--teal);">47.9%</strong></td></tr>
+            <tr><td><strong>מאיצי קשייה</strong></td><td>~18%</td></tr>
+            <tr><td><strong>ממנעי שינוי מידות (Shrinkage-Reducing)</strong></td><td>~12%</td></tr>
+            <tr><td><strong>מוספי אוויר (Air-Entraining)</strong></td><td>~8%</td></tr>
+            <tr><td><strong>אחרים (UHPC, ננו, גרפן)</strong></td><td>~14%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>מנועי צמיחה</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot"></span> עיור מואץ</div>
+          <ul>
+            <li>ביקוש לתשתיות ומגורים</li>
+            <li>פרויקטי ענק במדינות מתפתחות</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot blue"></span> מחסור כוח אדם</div>
+          <ul>
+            <li>SCC ו-UHPC מפחיתים עבודה ידנית</li>
+            <li>דחיפה לאוטומציה בבנייה</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot green"></span> תקנות קיימות</div>
+          <ul>
+            <li>הפחתת CO₂; בנייה ירוקה</li>
+            <li>Low-Carbon Concrete תקני</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot amber"></span> מטרו ותחבורה</div>
+          <ul>
+            <li>מנהרות → מוספי עמידות גבוהה</li>
+            <li>Waterproofing + SCC לסגמנטים</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 3: Global Players ═══ -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>שחקנים עיקריים בעולם</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>חברה</th><th>נתח שוק</th><th>מדינה</th><th>חוזק</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sika AG</strong></td>
+              <td><strong style="color: var(--teal);">~17%</strong></td>
+              <td>שוויץ</td>
+              <td>תיק מוצרים ענק; נוכחות בכל יבשת</td>
+            </tr>
+            <tr>
+              <td><strong>BASF SE (Master Builders Solutions)</strong></td>
+              <td><strong>~14%</strong></td>
+              <td>גרמניה</td>
+              <td>מוצרי UHPC + קיימות</td>
+            </tr>
+            <tr>
+              <td><strong>GCP Applied Technologies</strong></td>
+              <td>טופ 3</td>
+              <td>ארה"ב</td>
+              <td>פתרונות סחר וייצור</td>
+            </tr>
+            <tr>
+              <td><strong>Mapei S.P.A</strong></td>
+              <td>טופ 5</td>
+              <td>איטליה</td>
+              <td>שוק אירופאי חזק</td>
+            </tr>
+            <tr>
+              <td><strong>Fosroc International</strong></td>
+              <td>טופ 5</td>
+              <td>בריטניה</td>
+              <td>מזרח תיכון ואסיה</td>
+            </tr>
+            <tr>
+              <td><strong>Chryso (Saint-Gobain)</strong></td>
+              <td>—</td>
+              <td>צרפת</td>
+              <td>EnviroMix — מוספי Low Carbon</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">מסקנה אסטרטגית</div>
+        Sika ו-BASF מחזיקות יחד ~31% מהשוק הגלובלי. בישראל יש לשתיהן נוכחות — Sika ישראל פעילה. שותפות מפנה יתרון מול תחרות ישירה.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 4: Admixture Types ═══ -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>סוגי מוספי בטון — מדריך מקיף</h2>
+      </div>
+
+      <h3>מיון לפי תקן ASTM C494</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>סוג ASTM</th><th>שם</th><th>תפקיד ראשי</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Type A</strong></td><td>מפחית מים (Water-Reducing)</td><td>הפחתת מים תוך שמירה על גמישות</td></tr>
+            <tr><td><strong>Type B</strong></td><td>מאחר (Retarding)</td><td>האטת קשייה</td></tr>
+            <tr><td><strong>Type C</strong></td><td>מאיץ (Accelerating)</td><td>האצת קשייה + חוזק מוקדם</td></tr>
+            <tr><td><strong>Type D</strong></td><td>מפחית מים + מאחר</td><td>שילוב</td></tr>
+            <tr><td><strong>Type E</strong></td><td>מפחית מים + מאיץ</td><td>שילוב</td></tr>
+            <tr class="astm-highlight"><td><strong>Type F</strong></td><td>Superplasticizer (HRWR)</td><td>הפחתת מים עד 40%; נוזליות גבוהה</td></tr>
+            <tr><td><strong>Type G</strong></td><td>Superplasticizer + מאחר</td><td>HRWR + האטה</td></tr>
+            <tr><td><strong>Type S</strong></td><td>ביצועים ספציפיים</td><td>התאמה אישית</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>תיאור מפורט של כל סוג</h3>
+
+      <div class="admix-grid">
+        <div class="admix-card">
+          <div class="admix-type">Type F</div>
+          <h4>Superplasticizers (HRWR)</h4>
+          <p>הפחתת מים עד 40%; שיפור נוזליות ללא השפעה על חוזק. שימוש אידאלי: UHPC, SCC, בטון טרומי, מנהרות.</p>
+        </div>
+        <div class="admix-card blue">
+          <div class="admix-type">Type B</div>
+          <h4>מאחרים (Retarders)</h4>
+          <p>יציקות גדולות, שינוע בטון מוכן, בנייה בתנאי חום קיצוניים — ישראל בקיץ, רלוונטי מאוד.</p>
+        </div>
+        <div class="admix-card green">
+          <div class="admix-type">Type C</div>
+          <h4>מאיצים (Accelerators)</h4>
+          <p>בנייה בחורף, שחרור מהיר של תבניות, סגמנטי TBM — חיסכון זמן משמעותי בפרויקטי מטרו.</p>
+        </div>
+        <div class="admix-card amber">
+          <div class="admix-type">מיוחד</div>
+          <h4>מוספי אוויר (Air-Entraining)</h4>
+          <p>רלוונטיות לישראל: נמוכה יחסית (אקלים חם) — אך חיוני בירושלים ובחרמון.</p>
+        </div>
+        <div class="admix-card">
+          <div class="admix-type">קריטי</div>
+          <h4>מוספי אטימה (Waterproofing)</h4>
+          <p>מנהרות ומבנים תת-קרקעיים — קריטי לקו האדום + מטרו. מאגרי מים ותשתיות רטובות.</p>
+        </div>
+        <div class="admix-card blue">
+          <div class="admix-type">גשרים וכבישים</div>
+          <h4>הפחתת כיווץ (SRA)</h4>
+          <p>גשרים, כבישים, ריצוף תעשייתי. הפחתת סדקים ארוכת טווח = חיסכון בתחזוקה.</p>
+        </div>
+        <div class="admix-card green">
+          <div class="admix-type">חוף ים</div>
+          <h4>מעכבי קורוזיה</h4>
+          <p>יעילות עד 99% בסביבת ים. קריטי לכל מבנה לאורך חוף הים התיכון — אשדוד, חיפה, אשקלון.</p>
+        </div>
+        <div class="admix-card purple" style="border-top-color: var(--purple);">
+          <div class="admix-type" style="color: var(--purple);">UHPC / מנהרות</div>
+          <h4>סיבי חיזוק (Fiber Reinforcement)</h4>
+          <p>פלדה (UHPC), פולי-פרופילן (מיקרו/מאקרו), זכוכית (GRC), פחמן. כל סוג לאפליקציה שונה.</p>
+        </div>
+      </div>
+
+      <h3>טבלת סיבי חיזוק</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>סוג סיב</th><th>יתרון מרכזי</th><th>יישום</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>פלדה</strong></td><td>חוזק מתיחה; UHPC</td><td>מנהרות, רצפות תעשייתיות</td></tr>
+            <tr><td><strong>פולי-פרופילן (מיקרו)</strong></td><td>הפחתת סדקי כיווץ</td><td>בטון טרומי, קירות</td></tr>
+            <tr><td><strong>פולי-פרופילן (מאקרו)</strong></td><td>חיזוק מבני</td><td>רצפות, בטון תעשייתי</td></tr>
+            <tr><td><strong>זכוכית (GRC)</strong></td><td>חזיתות, פאנלים קלים</td><td>אדריכלי</td></tr>
+            <tr><td><strong>פחמן</strong></td><td>חוזק גבוה מאוד; יקר</td><td>UHPC מיוחד</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 5: Israeli Market ═══ -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>שוק ישראל — ספקים, יבוא, מצב מקומי</h2>
+      </div>
+
+      <h3>ספקים מרכזיים</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ספק</th><th>מעמד</th><th>מוצרים</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Enermit</strong></td>
+              <td><span class="tag">מוביל שוק; מאז 1994</span></td>
+              <td>מוספים כימיים, Superplasticizers; ייצור מקומי + ייצוא</td>
+            </tr>
+            <tr>
+              <td><strong>Chemocrete (ReadyMix)</strong></td>
+              <td><span class="tag">חטיבה פנימית</span></td>
+              <td>חומרי גלם, מוספים לרדימיקס</td>
+            </tr>
+            <tr>
+              <td><strong>CEMEX ישראל</strong></td>
+              <td><span class="tag amber">יצרן ומפיץ</span></td>
+              <td>בטון מוכן, אגרגטים, מוספים</td>
+            </tr>
+            <tr>
+              <td><strong>Sika ישראל</strong></td>
+              <td><span class="tag green">גלובלי מקומי</span></td>
+              <td>מגוון מוסיף מלא; UHPC ומתקדמים</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>יבוא מול ייצור מקומי</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>קטגוריה</th><th>נתח מוערך</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>מוספים סטנדרטיים (Type A–E)</strong></td><td><strong style="color: var(--green);">70–80% מקומי</strong></td></tr>
+            <tr><td><strong>מוספים מתקדמים (UHPC, ננו, PCE)</strong></td><td><strong style="color: var(--amber);">20–30% מיובא</strong></td></tr>
+            <tr><td><strong>ננו-סיליקה, גרפן</strong></td><td><strong style="color: var(--red);">~100% מיובא</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">מסקנה אסטרטגית</div>
+        בשוק הסטנדרטי — ישראל מיוצרת. בשוק הגדל (מתקדמים + קיימות) — תלות ביבוא + <strong>הזדמנות לפיתוח מקומי</strong>.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 6: Lab Comparison ═══ -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>מעבדה פנימית מול מעבדה חיצונית</h2>
+      </div>
+
+      <p style="margin-bottom:20px">בסבירות גבוהה, כמו חברות נוספות בתעשייה, קיימת <strong>מעבדה פנימית כלשהי</strong> לבדיקת מוספים. השאלה האסטרטגית אינה אם לבנות מעבדה — אלא האם להוסיף רכש מוספים חיצוני מחברות מתמחות כדי לעמוד באתגרים הטכנולוגיים והמדעיים שמעבדה פנימית מתקשה לפתח לבדה: פורמולציות UHPC מורכבות, מוספים מותאמים לביצועים קיצוניים (TBM, חשיפה ימית), ופיתוח מהיר בהתאמה לספציפיקציות ממשלתיות. <strong>הגישה ההיברידית</strong> — שמירה על המעבדה הפנימית לשליטת תהליך + רכש מוספים מתקדמים מגופים חיצוניים — מאפשרת לשיכון ובינוי תעשיות ליהנות משני העולמות.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card external">
+          <div class="cc-header">🔬 מעבדה חיצונית</div>
+          <div class="cc-body">
+            <div class="cc-row"><span class="cc-label">עצמאות</span><span class="cc-value">✓ אימות עצמאי</span></div>
+            <div class="cc-row"><span class="cc-label">רגולציה</span><span class="cc-value">✓ עמידה מלאה</span></div>
+            <div class="cc-row"><span class="cc-label">הסמכה</span><span class="cc-value">✓ ISO, ASTM, EN</span></div>
+            <div class="cc-row"><span class="cc-label">זמן תגובה</span><span class="cc-value">✗ 28 יום לחוזק</span></div>
+            <div class="cc-row"><span class="cc-label">עיכובים</span><span class="cc-value">✗ עצירות בנייה</span></div>
+            <div class="cc-row"><span class="cc-label">עלות</span><span class="cc-value">$500–$1,500+/בדיקה</span></div>
+          </div>
+        </div>
+        <div class="compare-card internal">
+          <div class="cc-header">🏭 מעבדה פנימית</div>
+          <div class="cc-body">
+            <div class="cc-row"><span class="cc-label">מהירות</span><span class="cc-value">✓ תוצאות זמן אמת</span></div>
+            <div class="cc-row"><span class="cc-label">שליטה</span><span class="cc-value">✓ קיצור מחזורי תבניות</span></div>
+            <div class="cc-row"><span class="cc-label">עלות תפעול</span><span class="cc-value">✓ הפחתה משמעותית</span></div>
+            <div class="cc-row"><span class="cc-label">השקעה</span><span class="cc-value">✗ הוצאה ראשונית</span></div>
+            <div class="cc-row"><span class="cc-label">הסמכה</span><span class="cc-value">✗ דרישות מיוחדות</span></div>
+            <div class="cc-row"><span class="cc-label">ROI</span><span class="cc-value">6–12 חודשים</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>גישה היברידית — המומלצת</h3>
+      <div class="callout green">
+        <div class="callout-title">פתרון מיטבי</div>
+        <strong>בדיקות in-house</strong> ← שליטת תהליך + החלטות זמן אמת<br>
+        <strong>בדיקות חיצוניות</strong> ← אישור עמידה ברגולציה + תיעוד רשמי
+      </div>
+
+      <h3>השוואה לפי גודל פרויקט</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>גודל פרויקט</th><th>גישה מומלצת</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>קטן (&lt;5,000 מ"ק)</strong></td><td>חיצונית</td></tr>
+            <tr><td><strong>בינוני (5,000–50,000 מ"ק)</strong></td><td>היברידי</td></tr>
+            <tr><td><strong>גדול (מעל 50,000 מ"ק)</strong></td><td>In-house מלא</td></tr>
+            <tr class="astm-highlight"><td><strong>מפעל טרום</strong></td><td>In-house חובה</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout amber">
+        <div class="callout-title">המצב הנוכחי והשאלה האסטרטגית — שיכון ובינוי תעשיות</div>
+        בסבירות גבוהה, כמו חברות נוספות בתעשייה, ישנה מעבדה פנימית כלשהי. <strong>השאלה היא לא "האם לפתוח מעבדה"</strong> — אלא האם להוסיף עליה שיתוף פעולה עם ספקי מוספים חיצוניים (Sika, BASF, Enermit) לפרויקטים עם דרישות טכניות מורכבות שמעבדה פנימית מתקשה לפתח לבדה. <strong>המלצה: גישה היברידית</strong> — פנימית לבקרת איכות שוטפת + חיצוני לפיתוח מוצרים מתקדמים ותיעוד רגולטורי.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 7: Innovation ═══ -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2>חדשנות ומגמות 2024–2026</h2>
+      </div>
+
+      <!-- 7.1 SCC -->
+      <h3 id="s7-1">7.1 בטון דביק-עצמי (Self-Compacting Concrete — SCC)</h3>
+
+      <div class="innovation-row">
+        <div class="inno-icon">💧</div>
+        <div class="inno-content">
+          <h4>הגדרה</h4>
+          <p>בטון נוזל ביותר שמתמלא תבניות ומסתדר בכוח עצמו ללא ויברטור.</p>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot green"></span> יתרונות SCC</div>
+          <ul>
+            <li>חיסכון בכוח אדם (ללא צוות ויבר)</li>
+            <li>איכות אחידה גבוהה יותר</li>
+            <li>הפחתת רעש באתר</li>
+            <li>גימור אסתטי עדיף</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot blue"></span> שימוש אידאלי</div>
+          <ul>
+            <li>בטון טרומי (אשקריט, שיכון ובינוי תעשיות)</li>
+            <li>מנהרות עם ברזל צפוף</li>
+            <li>בניינים רב-קומות</li>
+            <li>אלמנטים אדריכליים מורכבים</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7.2 UHPC -->
+      <h3 id="s7-2">7.2 בטון ביצועים אולטרה-גבוהים (UHPC)</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>פרמטר</th><th>בטון רגיל</th><th>UHPC</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>חוזק דחיסה</strong></td>
+              <td>30–50 MPa</td>
+              <td><strong style="color: var(--teal);">150–250 MPa</strong></td>
+            </tr>
+            <tr>
+              <td><strong>עמידות</strong></td>
+              <td>50 שנה</td>
+              <td><strong style="color: var(--teal);">100+ שנה</strong></td>
+            </tr>
+            <tr>
+              <td><strong>צורך בזיון</strong></td>
+              <td>גבוה</td>
+              <td><strong style="color: var(--green);">מינימלי</strong></td>
+            </tr>
+            <tr>
+              <td><strong>עובי רכיב</strong></td>
+              <td>רגיל</td>
+              <td><strong style="color: var(--green);">70% דק יותר</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title">יישומים בישראל</div>
+        גשרים, פאנלי חזית דקים, קירות בליסטיים, סגמנטי TBM ברמת דיוק עליונה.
+      </div>
+
+      <!-- 7.3 Nano -->
+      <h3 id="s7-3">7.3 ננו-חומרים ומוספי גרפן</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>חומר</th><th>תועלת</th><th>שלב</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ננו-סיליקה (NS)</strong></td>
+              <td>מבנה מיקרו צפוף + פחות נקבוביות</td>
+              <td><span class="tag green">מסחרי</span></td>
+            </tr>
+            <tr>
+              <td><strong>תחמוצת גרפן (GO)</strong></td>
+              <td>+280.6% גסות משטח סיב; −37.5% נקבוביות</td>
+              <td><span class="tag amber">מחקר מתקדם</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="innovation-row">
+        <div class="inno-icon">⚛️</div>
+        <div class="inno-content">
+          <h4>גרדאו גרפן (2024)</h4>
+          <p>חיסכון 20% מים + שיפור חוזק + הפחתת נקבוביות. אחד הפיתוחים המרכזיים בתעשייה ב-2024.</p>
+        </div>
+      </div>
+
+      <!-- 7.4 Green -->
+      <h3 id="s7-4">7.4 הפחתת CO₂ — מוספים ירוקים</h3>
+
+      <div class="callout">
+        <div class="callout-title">הקשר</div>
+        ייצור בטון = ~8% מפליטות CO₂ הגלובליות. מוספים ירוקים = כלי מרכזי לעמידה ביעדי אקלים.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>טכנולוגיה</th><th>הפחתת CO₂</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>מפחיתי מים + מאיצים</strong></td><td>10–15%</td></tr>
+            <tr><td><strong>תערובת Low-Carbon מאושרת</strong></td><td>עד 20%</td></tr>
+            <tr><td><strong>Superplasticizers PCE</strong></td><td>עד 50%</td></tr>
+            <tr><td><strong>תוספי CO₂ (Carbon-Negative)</strong></td><td>שלילי (ספיגת פחמן)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 7.5 CO2 Curing -->
+      <h3 id="s7-5">7.5 CO₂ Curing — ריפוי בפחמן דו-חמצני</h3>
+
+      <div class="innovation-row">
+        <div class="inno-icon">♻️</div>
+        <div class="inno-content">
+          <h4>במקום אידוי (Steam Curing)</h4>
+          <p>שימוש ב-CO₂ כגורם ריפוי. חיסכון אנרגיה + שיפור עמידות + ספיגת CO₂. טכנולוגיה בשלב מסחרי ראשוני.</p>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <div class="callout-title">רלוונטיות לשיכון ובינוי תעשיות</div>
+        ייתכן שינוי בתהליך הייצור במפעל הטרום — Pilot CO₂ Curing בקו אחד כניסוי ראשוני.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 8: Israeli Projects ═══ -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2>פרויקטים ישראליים קריטיים למוספים</h2>
+      </div>
+
+      <!-- Red Line -->
+      <div class="project-card">
+        <div class="pc-header">
+          <h4>קו האדום — נתיב מהיר תל אביב (הושלם 2023)</h4>
+          <span class="pc-tag">הושלם</span>
+        </div>
+        <p>25 ק"מ; 12 ק"מ תת-קרקעי; 34 תחנות; 2011–2023.</p>
+        <div class="table-wrap" style="margin-top: 12px;">
+          <table>
+            <thead>
+              <tr><th>חלק</th><th>מוסף</th><th>סיבה</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>מנהרות תת-קרקעיות</td><td>Waterproofing + מפחיתי מים</td><td>עמידות 100 שנה; לחץ מים</td></tr>
+              <tr><td>סגמנטי TBM</td><td>SCC + מעכבי קורוזיה</td><td>אחידות + עמידות ברזל זיון</td></tr>
+              <tr><td>תחנות</td><td>Superplasticizers + מאיצים</td><td>ברזל צפוף + שחרור תבניות מהיר</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Metro -->
+      <div class="project-card blue">
+        <div class="pc-header">
+          <h4>מטרו תל אביב M1/M2/M3 (בביצוע; פתיחה ~2032)</h4>
+          <span class="pc-tag blue">$49 מיליארד</span>
+        </div>
+        <p>~20 TBMs; שלב רכש מרכזי 2024–2026.</p>
+        <div class="info-grid" style="margin-top: 12px;">
+          <div class="info-card">
+            <div class="card-title"><span class="dot blue"></span> מוספים קריטיים</div>
+            <ul>
+              <li>SCC — סגמנטי TBM (עמידות + אחידות)</li>
+              <li>מעכבי קורוזיה — ברזל זיון 100 שנה</li>
+              <li>Waterproofing — מי תהום</li>
+              <li>Retarders — חום ישראלי</li>
+              <li>Accelerators — שחרור תבניות מהיר</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mediterranean -->
+      <div class="project-card green">
+        <div class="pc-header">
+          <h4>תשתיות חוף ים תיכון</h4>
+          <span class="pc-tag green">מתמשך</span>
+        </div>
+        <p>נמל אשדוד, נמל חיפה, נמל ים, קיסריה, אשקלון.</p>
+        <div class="info-grid" style="margin-top: 12px;">
+          <div class="info-card">
+            <div class="card-title"><span class="dot green"></span> מוספים נדרשים</div>
+            <ul>
+              <li>מעכבי קורוזיה — עד 99% יעילות</li>
+              <li>מפחיתי חדירות (Waterproofing)</li>
+              <li>W/C נמוך + Superplasticizers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reconstruction -->
+      <div class="project-card amber">
+        <div class="pc-header">
+          <h4>שיקום הצפון ועזה (2025–2027)</h4>
+          <span class="pc-tag amber">8+ מיליארד ₪</span>
+        </div>
+        <p>25,000–40,000 יחידות נפגעות בצפון.</p>
+        <div class="info-grid" style="margin-top: 12px;">
+          <div class="info-card">
+            <div class="card-title"><span class="dot amber"></span> מוספים נדרשים</div>
+            <ul>
+              <li>מאיצים — בנייה מהירה; חוזק מוקדם</li>
+              <li>SRA — הפחתת סדקים במבנים מחודשים</li>
+              <li>מפחיתי מים — חיסכון בפרויקטים המוניים</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 9: Recommendations ═══ -->
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-number">09</span>
+        <h2>המלצות אסטרטגיות</h2>
+      </div>
+
+      <h3>ניתוח SWOT</h3>
+      <div class="swot-grid">
+        <div class="swot-card s">
+          <span class="swot-label">חוזקות</span>
+          <ul>
+            <li>ידע בפרויקטים תשתיתיים גדולים</li>
+            <li>קשרים עם גופי ממשלה ורשויות</li>
+            <li>מפעל טרום קיים (שיכון ובינוי תעשיות)</li>
+          </ul>
+        </div>
+        <div class="swot-card w">
+          <span class="swot-label">חולשות</span>
+          <ul>
+            <li>תלות בספקי מוספים חיצוניים</li>
+            <li>אין מחלקת R&amp;D מוספים פנימית</li>
+            <li>מוספים מתקדמים — תלות ביבוא</li>
+          </ul>
+        </div>
+        <div class="swot-card o">
+          <span class="swot-label">הזדמנויות</span>
+          <ul>
+            <li>מטרו $49B — ביקוש UHPC + SCC עצום</li>
+            <li>שיקום צפון/עזה — ביקוש מוסיף מהיר</li>
+            <li>שוק Low-Carbon — ישראל מתאימה</li>
+          </ul>
+        </div>
+        <div class="swot-card t">
+          <span class="swot-label">איומים</span>
+          <ul>
+            <li>Sika/BASF — ענקים עם שירות מלא</li>
+            <li>מחירי מוספים יקרים + תנודות ביבוא</li>
+            <li>רגולציה מקשה על תערובות חדשות</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>המלצות פעולה לפי טווח זמן</h3>
+
+      <div class="phase-block">
+        <div class="phase-label">טווח קצר — 0–12 חודשים</div>
+        <ul class="action-list">
+          <li>
+            <span class="action-num">1</span>
+            <div><strong>הרחבת שיתוף פעולה עם ספקי מוספים חיצוניים</strong> — המעבדה הפנימית פעילה; השלב הבא הוא הוספת יכולות חיצוניות לפורמולציות UHPC ומוספים מורכבים (Sika, BASF, Enermit)</div>
+          </li>
+          <li>
+            <span class="action-num">2</span>
+            <div><strong>שותפות עם Enermit</strong> — Customized Admixtures לסגמנטי TBM; מפרטים ייחודיים לפרויקט המטרו</div>
+          </li>
+          <li>
+            <span class="action-num">3</span>
+            <div><strong>הכנת מפרטי מוספים לפרויקט המטרו</strong> — מסמך טכני שמאפשר השתתפות בביצוע הסגמנטים</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="phase-block phase-mid">
+        <div class="phase-label">טווח בינוני — 1–3 שנים</div>
+        <ul class="action-list">
+          <li>
+            <span class="action-num blue">4</span>
+            <div><strong>ניסוי SCC בקווי שיכון ובינוי תעשיות</strong> — שיפור בטון טרומי; הפחתת עבודת ויבר</div>
+          </li>
+          <li>
+            <span class="action-num blue">5</span>
+            <div><strong>Pilot CO₂ Curing</strong> — שלב ניסוי בקו אחד; הפחתת אנרגיה + שיפור עמידות</div>
+          </li>
+          <li>
+            <span class="action-num blue">6</span>
+            <div><strong>שותפות עם Sika/BASF לישראל</strong> — גישה למוצרים מתקדמים + אימות רגולטורי</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="phase-block phase-long">
+        <div class="phase-label">טווח ארוך — 3–7 שנים</div>
+        <ul class="action-list">
+          <li>
+            <span class="action-num amber">7</span>
+            <div><strong>UHPC Lab</strong> — פיתוח יכולת ייצור UHPC ישראלי; שוק גשרים, פאנלים ומנהרות</div>
+          </li>
+          <li>
+            <span class="action-num amber">8</span>
+            <div><strong>ייצוא מוספים ישראליים לאזור</strong> — שותפות עם Enermit; מדינות מפרץ + מזרח אירופה</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sources">
+        <h4>מקורות עיקריים</h4>
+        <ul>
+          <li>Fortune Business Insights — Concrete Admixtures 2032</li>
+          <li>Grand View Research — Concrete Admixtures</li>
+          <li>GlobeNewsWire — Admixtures Industry 2025–2030</li>
+          <li>Penn State — Admixtures Guide</li>
+          <li>Sika | BASF | Mapei | Chryso</li>
+          <li>MIT — Carbon-Negative Concrete (2023)</li>
+          <li>NTA — Red Line | ENR — Israel Metro $49B</li>
+          <li>Enermit | ReadyMix Admixtures | IndexBox — Israel UHPC Market</li>
+          <li>Gerdau Graphene (2024)</li>
+          <li>IMARC Group — Concrete Admixtures Market</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>דוח אסטרטגי — <strong>שיכון ובינוי תעשיות</strong></div>
+  <div><strong>Made by Salted Mind</strong> | דנה ממן | מרץ 2026</div>
+</footer>
+
+<script>
+  // Active sidebar highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#sidebar nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

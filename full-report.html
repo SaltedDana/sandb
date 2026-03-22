@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שיכון ובינוי — מחקר אסטרטגי מרץ 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  :root {
+    --bg:      #0f172a;
+    --surface: #1e293b;
+    --card:    #263248;
+    --border:  #334155;
+    --text:    #f1f5f9;
+    --muted:   #94a3b8;
+    --blue:    #3b82f6;
+    --green:   #10b981;
+    --amber:   #f59e0b;
+    --red:     #ef4444;
+    --purple:  #8b5cf6;
+    --teal:    #14b8a6;
+    --nav-w:   240px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    display: flex;
+  }
+
+  /* ── NAV ── */
+  nav {
+    width: var(--nav-w);
+    min-height: 100vh;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+    padding: 24px 0 40px;
+  }
+  nav .logo {
+    padding: 0 20px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  nav .logo h2 { font-size: 14px; color: var(--text); font-weight: 700; }
+  nav .logo p  { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  nav a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 20px; font-size: 13px; color: var(--muted);
+    text-decoration: none; border-right: 3px solid transparent;
+    transition: all .15s;
+  }
+  nav a:hover, nav a.active {
+    color: var(--text);
+    background: rgba(59,130,246,.08);
+    border-right-color: var(--blue);
+  }
+  nav a .dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── MAIN ── */
+  main { flex: 1; min-width: 0; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+    padding: 60px 48px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.4);
+    color: var(--blue); font-size: 11px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+    letter-spacing: .5px;
+  }
+  .hero h1 { font-size: 32px; font-weight: 800; line-height: 1.3; max-width: 600px; }
+  .hero p  { font-size: 15px; color: var(--muted); margin-top: 10px; max-width: 500px; }
+  .hero-kpis {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px;
+  }
+  .kpi {
+    background: rgba(255,255,255,.04); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  .kpi .val { font-size: 28px; font-weight: 800; line-height: 1; }
+  .kpi .lbl { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .kpi .sub { font-size: 11px; color: var(--muted); margin-top: 4px; opacity:.7; }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 48px 48px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 36px;
+  }
+  .section-number {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; flex-shrink: 0; margin-top: 3px;
+  }
+  .section-header h2 { font-size: 22px; font-weight: 800; line-height: 1.3; }
+  .section-header p  { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ── GRIDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .col-span-2 { grid-column: span 2; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .card .sub-label { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+
+  /* ── CHART WRAPPER ── */
+  .chart-wrap { position: relative; }
+  .chart-title {
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    margin-bottom: 12px; text-transform: uppercase; letter-spacing: .4px;
+  }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: right; padding: 10px 12px;
+    background: rgba(255,255,255,.04); color: var(--muted);
+    font-weight: 600; font-size: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid rgba(51,65,85,.5); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+
+  /* ── BADGES / TAGS ── */
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+  }
+  .tag-blue   { background: rgba(59,130,246,.15); color: #60a5fa; }
+  .tag-green  { background: rgba(16,185,129,.15); color: #34d399; }
+  .tag-amber  { background: rgba(245,158,11,.15); color: #fbbf24; }
+  .tag-red    { background: rgba(239,68,68,.15);  color: #f87171; }
+  .tag-purple { background: rgba(139,92,246,.15); color: #a78bfa; }
+  .tag-teal   { background: rgba(20,184,166,.15); color: #2dd4bf; }
+
+  /* ── PRIORITY CARDS ── */
+  .priority-card {
+    border-radius: 12px; padding: 24px; border: 1px solid;
+  }
+  .priority-1 { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.3); }
+  .priority-2 { background: rgba(59,130,246,.08); border-color: rgba(59,130,246,.3); }
+  .priority-3 { background: rgba(245,158,11,.08); border-color: rgba(245,158,11,.3); }
+  .priority-card .rank {
+    font-size: 11px; font-weight: 700; letter-spacing: .5px; margin-bottom: 8px;
+  }
+  .priority-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+  .priority-card .vol {
+    font-size: 22px; font-weight: 800; margin: 12px 0 6px;
+  }
+  .priority-card ul { padding-right: 16px; font-size: 13px; color: var(--muted); }
+  .priority-card ul li { margin-bottom: 4px; }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .product-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    font-size: 12px;
+  }
+  .product-item .pid { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .product-item .pname { font-weight: 600; line-height: 1.4; }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .stat-row .label { font-size: 13px; color: var(--muted); flex: 0 0 160px; }
+  .stat-row .bar-wrap {
+    flex: 1; height: 8px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden;
+  }
+  .stat-row .bar { height: 100%; border-radius: 4px; }
+  .stat-row .val { font-size: 13px; font-weight: 700; flex: 0 0 70px; text-align: left; }
+
+  /* ── INNOVATION ITEMS ── */
+  .inno-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px; display: flex; gap: 14px;
+  }
+  .inno-item .icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .inno-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .inno-item p  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .inno-item .source { font-size: 11px; color: var(--blue); margin-top: 8px; }
+
+  /* ── MEETING ITEMS ── */
+  .meeting-item {
+    border-right: 3px solid var(--blue);
+    padding: 16px 20px; margin-bottom: 12px;
+    background: rgba(59,130,246,.04); border-radius: 0 8px 8px 0;
+  }
+  .meeting-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .meeting-item p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .meeting-item .highlight {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+    color: #34d399; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 6px; margin-top: 8px;
+  }
+
+  /* ── ADMIXTURE TYPES ── */
+  .admix-type {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; border-top: 3px solid;
+  }
+  .admix-type h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .admix-type p  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: var(--muted); text-transform: uppercase;
+    margin: 28px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── SOURCE CHIP ── */
+  .source-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; color: var(--muted); margin-top: 10px;
+  }
+  .source-chip a { color: var(--blue); text-decoration: none; }
+  .source-chip a:hover { text-decoration: underline; }
+
+  /* ── PROSE BLOCK ── */
+  .prose-block p { margin-bottom: 14px; font-size: 14px; line-height: 1.85; color: var(--text); }
+  .prose-block p:last-child { margin-bottom: 0; }
+
+  /* ── CHART EXPLANATION ── */
+  .chart-explanation {
+    background: rgba(59,130,246,.04);
+    border: 1px solid rgba(59,130,246,.2);
+    border-right: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .chart-explanation strong { color: #60a5fa; }
+
+  /* ── PRODUCT CARD FULL (100 products) ── */
+  .product-card-full {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .product-card-full .pid { font-size:10px; color:var(--muted); margin-bottom:3px; font-weight:600; }
+  .product-card-full .pname { font-weight:700; font-size:13px; line-height:1.3; margin-bottom:5px; }
+  .product-card-full .pdesc { font-size:12px; color:var(--muted); line-height:1.5; margin-bottom:5px; }
+  .product-card-full .psrc { font-size:11px; color:var(--blue); text-decoration:none; }
+  .product-card-full .psrc:hover { text-decoration:underline; }
+  .product-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+
+  /* ── COMPARE ROWS (OECD) ── */
+  .compare-metric { margin-bottom: 24px; }
+  .compare-metric:last-child { margin-bottom: 0; }
+  .compare-metric .metric-name { font-size:13px; font-weight:700; margin-bottom:10px; color: var(--text); }
+  .compare-bar-row { display:flex; gap:10px; align-items:center; margin-bottom:6px; }
+  .compare-label { font-size:12px; color:var(--muted); flex:0 0 64px; text-align:left; }
+  .compare-bar-wrap { flex:1; height:26px; background:rgba(255,255,255,.05); border-radius:4px; overflow:hidden; }
+  .compare-bar-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding:0 10px; }
+  .compare-bar-fill span { font-size:12px; font-weight:700; color:#fff; white-space:nowrap; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── MOBILE NAV BAR ── */
+  #mobile-nav {
+    display: none;
+    position: sticky;
+    top: 34px;
+    z-index: 900;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 8px;
+  }
+  #mobile-nav::-webkit-scrollbar { display: none; }
+  #mobile-nav a {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  #mobile-nav a:hover { color: var(--text); border-bottom-color: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    nav { display: none; }
+    #mobile-nav { display: block; }
+    .hero-kpis { grid-template-columns: repeat(2,1fr); }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .product-grid-2 { grid-template-columns: 1fr !important; }
+    section { padding: 36px 24px 48px; }
+    .hero { padding: 40px 24px 36px; }
+  }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 24px; }
+    .hero p  { font-size: 14px; }
+    .kpi-val { font-size: 26px; }
+    .section-header h2 { font-size: 20px; }
+    .chart-wrap { height: 200px !important; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .prose-block { padding: 14px 18px; }
+    .chart-explanation { padding: 14px 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero { padding: 24px 16px 20px; }
+    .hero h1 { font-size: 19px; line-height: 1.4; }
+    .hero-kpis { grid-template-columns: 1fr; }
+    section { padding: 24px 14px 40px; }
+    .kpi-val { font-size: 22px; }
+    .chart-wrap { height: 170px !important; }
+    .prose-block { padding: 12px 14px; font-size: 13px; }
+    .chart-explanation { padding: 12px 14px; font-size: 13px; }
+    .product-card-full { padding: 12px 14px !important; }
+    .section-header { flex-direction: column; gap: 6px; }
+    .section-number { font-size: 28px !important; }
+  }
+</style>
+</head>
+<body>
+
+
+<div id="mobile-nav">
+  <a href="#s0">📋 סיכום</a>
+  <a href="#s1">🏭 שוק ישראל</a>
+  <a href="#s2">📈 ביקוש ומיקום</a>
+  <a href="#s3">🧱 טרומי</a>
+  <a href="#s4">🧪 מוספים</a>
+  <a href="#s5">🌐 חדשנות</a>
+  <a href="#s6">✅ המלצות</a>
+</div>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<nav id="sidebar">
+  <div class="logo">
+    <h2>שיכון ובינוי</h2>
+    <p>מחקר אסטרטגי — מרץ 2026</p>
+  </div>
+  <a href="#hero" class="active"><span class="dot" style="background:#3b82f6"></span>סקירה כללית</a>
+  <a href="#s0"><span class="dot" style="background:#60a5fa"></span>סיכום מנהלים</a>
+  <a href="#s1"><span class="dot" style="background:#10b981"></span>שוק הבטון בישראל</a>
+  <a href="#s2"><span class="dot" style="background:#f59e0b"></span>ביקוש, היצע ומיקום</a>
+  <a href="#s3"><span class="dot" style="background:#8b5cf6"></span>טרומי</a>
+  <a href="#s4"><span class="dot" style="background:#14b8a6"></span>מוספי בטון</a>
+  <a href="#s5"><span class="dot" style="background:#ec4899"></span>חדשנות גלובלית</a>
+  <a href="#s6"><span class="dot" style="background:#f97316"></span>ממצאים והמלצות</a>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<main>
+
+<!-- ── HERO ── -->
+<div class="hero" id="hero">
+  <div class="badge">מחקר אסטרטגי | מרץ 2026</div>
+  <h1>שיכון ובינוי — אסטרטגיית בטון</h1>
+  <p>מחקר מקיף לניתוח שוק הבטון בישראל, ביקוש מול היצע, טרומי, מוספי בטון וחדשנות גלובלית.</p>
+  <p style="margin-top:12px;font-size:13px;color:#f59e0b;opacity:.85">⚠ הדוח נערך ללא מידע פנימי של החברה — על בסיס מידע ציבורי פתוח לכל בלבד.</p>
+  <div class="hero-kpis">
+    <div class="kpi">
+      <div class="val" style="color:#10b981">8–12M</div>
+      <div class="lbl">מ״ק בטון מוכן בשנה</div>
+      <div class="sub">שוק ישראל בשיא (2021–2022)</div>
+    </div>
+    <div class="kpi">
+      <div class="val" style="color:#3b82f6">81,020</div>
+      <div class="lbl">התחלות בנייה</div>
+      <div class="sub">אוק׳ 2024 – ספט׳ 2025 | +31.5%</div>
+    </div>
+    <div class="kpi">
+      <div class="val" style="color:#f59e0b">$49B</div>
+      <div class="lbl">פרויקט מטרו תל אביב</div>
+      <div class="sub">הזדמנות עיקרית לסגמנטי TBM</div>
+    </div>
+    <div class="kpi">
+      <div class="val" style="color:#8b5cf6">$168B</div>
+      <div class="lbl">שוק טרומי גלובלי</div>
+      <div class="sub">2024 | צמיחה ל-$268B עד 2032</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0 — סיכום מנהלים
+══════════════════════════════════════════ -->
+<section id="s0">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(59,130,246,.15);color:#3b82f6">00</div>
+    <div>
+      <h2>סיכום מנהלים</h2>
+      <p>סקירה אסטרטגית רוחבית — שוק, ביקוש, חדשנות ומגמות עולמיות</p>
+    </div>
+  </div>
+
+  <!-- פתיחה -->
+  <div style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:22px 26px;margin-bottom:36px" class="prose-block">
+    <p>
+      שיכון ובינוי תעשיות מפעילה כיום כ-10 מפעלי בטון מוכן בישראל ועוסקת בייצור טרומי (PHC, קורות גשרים). מסמך זה מרכז מחקר ניהולי-אסטרטגי שנועד לענות על שאלה מרכזית אחת: <strong>כיצד להגדיל את הרווחיות ולהרחיב את פעילות החטיבה?</strong>
+    </p>
+    <p>
+      הניתוח מכסה ארבעה תחומים: (א) מבנה שוק הבטון בישראל ותחרות; (ב) מגמות ביקוש לחומרי בנייה עד 2040 ופערים גיאוגרפיים; (ג) חדשנות גלובלית במוצרים, טכנולוגיות ותהליכים; (ד) שיטות עבודה מובילות בעולם ורלוונטיות לישראל.
+    </p>
+    <p style="margin-bottom:0">
+      הרקע הוא קריטי: ישראל עוברת ממשבר מלחמה — שגרם לירידה של כ-21% בייצור הבטון ב-2024 — לשלב של התאוששות ובנייה מסיבית. בין אוקטובר 2024 לספטמבר 2025 נרשמו <strong>81,020 התחלות בנייה</strong>, עלייה של 31.5% לעומת השנה הקודמת. זהו רגע אסטרטגי: החלטות שיתקבלו עכשיו יעצבו את מיצוב החטיבה לשנים הבאות.
+    </p>
+  </div>
+
+  <!-- א: שוק -->
+  <div class="section-divider">א — שוק הבטון בישראל: אוליגופול מובהק</div>
+  <div class="prose-block" style="margin-bottom:20px">
+    <p>
+      שוק הבטון המוכן (Ready-Mix Concrete) בישראל הוא <strong>אוליגופול</strong> — שוק שבו מספר מצומצם של שחקנים שולטים ברוב ההיצע, ומחסומי הכניסה גבוהים: נדרש הון עתק לבניית מפעל, רישיונות קשים להפקת מחצבה, ורשת הפצה עם צי רכב גדול. כ-175 מפעלים פרוסים ברחבי הארץ, ושלוש חברות שולטות יחד בכ-83% מהשוק.
+    </p>
+    <p>
+      <strong>רדימיקס (CEMEX)</strong> היא המובילה: 60 מפעלים, 9 מחצבות, ומפעל מוספי בטון עצמאי (Chemocrete) — שרשרת ערך אנכית כמעט מלאה. <strong>שפיר (אולטרה בטון)</strong> בולטת בנכס ייחודי: מפעל צמנט עצמאי בנחל עציון בייצור של כ-700,000 טון לשנה — שליטה בתשומה היקרה ביותר בייצור הבטון. <strong>הנסון (Heidelberg Materials)</strong>, לעומת זאת, מייבאת את הצמנט שלה — חשיפה לסיכוני שרשרת אספקה ותנודות מחיר.
+    </p>
+    <p>
+      שיכון ובינוי תעשיות (שיכון ובינוי) ממוצבת כיום <strong>באמצע שרשרת הערך</strong>: ייצור בטון מוכן ופעילות טרומית, ללא מחצבות, ללא צמנט עצמאי, וללא מוספי בטון. זה מציב אתגר ברווחיות — אבל גם מפנה הזדמנויות ברורות: לפתח יתרון בנישות שהמתחרים הגדולים לא שולטים בהן, ולהרחיב נוכחות גיאוגרפית לאזורים עם פערי היצע.
+    </p>
+  </div>
+
+  <div class="grid-2" style="align-items:start;margin-bottom:36px">
+    <div class="card">
+      <div class="chart-title">נתחי שוק — בטון מוכן ישראל (~175 מפעלים)</div>
+      <div class="chart-wrap" style="height:250px">
+        <canvas id="chartExecMarket"></canvas>
+      </div>
+      <div class="source-chip" style="margin-top:10px">מקור: <a href="https://readymix.co.il" target="_blank">readymix.co.il</a> | <a href="https://shapir.co.il" target="_blank">shapir.co.il</a> | ניתוח רשות ההגבלים העסקיים</div>
+    </div>
+    <div>
+      <div class="chart-explanation" style="margin-top:0">
+        <strong>מה אנחנו רואים:</strong> שלוש חברות — רדימיקס, שפיר והנסון — שולטות יחד בכ-83% מהשוק. שיכון ובינוי תעשיות מחזיקה בכ-3% בלבד, עם עוד ~14% מפוזר בין שחקנים קטנים (ישראבטון, Greenmix, ועוד).
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> שוק ריכוזי כזה יוצר מחסום כניסה לשחקנים חדשים — אבל מי שנמצא בו, כמו שיכון ובינוי, נהנה מהגנה מסוימת. אסטרטגיית הצמיחה הנכונה איננה להיות "הרביעית" בשוק סטנדרטי — אלא לבדל את עצמה במוצרים בעלי ערך מוסף, ולתפוס "כתמים לבנים" גיאוגרפיים שבהם המתחרים הגדולים אינם מכסים את הביקוש.
+      </div>
+      <div style="margin-top:18px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">נקודת מוצא — שרשרת הערך</div>
+        <div style="background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.25);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.7">
+          <span style="color:#a78bfa;font-weight:700">שיכון ובינוי תעשיות נמצאת באמצע:</span><br>
+          ✓ בטון מוכן (10 מפעלים)<br>
+          ✓ טרומי (PHC, קורות גשרים)<br>
+          ✗ מחצבות — תלות בספקים חיצוניים<br>
+          ✗ צמנט עצמאי — חשופה למחיר שוק<br>
+          ✗ מוספי בטון — הזדמנות לשיפור מרגין
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ב: ביקוש ומיקום -->
+  <div class="section-divider">ב — ביקוש, היצע ומיקום: שלושה אזורי הזדמנות</div>
+  <div class="prose-block" style="margin-bottom:20px">
+    <p>
+      הביקוש לחומרי חציבה בישראל — המשמשים ייצור בטון, כבישים ותשתיות — עמד על <strong>80.6 מיליון טון ב-2020</strong>. תחזיות <a href="https://www.gov.il/he/departments/ministry_of_energy" target="_blank" style="color:var(--blue)">משרד האנרגיה (2021)</a> מצביעות על צמיחה לטווח של <strong>94–132 מיליון טון עד 2040</strong>, בהתאם לתרחיש גידול האוכלוסייה, קצב הבנייה ותכניות פיתוח ממשלתיות. הצמיחה הזו מונעת משלושה כוחות: גידול אוכלוסייה (מ-9.3 מיליון ב-2020 ל-13.2 מיליון ב-2040), יעד לאומי של 65,000–77,000 יחידות דיור לשנה עד 2050, ותכניות שיקום רחבות היקף בעקבות מלחמת 2023.
+    </p>
+    <p>
+      הניתוח הגיאוגרפי חושף פערי היצע חדים. <strong>הדרום</strong> — אשדוד, שדרות, קריית גת, אופקים — מוביל עם 27,478 יחידות דיור מאושרות ב-2025, ותכנית "תקומה" הממשלתית (19 מיליארד ₪) מוסיפה 17,500–20,000 יחידות נוספות בתחום עוטף עזה. <strong>הצפון</strong> — קריות, עכו, נהריה — נמצא בשיא ביקוש שיקום המלחמה עם 18,223 יחידות בצנרת. <strong>עמק יזרעאל</strong> — שחקן דומיננטי אחד שולט שם — מציב הזדמנות תמחורית עבור שחקן שייכנס ויתחרה.
+    </p>
+    <p>
+      חשוב להבין מגבלה תפעולית קריטית: <strong>הרדיוס הכלכלי של מפעל בטון הוא 30–50 ק"מ בלבד</strong>. בטון מוכן מאבד את תכונות הקשייה לאחר כ-90 דקות בתוך המיכלית — כלומר, הביקוש הוא מקומי לחלוטין ואין "פתרון ארצי". כל אזור הוא שוק עצמאי שדורש שיקול בנפרד.
+    </p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="chart-title">תחזית ביקוש לחומרי חציבה — ישראל 2015–2040 (מיליון טון) | שלושה תרחישים</div>
+    <div class="chart-wrap" style="height:260px">
+      <canvas id="chartExecDemand"></canvas>
+    </div>
+    <div class="source-chip" style="margin-top:10px">מקור: <a href="https://www.gov.il/he/departments/ministry_of_energy" target="_blank">משרד האנרגיה — תחזית ביקוש לחומרי חציבה עד שנת 2040 (2021)</a> | הלמ"ס</div>
+  </div>
+  <div class="chart-explanation" style="margin-bottom:32px">
+    <strong>מה אנחנו רואים:</strong> שלושה תרחישי ביקוש לחומרי חציבה עד 2040 שפרסם משרד האנרגיה ב-2021. נקודת הבסיס: 80.6 מיליון טון ב-2020. שלושת התרחישים מייצגים שתי שיטות מידול שונות —
+    <br><br>
+    <strong>תרחיש מיקרו (micro / מלמטה-למעלה):</strong> בונה את התחזית חומר-חומר וענף-ענף: כמה בטון בנייה, כמה מצעים לכבישים, כמה חומר למילוי תשתיות — בכל אחד לפי נתוני שטח בנייה ידועים ותוכניות מאושרות. שמרני יותר, מבוסס על "מה כבר מתוכנן". שני תרחישי המיקרו שונים ביניהם ברמת הנחות הצמיחה: <strong>מיקרו-בסיס (94M)</strong> — הנחות מתונות; <strong>מיקרו-צמיחה (132.6M)</strong> — הנחות אופטימיות עם האצת בנייה.
+    <br><br>
+    <strong>תרחיש מקרו (macro / מלמעלה-למטה):</strong> מחשב את הביקוש מתוך מדדים כלכליים כוללים — צמיחת התוצר (GDP), גידול אוכלוסייה, ויעדי בנייה לאומיים. אינו מסתמך על תוכניות פרטניות, אלא על מגמות כלכליות. תרחיש ה<strong>מקרו-בסיס (111.9M)</strong> ממוקם בין שני תרחישי המיקרו.
+    <br><br>
+    <strong>מה אפשר ללמוד:</strong> גם בתרחיש השמרני ביותר (מיקרו-בסיס) מדובר בגידול של כ-17% ב-20 שנה. עבור חברה שמתכננת הרחבת קיבולת, זו אינדיקציה ברורה שמצדיקה השקעה — השאלה הרלוונטית היא לא "אם לגדול" אלא "היכן ומתי". שילוב עם הנתונים הגיאוגרפיים מצביע על הדרום כעדיפות ראשונה (הכי גבוה ביחידות מאושרות + תכנית "תקומה"), הצפון כשנייה (ביקוש שיקום בשיא), ועמק יזרעאל כשלישית (נישה תחרותית).
+  </div>
+
+  <!-- ג: חדשנות -->
+  <div class="section-divider">ג — חדשנות: ארבעה תחומי הזדמנות מהעולם</div>
+  <div class="prose-block" style="margin-bottom:20px">
+    <p>
+      ענף הבנייה העולמי עובר שינוי טכנולוגי עמוק. מוצרים, חומרים ותהליכים שהיו נחלת מעבדות ניסיוניות לפני עשור הופכים לסטנדרט תעשייתי. עבור שיכון ובינוי, ארבעה תחומים בולטים כהזדמנויות ישימות וריווחיות — לא רק בתיאוריה, אלא על בסיס דוגמאות מוכחות ממדינות שדומות לישראל בגודל, צפיפות ורמת פיתוח.
+    </p>
+  </div>
+  <div class="grid-2" style="margin-bottom:6px">
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(139,92,246,.15);color:#a78bfa">🏗️</div>
+      <div>
+        <h4>בטון טרומי מתקדם (Precast)</h4>
+        <p>שוק גלובלי של 168 מיליארד דולר (2024) בצמיחה ל-268 מיליארד עד 2032. בישראל: פרויקט המטרו של תל אביב (49 מיליארד דולר) יצריך סגמנטי TBM — כיום מיובאים כולם. בנייה מודולרית (PPVC) חוסכת 20 שבועות לפרויקט בממוצע. קורות PHC לחניונים ותשתיות — ביקוש גדל.</p>
+        <div class="source"><a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">Grand View Research — Precast Concrete Market 2024</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(20,184,166,.15);color:#2dd4bf">🧪</div>
+      <div>
+        <h4>מוספי בטון מתקדמים (Admixtures)</h4>
+        <p>שוק גלובלי: 22.78 מיליארד דולר (2024) → 42.9 מיליארד (2032). ישראל סופגת חום קיצוני (35–45°C) ומוחשפת לכלוריד ימי לאורך 190 ק"מ חוף. מוספי האטה (Retarders) לקיץ, בטון עמיד קורוזיה ואיטום קריסטלי (חיסכון של 20–83% לעומת ממברנות) — הזדמנות לבידול בביצועים.</p>
+        <div class="source"><a href="https://www.marketsandmarkets.com/Market-Reports/concrete-admixture-market-181.html" target="_blank">MarketsAndMarkets — Concrete Admixtures Market 2024</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(59,130,246,.15);color:#60a5fa">📐</div>
+      <div>
+        <h4>דיגיטציה ו-BIM</h4>
+        <p>BIM (Building Information Modeling) — מודל תלת-ממדי שמשלב את כל מידע הפרויקט — מפחית שגיאות ושינויים בשטח ב-30% ומקצר לוחות זמנים. סינגפור חייבה 60% בנייה מבנית טרומית בפרויקטים מעל 25,000 מ"ר. ישראל: החלטת ממשלה 1002 (2023) כוללת תמריצים, מנגנוני מימון ופיילוטים לבנייה מתקדמת.</p>
+        <div class="source"><a href="https://www.bca.gov.sg/industrialisation/dfma.html" target="_blank">Building and Construction Authority Singapore — DfMA Policy</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(245,158,11,.15);color:#fbbf24">⚙️</div>
+      <div>
+        <h4>שיטות עבודה Lean לבנייה</h4>
+        <p>Last Planner System — שיטת תכנון תפעולי שמאפשרת שיפור של 35% בעמידה בלוחות זמנים. Big Room — קיום ישיבות קבועות בין כל הגורמים מקצר זמן פתרון בעיות ב-50%. ארה"ב, יפן והממלכה המאוחדת מאמצות שיטות אלו כסטנדרט. בישראל, שבה זמן בנייה ממוצע עומד על 39 חודש — הפוטנציאל ברור.</p>
+        <div class="source"><a href="https://www.leanconstruction.org/learning/lci-congress/" target="_blank">Lean Construction Institute — Last Planner System</a></div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:32px;margin-top:8px">כל הדוגמאות מבוססות על מקורות מאומתים. פרטים נרחבים, עם מאות דוגמאות ספציפיות, בפרקים ג ו-ד.</div>
+
+  <!-- ד: מגמות גלובליות -->
+  <div class="section-divider">ד — מגמות עולמיות: פריון, זמן בנייה ודיגיטציה</div>
+  <div class="prose-block" style="margin-bottom:20px">
+    <p>
+      ענף הבנייה הוא הענף הגדול בעולם — שוק של 10.7 טריליון דולר גלובלית ב-2020 — ואחד הפחות יעילים. <a href="https://www.mckinsey.com/industries/capital-projects-and-infrastructure/our-insights/reinventing-construction-through-a-productivity-revolution" target="_blank" style="color:var(--blue)">מחקר McKinsey Global Institute</a> מצא שבין 1995 ל-2015, פריון ייצור גדל ב-100%, קמעונות קפץ 60%, ובנייה עלתה... <strong>0%</strong>. הענף — בניגוד לכל שאר ענפי המשק — לא שיפר את הפריון שלו לאורך עשרות שנים.
+    </p>
+    <p>
+      ישראל נמצאת <strong>מתחת לממוצע OECD בכל מדד רלוונטי</strong>. זמן בנייה ממוצע: 39 חודשים בישראל לעומת ~24 בממוצע OECD — כלומר ישראל לוקחת 63% יותר זמן. שיעור הפריון האפקטיבי: כ-35% מזמן העבודה עבודה יצרנית בפועל, לעומת ~54% בממוצע OECD. הוצאה על טכנולוגיה: ישראל 6–7% ממחזור לעומת 12–15% במדינות מובילות. זמן הבנייה עלה מ-22 חודשים ב-1998 ל-39 חודשים ב-2024 — כלומר הענף לא עמד במקום, הוא <em>הלך לאחור</em>.
+    </p>
+    <p>
+      המדינות שסגרו את הפערים עשו זאת דרך שלושה מנגנונים: חובת בנייה טרומית (סינגפור — 60% בפרויקטים גדולים); קרנות חדשנות ממשלתיות (<a href="https://www.citf.gov.hk" target="_blank" style="color:var(--blue)">הונג קונג CITF — מיליארד דולר הונג קונגי</a>; <a href="https://constructioninnovationhub.org.uk" target="_blank" style="color:var(--blue)">בריטניה — £420 מיליון</a>); ומנגנוני רגולציה-תמריץ (גרמניה, שוודיה). ישראל — עם <a href="https://www.gov.il/he/pages/gov1002-2023" target="_blank" style="color:var(--blue)">החלטת ממשלה 1002 (2023)</a> — נמצאת בתחילת הדרך ומציעה תמריצים, מנגנוני מימון R&D ופיילוטים לבנייה מהירה.
+    </p>
+  </div>
+
+  <!-- OECD comparison visual -->
+  <div class="card" style="margin-bottom:12px">
+    <div class="chart-title" style="margin-bottom:20px">ישראל מול ממוצע OECD — מדדי ביצוע ענף הבנייה</div>
+    <div class="compare-metric">
+      <div class="metric-name">⏱ זמן בנייה ממוצע לפרויקט מגורים — פחות עדיף</div>
+      <div class="compare-bar-row">
+        <span class="compare-label">ישראל</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:100%;background:#ef4444"><span>39 חודשים</span></div></div>
+      </div>
+      <div class="compare-bar-row">
+        <span class="compare-label">ממוצע OECD</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:62%;background:#3b82f6"><span>24 חודשים</span></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">ישראל לוקחת 63% יותר זמן מהממוצע OECD. הנתון גדל מ-22 חודשים (1998) ל-39 חודשים (2024).</div>
+    </div>
+    <div class="compare-metric">
+      <div class="metric-name">🔧 שיעור עבודה יצרנית בפועל (פריון) — יותר עדיף</div>
+      <div class="compare-bar-row">
+        <span class="compare-label">ישראל</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:65%;background:#ef4444"><span>~35%</span></div></div>
+      </div>
+      <div class="compare-bar-row">
+        <span class="compare-label">ממוצע OECD</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:100%;background:#3b82f6"><span>~54%</span></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">כ-65% מזמן העובד בישראל הוא ניהול, המתנה, העברות — לא עבודה בפועל.</div>
+    </div>
+    <div class="compare-metric">
+      <div class="metric-name">💻 הוצאה טכנולוגית כ-% ממחזור — יותר עדיף</div>
+      <div class="compare-bar-row">
+        <span class="compare-label">ישראל</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:48%;background:#ef4444"><span>6–7%</span></div></div>
+      </div>
+      <div class="compare-bar-row">
+        <span class="compare-label">מובילות OECD</span>
+        <div class="compare-bar-wrap"><div class="compare-bar-fill" style="width:100%;background:#3b82f6"><span>12–15%</span></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">ישראל משקיעה בטכנולוגיה כמחצית ממה שמשקיעות המדינות המובילות.</div>
+    </div>
+    <div class="source-chip" style="margin-top:8px">מקור: <a href="https://www.mckinsey.com/industries/capital-projects-and-infrastructure/our-insights/reinventing-construction-through-a-productivity-revolution" target="_blank">McKinsey Global Institute — Reinventing Construction (2017)</a> | הלמ"ס | OECD</div>
+  </div>
+  <div class="chart-explanation" style="margin-bottom:36px">
+    <strong>מה אנחנו רואים:</strong> השוואת שלושה מדדי ביצוע — זמן בנייה, פריון עבודה ורמת השקעה טכנולוגית — בין ישראל לממוצע OECD. בכל מדד ישראל נמצאת מתחת לרף הבינלאומי.
+    <br><br>
+    <strong>מה אפשר ללמוד:</strong> הפער הגדול ביותר הוא בזמן הבנייה — 63% מעל הממוצע. חברות שמאמצות BIM ו-Last Planner System מדווחות על קיצור של 20–35% בלוחות זמנים. לשיכון ובינוי, שמבצעת פרויקטים ממשלתיים ופרטיים גדולים, אימוץ שיטות אלו הוא הן יתרון תחרותי בזכייה במכרזים והן כלי לצמצום עלויות תפעוליות ישירות.
+  </div>
+
+  <!-- מסקנות -->
+  <div class="section-divider">מסקנות אסטרטגיות — נקודות מפתח</div>
+  <div class="grid-2">
+    <div class="priority-card priority-1">
+      <div class="rank" style="color:#34d399">עדיפות ראשונה · 2025–2026</div>
+      <h3>הרחבה לדרום</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px">מיקום מפעל מומלץ: <strong style="color:#10b981">קריית גת</strong> — אזור תעשייה, קרקע זמינה, רדיוס 30 ק"מ מכסה את כל ציר הביקוש הדרומי: אשדוד, שדרות, אופקים, נתיבות, עוטף עזה. פוטנציאל 150,000–250,000 מ"ק/שנה. ציון כדאיות: 4.1/5.</p>
+    </div>
+    <div class="priority-card priority-2">
+      <div class="rank" style="color:#60a5fa">עדיפות שנייה · 2026–2028</div>
+      <h3>הרחבה לצפון</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px">קריות, עכו, נהריה — ביקוש שיקום המלחמה בשיאו בשנים אלו. פוטנציאל 100,000–200,000 מ"ק בשנות השיא. ציון כדאיות: 4.0/5. חשוב לפעול לפני שמתחרים יכנסו לאזור.</p>
+    </div>
+    <div class="priority-card priority-3">
+      <div class="rank" style="color:#fbbf24">פיתוח מוצרי ערך מוסף</div>
+      <h3>טרומי מתקדם + מוספים</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px">סגמנטי TBM לפרויקט המטרו, בנייה מודולרית לדיור, מוספי עמידות ואיטום קריסטלי. מרגינים גבוהים ממוצרי בטון סטנדרטי — בידול מהמתחרים שמוכרים "טונות" ולא "פתרונות".</p>
+    </div>
+    <div class="priority-card" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3)">
+      <div class="rank" style="color:#a78bfa">כלי ביצוע · לאורך כל הפעילות</div>
+      <h3>דיגיטציה ו-Lean</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px">BIM, Last Planner System ו-Digital Twin — לא מותרות אלא כלי ביצוע. מאומצות אצל מתחרים בעולם; יתרון תחרותי עבור מי שמיישם מוקדם בשוק הישראלי שעדיין מפגר.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — שוק הבטון בישראל
+══════════════════════════════════════════ -->
+<section id="s1">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(16,185,129,.15);color:#10b981">01</div>
+    <div>
+      <h2>שוק הבטון בישראל</h2>
+      <p>מבנה שוק, שחקנים, מלט ובטון מוכן | מקורות: כנסת 2008, IndexBox 2025, אתרי חברות</p>
+    </div>
+  </div>
+
+  <!-- intro prose -->
+  <div class="prose-block" style="background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p>
+      <strong>בטון מוכן (Ready-Mix Concrete)</strong> הוא בטון שמוכן במפעל מרוכז ומועבר באמצעות מיכליות (בטוניירות) ישירות לאתר הבנייה. זהו מוצר הבסיס של כל בנייה מודרנית — ולכן השוק שלו נחשב לאחד המבחינות הטובות ביותר לבריאות ענף הבנייה. בישראל פועלים כ-175 מפעלי בטון מוכן ברחבי הארץ, שייכים ל-30–40 חברות שונות.
+    </p>
+    <p>
+      מבנה השוק הוא <strong>אוליגופול</strong>: מספר קטן של חברות שולטות ברוב ההיצע, בעוד מחסומי הכניסה גבוהים מאוד — הון עצמי לבנייה, רישיון מחצבה (מוגבל ונדיר), צי רכב (מיכלית ≈ $200,000), ורישיון סביבתי. אוליגופול מעצם טבעו יוצר יציבות מחיר יחסית — אבל גם מגביל חדשנות ומספק הזדמנויות לשחקן שיודע להיכנס לנישות שהמתחרים הגדולים מתעלמים מהן.
+    </p>
+    <p>
+      בנוסף לשוק הבטון המוכן, ישנו שוק <strong>מלט</strong> (Cement) — חומר הגלם העיקרי בייצור הבטון. מלט מהווה כ-10–15% ממשקל הבטון אך כ-30–40% מעלויות חומרי הגלם. נשר מפעלי מלט היתה בעלת מונופול מוחלט על ייצור המלט המקומי עד 2016, אז השוק נפתח לייבוא — שינוי שהוזיל את מחיר המלט ופתח הזדמנויות לקבלנים עם גישה לנמלי ים.
+    </p>
+  </div>
+
+  <!-- row 1: pie + key players -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="chart-title">נתחי שוק — בטון מוכן (Ready-Mix)</div>
+      <div class="chart-wrap" style="height:220px">
+        <canvas id="chartMarketShare"></canvas>
+      </div>
+      <div class="source-chip">מקור: רשות ההגבלים העסקיים + <a href="https://readymix.co.il" target="_blank">readymix.co.il</a></div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> שלוש חברות — רדימיקס (33%), שפיר (30%), והנסון (20%) — שולטות יחד ב-83% מהשוק. שאר ה-17% מפוצל בין שחקנים קטנים: ישראבטון, Greenmix וספקים אזוריים. שיכון ובינוי תעשיות מחזיקה כ-3% בלבד.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> מבנה האוליגופול יוצר יציבות מחיר ומונע כניסה קלה. עם זאת, עבור שיכון ובינוי שכבר מחזיקה מפעלים ומבצעת פרויקטים גדולים, כניסה לשוק הסיטונאי אפשרית — במיוחד בפריפריה שבה הכיסוי נמוך.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">היקף שוק בטון מוכן — ישראל (מ״ק/שנה)</div>
+      <div class="chart-wrap" style="height:220px">
+        <canvas id="chartReadymixVol"></canvas>
+      </div>
+      <div class="source-chip">מקור: הלמ״ס + IndexBox 2025 | * 2024 הושפע ממלחמה</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> נפח שוק הבטון המוכן בישראל לאורך שנים: שיא ב-2022–2023, ירידה של 21% ב-2024 בגלל המלחמה, והתאוששות ב-2025. שוק שנתי של 8–10 מיליון מ"ק בתנאים נורמליים.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> מחזורי שוק הם חלק מהמציאות, אך הכיוון ארוך-הטווח הוא כלפי מעלה. 81,020 התחלות בנייה ב-12 חודשים האחרונים — גידול 31.5% — מאותתות על חזרה חזקה לביקוש.
+      </div>
+    </div>
+  </div>
+
+  <!-- row 2: player cards -->
+  <div class="section-divider">שחקנים עיקריים</div>
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="card">
+      <div class="tag tag-blue" style="margin-bottom:10px">33% שוק</div>
+      <h3>רדימיקס — CEMEX</h3>
+      <div class="sub-label">בעלות: CEMEX מקסיקו</div>
+      <table>
+        <tr><td style="color:var(--muted)">מפעלים</td><td>60 בטון + 7 מחצבות</td></tr>
+        <tr><td style="color:var(--muted)">עובדים</td><td>~1,200</td></tr>
+        <tr><td style="color:var(--muted)">הכנסות</td><td>~₪1.9B/שנה</td></tr>
+        <tr><td style="color:var(--muted)">פריסה</td><td>כל הארץ, 4 אזורים</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="tag tag-amber" style="margin-bottom:10px">30% שוק</div>
+      <h3>שפיר — אולטרה בטון</h3>
+      <div class="sub-label">חברה ישראלית ציבורית</div>
+      <table>
+        <tr><td style="color:var(--muted)">מפעלים</td><td>15–19 בטון מוכן</td></tr>
+        <tr><td style="color:var(--muted)">מיוחד</td><td>מפעל מלט עצמאי</td></tr>
+        <tr><td style="color:var(--muted)">מיקום מלט</td><td>נחל עציון (~700K טון)</td></tr>
+        <tr><td style="color:var(--muted)">פריסה</td><td>מרכז + דרום</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="tag tag-purple" style="margin-bottom:10px">20% שוק</div>
+      <h3>הנסון — Heidelberg Materials</h3>
+      <div class="sub-label">בעלות: Heidelberg Materials (גרמניה)</div>
+      <table>
+        <tr><td style="color:var(--muted)">תפוקה</td><td>~3–3.5M מ״ק/שנה</td></tr>
+        <tr><td style="color:var(--muted)">מיוחד</td><td>מפעלים + מחצבות</td></tr>
+        <tr><td style="color:var(--muted)">שם</td><td>חנסון ישראל</td></tr>
+        <tr><td style="color:var(--muted)">אתר</td><td><a href="https://hanson-israel.com" target="_blank" style="color:var(--blue)">hanson-israel.com</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- vertical integration -->
+  <div class="section-divider" style="margin-top:28px">שרשרת הערך — אינטגרציה אנכית</div>
+
+  <!-- insight box -->
+  <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.25);border-radius:10px;padding:16px 20px;margin-bottom:18px;font-size:13px;line-height:1.7;color:var(--text)">
+    <span style="font-weight:700;color:#60a5fa">תמצית הסעיף: </span>
+    רדימיקס ושפיר בולטות באינטגרציה אנכית: רדימיקס שולטת באגרגטים ובמוספים (Chemocrete); שפיר שולטת בצמנט — התשומה היקרה ביותר. שתי הגישות מאפשרות יתרון עלות ושליטה בשרשרת.
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px">
+    <table style="font-size:12.5px">
+      <thead>
+        <tr>
+          <th style="width:160px">חברה</th>
+          <th style="text-align:center">בטון מובא</th>
+          <th style="text-align:center">מחצבות</th>
+          <th style="text-align:center">צמנט</th>
+          <th style="text-align:center">מוספים</th>
+          <th style="text-align:center">טרום</th>
+          <th style="text-align:center">מוצרי גמר</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>רדימיקס (CEMEX)</strong><br><span style="font-size:11px;color:var(--muted)">33% שוק</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">60 מפעלים</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">9 מחצבות</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">Chemocrete</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">Top Mix</span></td>
+        </tr>
+        <tr>
+          <td><strong>שפיר (אולטרה בטון)</strong><br><span style="font-size:11px;color:var(--muted)">30% שוק</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">19 מפעלים</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">4 מחצבות</span></td>
+          <td style="text-align:center"><span style="color:#fbbf24;font-weight:700">✓</span><br><span style="font-size:10px;color:#fbbf24">עציונה</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">אספלט</span></td>
+        </tr>
+        <tr>
+          <td><strong>הנסון (Heidelberg)</strong><br><span style="font-size:11px;color:var(--muted)">20% שוק</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">24–26 מפעלים</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">3 מחצבות</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+        </tr>
+        <tr>
+          <td><strong>ישראבטון (אשטרום)</strong><br><span style="font-size:11px;color:var(--muted)">8–10% שוק</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">10 מפעלים</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">אשקלית</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+        </tr>
+        <tr>
+          <td><strong>קבוצת אשטרום (כוללת)</strong><br><span style="font-size:11px;color:var(--muted)">ישראבטון + אשקריט</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">אשקריט</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">מערכות בנייה</span></td>
+        </tr>
+        <tr>
+          <td><strong>נשר מפעלי מלט</strong><br><span style="font-size:11px;color:var(--muted)">יצרן מקומי יחיד — לשעבר מונופול</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">אבן גיר</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:#fbbf24">יצרן יחיד מקומי</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+        </tr>
+        <tr style="background:rgba(99,102,241,.07);border-right:3px solid #818cf8">
+          <td><strong style="color:#a78bfa">שיכון ובינוי תעשיות (שיכון ובינוי)</strong><br><span style="font-size:11px;color:#818cf8">נקודת המוצא שלנו</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">~10 מפעלים</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">PHC, קורות</span></td>
+          <td style="text-align:center"><span style="color:#fbbf24">~</span><br><span style="font-size:10px;color:var(--muted)">חלקי</span></td>
+        </tr>
+        <tr>
+          <td><strong>אקרשטיין</strong><br><span style="font-size:11px;color:var(--muted)">מוצרי בטון</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">ריצוף, ממ"ד</span></td>
+        </tr>
+        <tr>
+          <td><strong>וולפמן</strong><br><span style="font-size:11px;color:var(--muted)">תשתיות</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#f87171">✗</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">צינורות, שוחות</span></td>
+          <td style="text-align:center"><span style="color:#34d399;font-weight:700">✓</span><br><span style="font-size:10px;color:var(--muted)">ריצוף</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:24px">מקור: אתרי חברות; ניתוח שוק המלט, כנסת 2008; ניתוח שרשרת הערך — שיכון ובינוי מרץ 2026</div>
+
+  <!-- row 3: cement market + war impact -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="chart-title">שוק המלט — ייצור ויבוא (אלפי טון/שנה)</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartCement"></canvas>
+      </div>
+      <div class="source-chip">מקור: <a href="https://main.knesset.gov.il" target="_blank">ניתוח שוק המלט, כנסת 2008</a> + Cement.net 2023</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> שוק המלט הישראלי מחולק בין ייצור מקומי (נשר) לייבוא — כ-50/50 מ-2022 ואילך. מאי 2024: טורקיה הפסיקה ייצוא מלט לישראל לחלוטין — שינוי מהותי בשוק הייבוא.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> חשיפה לייבוא = חשיפה גיאופוליטית. כל יצרן בטון שמסתמך על מלט מיובא נחשף לסיכון שרשרת אספקה. לשיכון ובינוי, שאין לה מפעל מלט עצמאי, זה מחייב אסטרטגיית גיוון ספקים ורכישה מוקדמת.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">השפעת המלחמה — ירידה בפעילות</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartWar"></canvas>
+      </div>
+      <div class="source-chip">מקור: הלמ״ס + <a href="https://www.nta.co.il" target="_blank">NTA</a> + IndexBox 2025</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> השפעת מלחמת 7 באוקטובר — ירידה חדה ב-Q4 2023 ולאורך 2024 בהתחלות בנייה, נפח בטון מוכן, ובצריכת כוח אדם. ב-2025 — חזרה הדרגתית לפעילות.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> המלחמה יצרה "בור ביקוש" שיתמלא בשנים הקרובות. חבל התקומה (19 מיליארד ₪) ותוכנית הדיור הממשלתית מוסיפים ביקוש מובנה מעבר לצרכים הרגילים — חלון הזדמנויות לכניסה לשוק עכשיו.
+      </div>
+    </div>
+  </div>
+
+  <!-- key facts -->
+  <div class="section-divider" style="margin-top:28px">עובדות מפתח — ענף הבנייה</div>
+  <div class="grid-4">
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;font-weight:800;color:#ef4444">39</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">חודשי בנייה ממוצע (2024)</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">לעומת 22 חודשים ב-1998 (+77%)</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;font-weight:800;color:#f59e0b">86%</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">מהקבלנים — מיקרו/קטנות</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">מתוך 5,500 קבלנים פעילים</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;font-weight:800;color:#10b981">66,800</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">התחלות בנייה 2024</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">יעד ממשלתי: 65,000–77,000/שנה</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;font-weight:800;color:#3b82f6">87%</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">מהקבלנים — מחסור כוח אדם</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">האתגר המרכזי בענף</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — ביקוש, היצע ומיקום
+══════════════════════════════════════════ -->
+<section id="s2">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(245,158,11,.15);color:#f59e0b">02</div>
+    <div>
+      <h2>ביקוש מול היצע — המלצות מיקום</h2>
+      <p>תחזיות ביקוש עד 2040, נתוני 2025 מאומתים, המלצות גיאוגרפיות | מקורות: משרד האנרגיה 2021, רמ"י, הלמ"ס</p>
+    </div>
+  </div>
+
+  <!-- intro prose -->
+  <div class="prose-block" style="background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p>
+      תכנון הרחבת מפעל בטון מחייב להבין שני מימדים: <strong>כמה</strong> בטון יידרש בישראל בשנים הקרובות, ו<strong>היכן</strong>. התשובה ל"כמה" מגיעה ממחקר ביקוש ממשלתי, ל"היכן" — מניתוח היתרי בנייה, פרויקטים ממשלתיים ורדיוס כלכלי של המפעל.
+    </p>
+    <p>
+      <a href="https://www.gov.il/he/departments/ministry_of_energy" target="_blank" style="color:var(--amber)">משרד האנרגיה (2021)</a> מדד את הביקוש ל<strong>חומרי חציבה</strong> — האגרגטים (חצץ, חול, אבן) שנכנסים לייצור הבטון, לסלילת כבישים ולתשתיות. נכון ל-2020 הביקוש עמד על 80.6 מיליון טון לשנה, ולפי שלושה תרחישי גידול האוכלוסייה — שמרני, מאקרו, וצמיחה — הוא אמור לגדול ל-94–132 מיליון טון עד 2040. גם בתרחיש השמרני ביותר, הביקוש יגדל ב-17% תוך 20 שנה.
+    </p>
+    <p>
+      <strong>מגבלת הרדיוס:</strong> בטון מוכן אינו מוצר שניתן לשנע למרחקים ארוכים. בטון שיצא מהמפעל חייב להגיע לאתר תוך 90 דקות לכל היותר, לפני שיתחיל להתקשות. זאת מגבלה פיזית שמגדירה את הרדיוס הכלכלי של כל מפעל ל-<strong>30–50 ק"מ</strong> בלבד — ולכן כל אזור הוא שוק עצמאי שיש לבחון בנפרד. פרויקט שנבנה בשדרות לא יוכל לקבל בטון ממפעל בחיפה.
+    </p>
+  </div>
+
+  <!-- demand forecast -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card col-span-2">
+      <div class="chart-title">תחזית ביקוש לחומרי חציבה — ישראל 2015–2040 (מיליון טון/שנה)</div>
+      <div class="chart-wrap" style="height:240px">
+        <canvas id="chartDemand"></canvas>
+      </div>
+      <div class="source-chip">מקור: <a href="https://www.gov.il/he/departments/ministry_of_energy" target="_blank">עדכון תחזית ביקוש לחומרי חציבה, משרד האנרגיה 2021</a></div>
+    </div>
+  </div>
+
+  <!-- population + housing starts -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="chart-title">גידול אוכלוסייה (מיליון נפש) — ישראל</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartPop"></canvas>
+      </div>
+      <div class="source-chip">מקור: תחזיות הלמ״ס | גידול 42% עד 2040</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> תחזית גידול אוכלוסיית ישראל — מ-9.8 מיליון כיום לכ-13.7 מיליון עד 2040, גידול של 42%. הגידול אחיד יחסית עם האצה קלה בעשור השני.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> גידול אוכלוסייה = ביקוש מובנה לדיור. ישראל צריכה ליצור 65,000–77,000 יחידות דיור בשנה פשוט כדי לשמור על מצב קיים — כל עיכוב מצטבר למחסור חמור. עבור ענף הבטון, זוהי הבטחת ביקוש לעשרות שנים.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">10 הערים המובילות — התחלות בנייה (אוק׳ 2024 – ספט׳ 2025)</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartCities"></canvas>
+      </div>
+      <div class="source-chip">מקור: <a href="https://www.cbs.gov.il" target="_blank">הלמ״ס</a> + ynet נדל״ן, ינואר 2026 | ⭐ אופקים #4 ארצי (2,990 יחידות)</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> 10 הערים המובילות בהתחלות בנייה — בראש ירושלים, ראשון לציון, וחדרה. מפתיע: אופקים במקום 4 ארצי עם 2,990 יחידות — עיר בנגב שלא נחשבה כמרכז בנייה עד לאחרונה.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> הדרום בולט יותר ממה שציפינו. אופקים שבנגב, שמרחקה מאשדוד כ-35 ק"מ ומקריית גת כ-20 ק"מ, נמצאת ברדיוס כלכלי של מפעל בטון דרומי — נתון שמחזק חזק את ההמלצה לפתוח מפעל בדרום.
+      </div>
+    </div>
+  </div>
+
+  <!-- district breakdown -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="chart-title">יחידות דיור מאושרות 2025 לפי מחוז — 6 מחוזות מובילים (מתוך סה"כ: 223,164 יחידות)</div>
+    <div class="chart-wrap" style="height:200px">
+      <canvas id="chartDistricts"></canvas>
+    </div>
+    <div class="source-chip">מקור: <a href="https://www.ynetnews.com/real-estate/article/b187gsneze" target="_blank">רשות התכנון + Ynet 2025</a> | דרום 27,478 ⭐ | ירושלים 27,079 | מרכז 26,686 | חיפה 20,558 | צפון 18,223 | ת"א 14,459</div>
+    <div class="chart-explanation">
+      <strong>מה אנחנו רואים:</strong> פיצול יחידות דיור מאושרות ב-2025 לפי מחוז — הדרום מוביל ב-27,478 יחידות (12.3% מהסה"כ הארצי), צמוד לירושלים ולמרכז. זהו היפוך מגמה אחרי שנים שגוש דן שלט.
+      <br><br>
+      <strong>מה אפשר ללמוד:</strong> הדרום, שהיה פחות מכוסה ביצרני בטון ביחס לביקוש, כעת מוביל בפיצול ארצי. המשמעות: קבלנים שבונים בדרום כיום מסתמכים על אספקה מהמרכז — ומשלמים פרמיה על מרחק ומשלוחים. זוהי ההזדמנות למפעל חדש.
+    </div>
+  </div>
+
+  <!-- location priorities -->
+  <div class="section-divider">המלצות מיקום לפתיחת מפעל בטון חדש</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px">רדיוס כלכלי של בטון מוכן: 30–50 ק״מ בלבד — מיקום הוא הגורם הקריטי ביותר</p>
+  <div class="grid-3">
+    <div class="priority-card priority-1">
+      <div class="rank" style="color:#10b981">⭐ עדיפות 1</div>
+      <h3>הדרום</h3>
+      <div style="font-size:12px;color:#10b981;font-weight:600;margin-bottom:2px">מיקום מפעל מומלץ: קריית גת</div>
+      <div style="font-size:12px;color:var(--muted)">שטח שירות: אשדוד · שדרות · אופקים · נתיבות · עוטף עזה</div>
+      <div class="vol" style="color:#10b981">150–250K</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">מ״ק/שנה פוטנציאל</div>
+      <ul>
+        <li>קריית גת: אזור תעשייה קיים, קרקע זמינה, רדיוס 30 ק"מ מכסה את כל ציר הביקוש</li>
+        <li>27,478 יחידות מאושרות במחוז — #1 ארצי</li>
+        <li>אופקים #4 ארצי (2,990 התחלות)</li>
+        <li>תוכנית חבל התקומה: 19 מיליארד ₪ (מסגרת ממשלתית מאושרת)</li>
+        <li>נמל אשדוד + כביש 6 דרום</li>
+        <li>פחות מתחרים ביחס לביקוש</li>
+      </ul>
+    </div>
+    <div class="priority-card priority-2">
+      <div class="rank" style="color:#3b82f6">⭐ עדיפות 2</div>
+      <h3>הצפון</h3>
+      <div style="font-size:13px;color:var(--muted)">קריות – עכו – נהריה</div>
+      <div class="vol" style="color:#3b82f6">100–200K</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">מ״ק/שנה פוטנציאל</div>
+      <ul>
+        <li>18,223 יחידות מאושרות (אפריל–דצמבר 2025)</li>
+        <li>68,000 בהסכמי גג</li>
+        <li>25,000–40,000 יחידות נפגעות במלחמה</li>
+        <li>שיקום תשתיות ענק</li>
+        <li>מחצבות זמינות בגליל</li>
+        <li>שיכון ובינוי תעשיות — פעילות קיימת בצפון</li>
+      </ul>
+    </div>
+    <div class="priority-card priority-3">
+      <div class="rank" style="color:#f59e0b">עדיפות 3</div>
+      <h3>עמק יזרעאל</h3>
+      <div style="font-size:13px;color:var(--muted)">עפולה – יוקנעם</div>
+      <div class="vol" style="color:#f59e0b">60–100K</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">מ״ק/שנה פוטנציאל</div>
+      <ul>
+        <li>ריכוזיות שחקן אחד → מחירים גבוהים</li>
+        <li>כניסה תחרותית כדאית</li>
+        <li>ביקוש יציב — תשתיות + פיתוח אזורי</li>
+        <li>גישה טובה למחצבות גליל</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Habay HaTekuma -->
+  <div class="section-divider" style="margin-top:32px">תוכנית חבל התקומה — ביקוש שיקום</div>
+  <div class="card" style="margin-bottom:0">
+    <div class="chart-title">יחידות דיור מתוכננות לפי יישוב — חבל התקומה</div>
+    <div class="chart-wrap" style="height:200px">
+      <canvas id="chartTekuma"></canvas>
+    </div>
+    <div class="source-chip">מקור: ynetnews 2026 + כלכליסט אוק׳ 2025 | תקציב: 19 מיליארד ₪ | יעד: הכפלת אוכלוסייה ל-120,000 תושבים</div>
+    <div class="chart-explanation">
+      <strong>מה אנחנו רואים:</strong> יחידות דיור מתוכננות ביישובי חבל התקומה — אופקים, נתיבות, שדרות, עוטף עזה ועוד. תקציב ממשלתי מאושר: 19 מיליארד ₪. יעד: הכפלת אוכלוסייה ל-120,000 תושב.
+      <br><br>
+      <strong>מה אפשר ללמוד:</strong> זוהי ביקוש מובטח ממשלתית — לא השערה שוקית. כל היישובים הללו נמצאים ברדיוס 30–45 ק"מ מאשדוד ומשדרות, כלומר ברדיוס כלכלי של מפעל בטון בדרום. עבור שיכון ובינוי, זהו גיבוי של הכנסות ל-3–5 שנות ייצור לפחות.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — טרומי
+══════════════════════════════════════════ -->
+<section id="s3">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(139,92,246,.15);color:#8b5cf6">03</div>
+    <div>
+      <h2>טרומי (Precast Concrete)</h2>
+      <p>שוק גלובלי, יצרנים ישראליים, 102 מוצרים ונושאי הפגישה האסטרטגית מ-15.2.2026 | מקורות: NPCA, PCI, Elematic</p>
+    </div>
+  </div>
+
+  <!-- prose intro -->
+  <div class="prose-block" style="background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p><strong>בטון טרומי (Precast Concrete)</strong> הוא בטון שיוצק במפעל מבוקר, מתקשה בתנאים אופטימליים, ולאחר מכן מועבר לאתר הבנייה כרכיב מוגמר. בניגוד לבטון מוכן שנוצק בשטח ותלוי בתנאי מזג האוויר, הטרומי מיוצר בסביבה תעשייתית עם בקרת איכות הדוקה — מה שמאפשר חוזק גבוה יותר, סיום משטח מדויק, ועמידות ארוכת טווח. <a href="https://www.precast.org/precast-101/what-is-precast-concrete/" target="_blank">PCI (Precast/Prestressed Concrete Institute)</a> מגדיר טרומי כ"אבן הבניין של תשתיות המאה ה-21".</p>
+    <p>מבחינת שרשרת הערך, מפעל טרומי שונה מהותית ממפעל בטון מוכן: ההשקעה הראשונית גדולה יותר (תבניות, מנופים, מתקני ריפוי), אך שולי הרווח גבוהים יותר — בין 18% ל-35% על מוצרים מיוחדים, לעומת 8–12% בבטון מוכן. שיכון ובינוי מחזיקה כבר בתשתית ייצור ובסול בונה — מה שמעניק יתרון תחרותי ייחודי לכניסה לתחום.</p>
+    <p>השוק הגלובלי נמצא בצמיחה מואצת, מונעת ממשבר כוח האדם בבנייה, מלחץ רגולטורי לקיצור זמני בנייה, וממגמות הבנייה הירוקה. ישראל — עם זמן בנייה ממוצע שגדל ל-39 חודשים ועם 86% קבלנים מיקרו — מייצגת שוק בשל לאימוץ טרומי. בפרק זה: סקירת השוק הגלובלי, יצרני הטרומי בישראל, ו-102 מוצרים קונקרטיים שמפעל חדש יוכל לייצר.</p>
+  </div>
+
+  <!-- global market -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="chart-title">שוק הבטון הטרומי הגלובלי ($מיליארד)</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartPrecastGlobal"></canvas>
+      </div>
+      <div class="source-chip">מקורות: <a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">Grand View Research</a> + <a href="https://www.globenewswire.com/news-release/2026/01/22/3223619/28124/en/Precast-Concrete-Industry-Set-for-6-6-CAGR-Through-2031-Amidst-Green-Building-Boom.html" target="_blank">GlobeNewsWire ינואר 2026</a> | ⚠️ הערה: הנתונים נעים בין $105B ל-$168B לפי מחקרים שונים — הגרף מבוסס על SkyQuest ($168B)</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> גדילת שוק הטרומי הגלובלי מ-$168 מיליארד ב-2024 לצפי של $268 מיליארד ב-2032 — גידול של 59% תוך שמונה שנים. שניים ממחקרי השוק מוצגים עם פערים, שכן הגדרות "טרומי" שונות בין מחקרים.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> הצמיחה מונעת ממחסור בכוח אדם, לחץ לקיצור זמני בנייה ומגמות Green Building. בישראל, עם 86% קבלנים מיקרו ו-87% מתלוננים על מחסור עובדים — דחיפת הטרומי אינה רק ייעול אלא הכרח של הענף.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">קצב צמיחה שנתי (CAGR) — שוק הטרומי גלובלי מול ישראל</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">CAGR = Compound Annual Growth Rate | שיעור הצמיחה השנתי המורכב הממוצע | תקופה: 2024–2030/2032</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartPrecastCagr"></canvas>
+      </div>
+      <div class="source-chip">מקור: <a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">Grand View Research (2024)</a> + <a href="https://www.globenewswire.com/news-release/2024/01/17/2818150/0/en/Precast-Concrete-Market.html" target="_blank">GlobeNewsWire (2024)</a> + IndexBox ישראל</div>
+    </div>
+  </div>
+  <div class="chart-explanation" style="margin-bottom:20px">
+    <strong>מה אנחנו רואים:</strong> שני מחקרי שוק עצמאיים מעריכים את קצב הצמיחה השנתי של שוק הטרומי הגלובלי בטווח 5.93%–6.6% בין 2024 ל-2030/2032. השוק הישראלי צומח לאט יותר — כ-4.5% לשנה — ומוערך בכ-1 מיליארד דולר ב-2024 לעומת כ-1.4 מיליארד דולר ב-2030.
+    <br><br>
+    <strong>מה אפשר ללמוד:</strong> השוק הגלובלי צומח מהר יותר מהישראלי — פער שנובע בחלקו ממדיניות ממשלתית (כמו חובת הטרומי בסינגפור) שמזרזת את האימוץ. בישראל, ללא רגולציה מחייבת, הצמיחה תלויה בהחלטות יזמים וקבלנים. עבור שיכון ובינוי, כל אחוז נתח שוק בשוק ישראלי של ~1 מיליארד דולר שווה כ-10 מיליון דולר הכנסה שנתית.
+  </div>
+
+  <!-- Israel producers -->
+  <div class="section-divider">יצרני טרומי בישראל</div>
+  <div class="card" style="margin-bottom:20px">
+    <table>
+      <thead>
+        <tr>
+          <th>חברה</th>
+          <th>מפעל</th>
+          <th>קיבולת עיקרית</th>
+          <th>מוצרים מרכזיים</th>
+          <th>קבוצה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong><a href="https://www.ashcrete.co.il/" target="_blank" style="color:var(--text)">אשקריט</a></strong></td>
+          <td>אשדוד</td>
+          <td>~540,000 מ״ר/שנה</td>
+          <td>לוח״דים, קורות, סגמנטי מנהרה</td>
+          <td><span class="tag tag-blue">אשטרום</span></td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:var(--text)">רמט טרום</a></strong></td>
+          <td>מישור אדומים</td>
+          <td>~350,000 מ״ר/שנה; 24/7</td>
+          <td>לוח״דים, ממ״ד, מדרגות, פאנלים</td>
+          <td><span class="tag tag-green">עצמאית</span></td>
+        </tr>
+        <tr style="background:rgba(139,92,246,.06)">
+          <td><strong style="color:#a78bfa"><a href="https://sobindustry.shikunbinui.com/en/" target="_blank" style="color:#a78bfa">שיכון ובינוי תעשיות</a></strong></td>
+          <td>חיפה + ערד (2 מפעלים)</td>
+          <td>עד 500,000 מ״ר לוח״ד/שנה; 15,000 מ״ק/שנה אלמנטים מזוינים</td>
+          <td>לוח״דים דרוכים, קורות גשרים, קירות מגן, חזיתות, עמודים, <a href="https://sobindustry.shikunbinui.com/" target="_blank" style="color:#a78bfa">אבנים משתלבות</a>, <a href="https://sobindustry.shikunbinui.com/" target="_blank" style="color:#a78bfa">מיגוניות</a>, <a href="https://www.terratechno.co.il/" target="_blank" style="color:#a78bfa">TERRA TECHNO (קירות MSE)</a>, חדרי שנאים</td>
+          <td><span class="tag tag-purple">שיכון ובינוי</span></td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:var(--text)">אקרשטיין</a></strong></td>
+          <td>ירוחם + אשדוד + צח״ר</td>
+          <td>~350 ד׳ שטח כולל</td>
+          <td>אלמנטים כבדים, אבנים משתלבות</td>
+          <td><span class="tag tag-amber">ציבורית</span></td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:var(--text)">וולפמן</a></strong></td>
+          <td>חיפה + אשקלון</td>
+          <td>מגוון</td>
+          <td>צינורות דחיקה, סגמנטים, מחסומי כביש</td>
+          <td><span class="tag tag-green">עצמאית</span></td>
+        </tr>
+        <tr>
+          <td><strong>בר-אל 27</strong></td>
+          <td>1–2 מפעלים</td>
+          <td>לפי פרויקט</td>
+          <td>בורות, שוחות, מחסומי ניו ג׳רזי</td>
+          <td><span class="tag tag-green">עצמאית</span></td>
+        </tr>
+        <tr>
+          <td><strong>טמבור</strong></td>
+          <td>מרובים</td>
+          <td>—</td>
+          <td>בורות, צינורות, תשתיות</td>
+          <td><span class="tag tag-amber">ציבורית</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="source-chip" style="margin-top:12px">מקור: אתרי חברות + דוחות ציבוריים | ⚠ קיבולות — אשקריט ורמט טרום בלבד פרסמו רשמית</div>
+  </div>
+
+  <!-- products categories -->
+  <div class="section-divider">102 מוצרי טרומי — קטגוריות א׳, ב׳, ג׳</div>
+
+  <!-- Category A -->
+  <div style="margin-bottom:8px">
+    <span class="tag tag-green" style="font-size:13px;padding:6px 14px">קטגוריה א׳ — 35 מוצרים | מיוצר בישראל</span>
+    <span style="font-size:12px;color:var(--muted);margin-right:12px">מוצרים קיימים אצל לפחות יצרן ישראלי אחד</span>
+  </div>
+  <div class="product-grid-2" style="margin-bottom:28px">
+
+    <div class="product-card-full">
+      <div class="pid">#1</div>
+      <div class="pname">לוחות חלולים (Hollow-Core Slabs)</div>
+      <div class="pdesc">רצפות לבניינים רב-קומתיים, חניונים ותשתיות; קיצור זמן בנייה משמעותי לעומת יציקה באתר</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — יצרן ישראלי מוביל</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#2</div>
+      <div class="pname">קורות I ו-T קדם-מתוחות</div>
+      <div class="pdesc">קורות לגשרים, חניונים ומבני תעשייה; עמידות גבוהה לגזר וכפיפה עם כמות ברזל מינימלית</div>
+      <a class="psrc" href="https://www.shapir.co.il/" target="_blank">שפיר הנדסה — פעילות טרומי</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#3</div>
+      <div class="pname">עמודים מרובעים דרוכים</div>
+      <div class="pdesc">תמיכה מבנית לחניונים, מחסנים ואולמות; יציקה מדויקת במפעל עם עיגוי מובנה</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — קטלוג מוצרים</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#4</div>
+      <div class="pname">ממ"ד — קירות מרחב מוגן</div>
+      <div class="pdesc">ייחודי לישראל לפי תקן ת"י 4366; עמידות לרסיסים ולחץ. כ-50,000 ממ"דים נדרשים לשנה</div>
+      <a class="psrc" href="https://www.mamad.gov.il/" target="_blank">פיקוד העורף — דרישות ממ"ד</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#5</div>
+      <div class="pname">מדרגות טרומיות בודדות</div>
+      <div class="pdesc">יחידות מדרגה לבניינים רב-קומתיים; ייצור סדרתי מאפשר מחיר נמוך ואחידות מוחלטת</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — מדרגות וגרמי מדרגות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#6</div>
+      <div class="pname">גרמי מדרגות (Stair Flights)</div>
+      <div class="pdesc">מודול מדרגות שלם לפרויקטים גדולים; 15–20 דקות התקנה בין קומות (מנוף + 2 פועלים)</div>
+      <a class="psrc" href="https://www.precast.org/2022/08/precast-stair-system/" target="_blank">Precast/Prestressed Concrete Institute — מדרגות טרומי</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#7</div>
+      <div class="pname">שוחות ביב מרובעות (Manholes)</div>
+      <div class="pdesc">גישה לתשתיות ביוב, מים וחשמל; תקן ישראלי קבוע, ייצור מסיבי ופשוט</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — מוצרי בטון לתשתיות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#8</div>
+      <div class="pname">בורות ספיגה וסיפון</div>
+      <div class="pdesc">ניהול מי נגר בשטח ביתי ותעשייתי; פתרון פשוט לביוב ראשוני ומניעת הצפה</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — מוצרי בטון לניקוז</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#9</div>
+      <div class="pname">תעלות ניקוז U ו-V</div>
+      <div class="pdesc">ניקוז כבישים, גגות ושבילים; עמידות גבוהה לנטל ולתנאי מזג אוויר קיצוניים</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — תעלות ניקוז</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#10</div>
+      <div class="pname">סגמנטי מנהרה TBM</div>
+      <div class="pdesc">טבעות למנהרות מטרו (6 פלחים/טבעת, 3–6 טון); מטרו תל אביב ידרוש מאות אלפי יחידות עד 2037</div>
+      <a class="psrc" href="https://www.nta.co.il/en/" target="_blank">נת"ע — מטרו תל אביב</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#11</div>
+      <div class="pname">צינורות דחיקה (Jacking Pipes)</div>
+      <div class="pdesc">קידוח תת-קרקעי ללא חפירה; לחציית כבישים, מסילות ונחלים בעלויות נמוכות ב-40% מחפירה פתוחה</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — מוצרי בטון לתשתיות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#12</div>
+      <div class="pname">פאנלי קיר Sandwich (חזית מבודדת)</div>
+      <div class="pdesc">שני שכבות בטון עם ליבת פוליסטירן; חיסכון 25% בעלויות חימום/קירור לאורך חיי הבניין</div>
+      <a class="psrc" href="https://www.precast.org/2020/06/precast-insulated-wall-panels/" target="_blank">PCI — פאנלי קיר מבודדים</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#13</div>
+      <div class="pname">אבנים משתלבות (Interlocking Pavers)</div>
+      <div class="pdesc">ריצוף עירוני ותעשייתי; ניתן להחלפה מקומית מבלי לפרק שטח שלם, כולל עיצובים מגוונים</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — אבנות ואבנים משתלבות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#14</div>
+      <div class="pname">מחסומי ניו ג'רזי (Jersey Barriers)</div>
+      <div class="pdesc">הפרדת מסלולים, הגנה על עובדים באתר, הפרדה עירונית; נפוץ בכל פרויקטי תשתית ישראלים</div>
+      <a class="psrc" href="https://www.precast.org/2021/05/jersey-barrier/" target="_blank">PCI — Jersey Barrier כסטנדרט תשתית</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#15</div>
+      <div class="pname">גדרות בטון (Precast Fencing)</div>
+      <div class="pdesc">גדר ביטחונית לפרויקטים מסחריים ותעשייתיים; הקמה מהירה ועמידות ל-50+ שנה</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — מוצרי גידור</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#16</div>
+      <div class="pname">חדרי שנאים טרומיים (Transformer Rooms)</div>
+      <div class="pdesc">חדרי חשמל מוכנים להתקנה; חברת חשמל מאמצת פתרון זה לקיצור זמני חיבור</div>
+      <a class="psrc" href="https://www.sobindustry.co.il/" target="_blank">Solel Boneh Industries — מוצרי טרומי</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#17</div>
+      <div class="pname">בורות ספיגה טרומיים לבית פרטי</div>
+      <div class="pdesc">ספיגת מי גשמים לגינות ולמדרכות; תקן ת"י מחייב בבנייה חדשה מאז 2017</div>
+      <a class="psrc" href="https://www.wavin.com/en-gb/products/stormwater/" target="_blank">Wavin — ניהול מי גשמים</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#18</div>
+      <div class="pname">קירות L לריסון קרקע</div>
+      <div class="pdesc">ריסון גבעות ומדרגות; נפוץ בכבישים, גני ילדים ומגרשי ספורט; ייצור תבנית אחת → אלפי יחידות</div>
+      <a class="psrc" href="https://www.precast.org/2016/10/retaining-walls/" target="_blank">PCI — Retaining Walls Guide</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#19</div>
+      <div class="pname">אבני שפה (Curbstones)</div>
+      <div class="pdesc">גבולות מדרכה, אי תנועה ואזור חנייה; כ-3 מיליון מ"ל מותקנים בישראל מדי שנה</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — אבני שפה ותשתית</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#20</div>
+      <div class="pname">מסגרות שוחה ומכסים (Manhole Covers)</div>
+      <div class="pdesc">גישה לתשתיות קרקעיות; תקנים ישראליים ת"י 881, עמידות לעומס 40 טון</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — תשתיות בטון</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#21</div>
+      <div class="pname">מיגוניות ומקלטים ניידים</div>
+      <div class="pdesc">מרחב מוגן לא-צמוד לבניין; ייצור שיכון ובינוי תעשיות, אישור פיקוד העורף, פרישה ב-2 שעות</div>
+      <a class="psrc" href="https://www.sobindustry.co.il/" target="_blank">Solel Boneh Industries — מיגוניות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#22</div>
+      <div class="pname">קורות גשר קדם-מתוחות</div>
+      <div class="pdesc">קורות לגשרים כלי-רכב ורגלי; ייצור מפוקח מקצר זמן בנייה ב-30–40% לעומת גשרים יצוקים</div>
+      <a class="psrc" href="https://www.precast.org/2021/08/precast-bridge-beams/" target="_blank">PCI — Bridge Beam Products</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#23</div>
+      <div class="pname">עמודי גדר לשדות ולחקלאות</div>
+      <div class="pdesc">גדרות שדה, חקלאות ומגרשים; פשוט לייצור, ביקוש מסיבי בשוק החקלאי ובפרי-פריה</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — עמודי גדר ופינות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#24</div>
+      <div class="pname">כיסויי תעלה (Trench Covers)</div>
+      <div class="pdesc">מכסי בטון לתעלות קאבל, ביוב וחשמל; עמידות לכלי רכב כבדים ולגשם</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Infrastructure Precast Products</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#25</div>
+      <div class="pname">בסיסי עמוד לאולמות ולוגיסטיקה</div>
+      <div class="pdesc">בסיסי עמוד גדולים לאולמות תעשייה; תקנה אחת במקום 3 ימי יציקה באתר</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — מוצרי תעשייה</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#26</div>
+      <div class="pname">אדנים לרכבת קלה</div>
+      <div class="pdesc">תקן ישראלי לרכבות עירוניות; מסילות חיפה, ירושלים ובאר שבע — ביקוש מובטח</div>
+      <a class="psrc" href="https://www.vossloh.com/en/" target="_blank">Vossloh — Railway Concrete Sleepers</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#27</div>
+      <div class="pname">פלטות רינג לשוחות</div>
+      <div class="pdesc">תאי שוחה מודולריים לגבהים שונים; ייצור טרומי מאפשר דיוק מוחלט וחיסכון בחפירה</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — שוחות ותאי ביוב</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#28</div>
+      <div class="pname">מחסומי Step Barrier נמוכים</div>
+      <div class="pdesc">הפרדה ברמת תחנות אוטובוס ואזורי עמידה; בטיחות הולכי רגל בצמתים עמוסים</div>
+      <a class="psrc" href="https://www.precast.org/2021/05/jersey-barrier/" target="_blank">PCI — Safety Barriers Guide</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#29</div>
+      <div class="pname">גלילי ניקוז תת-כבישי (Culverts)</div>
+      <div class="pdesc">מעבר מים תחת כבישים ושבילים; עמידות ל-100+ שנה, ייצור בקוטר 300–1,800 מ"מ</div>
+      <a class="psrc" href="https://www.wolfman.co.il/" target="_blank">וולפמן — צינורות בטון לניקוז</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#30</div>
+      <div class="pname">פאנלי גדר פרטיות לבניין</div>
+      <div class="pdesc">גדר ביתית ומסחרית אסתטית; אפשרות עיצוב, צבע וטקסטורה; הקמה ב-2 ימים לחניון</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — גדרות פרטיות</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#31</div>
+      <div class="pname">מסגרות לגשרוני ניקוז (Culvert Frames)</div>
+      <div class="pdesc">מסגרות בטון למעברי מים מתחת לכבישי גישה; נדרש בכל כניסה לרחוב שניוני</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Drainage Infrastructure Products</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#32</div>
+      <div class="pname">חצרות ניקוז מבטון לתעשייה</div>
+      <div class="pdesc">ניהול מי נגר בשטח תעשייה ומחסנים; עמידות לחומרים כימיים ולעומסי רכב כבד</div>
+      <a class="psrc" href="https://www.wavin.com/en-gb/products/stormwater/" target="_blank">Wavin — Industrial Drainage</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#33</div>
+      <div class="pname">PHC Piles — יתדות בטון דרוכות</div>
+      <div class="pdesc">יסוד לבניינים על קרקע רכה; פיתרון מדויק ומהיר לאתרים עם שכבת חמרה</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — יתדות בטון</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#34</div>
+      <div class="pname">לוחות גגון לחניות (Parking Roof Slabs)</div>
+      <div class="pdesc">גגות שטח לחניות פתוחות; עמידות UV, ניקוז מובנה, קיצור בנייה ב-3 שבועות</div>
+      <a class="psrc" href="https://www.precast.org/2022/04/precast-parking/" target="_blank">PCI — Precast Parking Structures</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#35</div>
+      <div class="pname">גרמי מדרגות לחניון עמוק</div>
+      <div class="pdesc">מדרגות מאוזרות לחניונים תת-קרקעיים עמוקים; פתרון טרומי לשטחים צרים מאוד</div>
+      <a class="psrc" href="https://www.ramt.co.il/" target="_blank">רמט טרום — פרויקטי חניון</a>
+    </div>
+
+  </div><!-- /Category A -->
+
+  <!-- Category B -->
+  <div style="margin-bottom:8px">
+    <span class="tag tag-amber" style="font-size:13px;padding:6px 14px">קטגוריה ב׳ — 35 מוצרים | פוטנציאל לישראל</span>
+    <span style="font-size:12px;color:var(--muted);margin-right:12px">מיוצר בעולם; אין בישראל — ביקוש מקומי קיים וצומח</span>
+  </div>
+  <div class="product-grid-2" style="margin-bottom:28px">
+
+    <div class="product-card-full">
+      <div class="pid">#36</div>
+      <div class="pname">קירות אקוסטיים טרומיים</div>
+      <div class="pdesc">פאנלים NRC ≥ 0.70 לאורך כבישים ומסילות; אין יצרן בישראל — ביקוש גדל עם תוספת מסילות</div>
+      <a class="psrc" href="https://www.smithmidland.com/sound-barriers" target="_blank">Smith Midland — Sound Barriers (ארה"ב)</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#37</div>
+      <div class="pname">יחידות אמבטיה מוגמרות (PBU)</div>
+      <div class="pdesc">חדרי רחצה שלמים המגיעים מהמפעל; חוסך 3 שבועות לדירה, מאמץ בסינגפור, הונג-קונג, UID</div>
+      <a class="psrc" href="https://www.oldcastleprecast.com/" target="_blank">Oldcastle Precast — Bathroom Units</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#38</div>
+      <div class="pname">יחידות PPVC מודולריות (Volumetric)</div>
+      <div class="pdesc">מודול דירה שלם — קירות, תקרה, ריצוף — מגיע לאתר גמור; סינגפור חייבה 65% מהפרויקטים</div>
+      <a class="psrc" href="https://www.buildingandconstruction.sg/resources/ppvc" target="_blank">BCA Singapore — PPVC Program</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#39</div>
+      <div class="pname">פיר מעלית מודולרי טרומי</div>
+      <div class="pdesc">מבנה פיר מעלית מוכן שמחבר 4 קומות ביום; עדיף לפרויקטים שבהם המנוף מוגבל</div>
+      <a class="psrc" href="https://www.precast.org/2021/08/elevator-shafts/" target="_blank">PCI — Elevator Shafts in Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#40</div>
+      <div class="pname">מקלטים תת-קרקעיים לקהילה</div>
+      <div class="pdesc">קיבולת 50–500 אנשים; ייחודי לישראל — אין פתרון מסחרי זמין, ביקוש גדל אחרי 7 באוקטובר</div>
+      <a class="psrc" href="https://www.mamad.gov.il/" target="_blank">פיקוד העורף — דרישות מרחבי הגנה</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#41</div>
+      <div class="pname">Tetrapods — אלמנטי שבירת גלים</div>
+      <div class="pdesc">הגנת קו חוף 190 ק"מ; עמידות לגלים גבוהים, מחסום ביולוגי לאצות. אין יצרן בישראל</div>
+      <a class="psrc" href="https://www.core-loc.com/" target="_blank">Core-Loc — Wave Armor Units</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#42</div>
+      <div class="pname">Dolos / Antifer — שריון גלים חלופי</div>
+      <div class="pdesc">צורות גאומטריות ייחודיות לשריון שובר גלים; שרידות גבוהה בגלים חריגים לעומת Tetrapod</div>
+      <a class="psrc" href="https://www.precast.org/2022/01/wave-attenuation/" target="_blank">PCI — Coastal Protection Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#43</div>
+      <div class="pname">מאגרי מים תת-קרקעיים טרומיים</div>
+      <div class="pdesc">אגירת מי גשמים ל-500–5,000 מ"ק; חוק מים 2017 מחייב אגירה בפרויקטים גדולים</div>
+      <a class="psrc" href="https://www.wavin.com/en-gb/products/stormwater/" target="_blank">Wavin — Underground Water Storage</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#44</div>
+      <div class="pname">תאי ניהול מי גשמים מודולריים</div>
+      <div class="pdesc">מערכות ספיגה עירוניות תת-קרקעיות; נדרש בכל פרויקט חדש מעל 5 דונם מאז 2018</div>
+      <a class="psrc" href="https://www.storetank.co.uk/" target="_blank">Storetank — Stormwater Management Systems</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#45</div>
+      <div class="pname">בסיסי טורבינות רוח (Wind Turbine Bases)</div>
+      <div class="pdesc">בסיס אחד במשקל 300 טון, דיוק ±2 מ"מ; ישראל מתכננת 2,400 מגה-וואט רוח עד 2030</div>
+      <a class="psrc" href="https://www.power-technology.com/projects/walney-extension/" target="_blank">Power Technology — Wind Farm Concrete Bases</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#46</div>
+      <div class="pname">Redi-Rock — בלוקי לגו כבדים לקירות</div>
+      <div class="pdesc">~1 טון/בלוק, קירות עד 7.3 מ' ללא עיגון; 130+ יצרנים ב-5 יבשות — אין בישראל</div>
+      <a class="psrc" href="https://www.redi-rock.com/" target="_blank">Redi-Rock International — Retaining Wall Blocks</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#47</div>
+      <div class="pname">פאנלי UHPC (בטון ביצועי אולטרה)</div>
+      <div class="pdesc">חוזק 150–200 MPa, עובי 1.5–3 ס"מ; חיסכון 40% חומר לעומת בטון רגיל. Ductal מובילה עולמית</div>
+      <a class="psrc" href="https://www.ductal.com/en/architecture/" target="_blank">Ductal (Holcim) — UHPC Architecture</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#48</div>
+      <div class="pname">פאנלי GRC (זכוכית-בטון)</div>
+      <div class="pdesc">חזיתות קלות ועמידות בים; משקל 40 ק"ג/מ"ר לעומת 250 ק"ג/מ"ר בבטון רגיל. ביקוש גדל</div>
+      <a class="psrc" href="https://www.grcprecast.com/" target="_blank">GRC Precast — Glass Fiber Reinforced Concrete</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#49</div>
+      <div class="pname">קורות גשר רכבת מתקדמות</div>
+      <div class="pdesc">כניסה לשוק תשתיות ציבוריות; פרויקטי נת"ע ורמ"י מייצרים ביקוש רב-שנתי</div>
+      <a class="psrc" href="https://www.precast.org/2021/08/precast-bridge-beams/" target="_blank">PCI — Railway Bridge Girders</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#50</div>
+      <div class="pname">Precast Headwall לניקוז</div>
+      <div class="pdesc">מסגרת בטון לפה יציאת גלריה; הגנה מסחיפה ומראה מקצועי לתשתית ניקוז</div>
+      <a class="psrc" href="https://www.oldcastleinfrastructure.com/" target="_blank">Oldcastle Infrastructure — Drainage Headwalls</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#51</div>
+      <div class="pname">Floating Concrete Pontoons (רציפי צף)</div>
+      <div class="pdesc">רציפים ומרינות לספינות; בטון עמיד ל-50 שנה בים, עלות נמוכה מ-FRP לטווח ארוך</div>
+      <a class="psrc" href="https://www.float-inc.com/" target="_blank">Float Inc. — Floating Concrete Structures</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#52</div>
+      <div class="pname">מכסי ספסל פארק ורהיטי רחוב</div>
+      <div class="pdesc">ספסלים, כיורי מים ואמנות עירונית מבטון; פוטנציאל גבוה בפרויקטי עיר מחדש</div>
+      <a class="psrc" href="https://www.precast.org/2019/11/street-furniture/" target="_blank">PCI — Street Furniture Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#53</div>
+      <div class="pname">בסיסי תאורת רחוב וכביש</div>
+      <div class="pdesc">בסיסי עמוד תאורה מבטון לכביש ולמגרשי חנייה; יציבות גבוהה עמידות לרוחות</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Lighting Infrastructure Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#54</div>
+      <div class="pname">מנהרות עצה וחיות בר (Wildlife Crossing)</div>
+      <div class="pdesc">מעברים תת-קרקעיים לחיות בר; ישראל חייבה מעברי חיה בכבישים חדשים מאז 2022</div>
+      <a class="psrc" href="https://www.precast.org/2021/05/wildlife-crossings/" target="_blank">PCI — Wildlife Crossing Structures</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#55</div>
+      <div class="pname">גשרוני הולכי-רגל קטנים</div>
+      <div class="pdesc">גשרים עד 20 מ' לפארקים עירוניים; ביצוע מהיר — 2 ימי עבודה עם מנוף ללא סגירת רחוב</div>
+      <a class="psrc" href="https://www.precast.org/2020/03/pedestrian-bridges/" target="_blank">PCI — Small Pedestrian Bridges</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#56</div>
+      <div class="pname">מפסקי קצה לגינות (Garden Edging)</div>
+      <div class="pdesc">גבולות פרסיות לגינון ציבורי; מוצר פשוט, שוק עירוני גדול, ייצור בעלות אפסית</div>
+      <a class="psrc" href="https://www.akrstein.co.il/" target="_blank">אקרשטיין — מוצרי גינון</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#57</div>
+      <div class="pname">מכלי אגירת דלק תת-קרקעיים</div>
+      <div class="pdesc">מכלי בטון לתחנות דלק ובסיסים צבאיים; עמידות לכימיקלים ותקני בטיחות מחמירים</div>
+      <a class="psrc" href="https://www.oldcastleinfrastructure.com/" target="_blank">Oldcastle Infrastructure — Fuel Storage</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#58</div>
+      <div class="pname">פיר שפכים מודולרי</div>
+      <div class="pdesc">תאי עיבוד שפכים טרומיים ליישובים קטנים; ביצוע מהיר ב-3 ימים לעומת חודשיים בבניה מסורתית</div>
+      <a class="psrc" href="https://www.oldcastleinfrastructure.com/" target="_blank">Oldcastle Infrastructure — Wastewater Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#59</div>
+      <div class="pname">תאי Ground-Mount סולאריים</div>
+      <div class="pdesc">בסיסי בלסט לפאנלים סולאריים בשדה פתוח; ישראל מתכננת 30 ג'יגה-וואט סולארי עד 2030</div>
+      <a class="psrc" href="https://www.nextracker.com/" target="_blank">Nextracker — Solar Ground Mount Systems</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#60</div>
+      <div class="pname">פאנלי חדר גנרטור בטון</div>
+      <div class="pdesc">חדרי גנרטור מוגמרים; בידוד אקוסטי מובנה, הגנת אש, פתיחה ב-1 יום</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Generator Room Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#61</div>
+      <div class="pname">גגון אוטובוס/רכבת טרומי</div>
+      <div class="pdesc">גגות לתחנות תחבורה ציבורית; מחיר תחזוקה אפסי, עמידות 50+ שנה, אסתטיקה עירונית</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Transit Shelter Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#62</div>
+      <div class="pname">תאי אחסון ביופ (Biogas Digester)</div>
+      <div class="pdesc">מיכלי עיכול אורגני לחוות וישובים; ישראל מקדמת אנרגיה מחוות — ביקוש עולה</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Agricultural Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#63</div>
+      <div class="pname">גדר אקוסטית לגינת שכנים</div>
+      <div class="pdesc">גדרות פרטיות עם הפחתת רעש; שוק חדש בישראל עם גידול באוכלוסייה ובצפיפות</div>
+      <a class="psrc" href="https://www.smithmidland.com/" target="_blank">Smith Midland — Residential Sound Walls</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#64</div>
+      <div class="pname">קיר תמך Mechanically Stabilized Earth (MSE)</div>
+      <div class="pdesc">קיר תמך מחיזוק קרקע + לוחות פנים; חיסכון 30–50% לעומת קיר L רגיל בגבהים מעל 3 מ'</div>
+      <a class="psrc" href="https://www.terratechno.co.il/" target="_blank">TERRA TECHNO (Solel Boneh) — MSE Walls</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#65</div>
+      <div class="pname">תאי תשתית (Utility Vaults)</div>
+      <div class="pdesc">ארונות קרקע לציוד חשמל, תקשורת ומים; קיצור זמן תשתית עירונית ב-60%</div>
+      <a class="psrc" href="https://www.oldcastleinfrastructure.com/" target="_blank">Oldcastle Infrastructure — Utility Vaults</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#66</div>
+      <div class="pname">עמוד-עלה (Leaf Pillar) — ייחוד אדריכלי</div>
+      <div class="pdesc">עמוד בצורת עלה — אסתטיקה לחזיתות ציבוריות; ייצור CNC ותבניות מיוחדות</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Architectural Concrete Innovation</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#67</div>
+      <div class="pname">בסיסי תחנות מדידה ומטאורולוגיה</div>
+      <div class="pdesc">בסיסי מגדלי מדידה ותחנות מזג אוויר; ביקוש יציב מרשויות ממשלתיות</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Monitoring Station Bases</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#68</div>
+      <div class="pname">קורות לוח ים (Jetty Beams)</div>
+      <div class="pdesc">קורות לרציפי נמל; עמידות לים 100 שנה, ניתן לייצור בתנאי ישראל עם צמנט אטום</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Marine Precast Products</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#69</div>
+      <div class="pname">כלובי ביטון לגידול דגים (Marine Cages)</div>
+      <div class="pdesc">מסגרות בטון לכלובי דגים ימיים; עמידות ל-30 שנה לעומת 5 בפלסטיק, עלות תחזוקה נמוכה</div>
+      <a class="psrc" href="https://www.akva.com/" target="_blank">AKVA Group — Marine Fish Farming</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#70</div>
+      <div class="pname">ביניים לחנייה (Parking Spandrel)</div>
+      <div class="pdesc">אלמנטי מחבר לבין קומות חניון; מקצרים זמן הרכבה ב-40% ומעניקים חיזוק רוחי</div>
+      <a class="psrc" href="https://www.precast.org/2022/04/precast-parking/" target="_blank">PCI — Parking Garage Precast Systems</a>
+    </div>
+
+  </div><!-- /Category B -->
+
+  <!-- Category C -->
+  <div style="margin-bottom:8px">
+    <span class="tag tag-purple" style="font-size:13px;padding:6px 14px">קטגוריה ג׳ — 32 מוצרים | חדשני ומתפתח</span>
+    <span style="font-size:12px;color:var(--muted);margin-right:12px">מגמות גלובליות עולות — טכנולוגיות העשור הבא</span>
+  </div>
+  <div class="product-grid-2" style="margin-bottom:28px">
+
+    <div class="product-card-full">
+      <div class="pid">#71</div>
+      <div class="pname">מגדלי טורבינות רוח Hexcrete</div>
+      <div class="pdesc">מגדלים היברידיים בטון+פלדה גובה 100+ מ'; U.S. DOE ממנה פיתוח — מחיר 15% נמוך ממגדל פלדה</div>
+      <a class="psrc" href="https://www.energy.gov/eere/wind/articles/new-concrete-wind-turbine-tower-hexcrete" target="_blank">U.S. DOE — Hexcrete Wind Turbine Towers</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#72</div>
+      <div class="pname">בסיסי Offshore Wind Gravity-Based</div>
+      <div class="pdesc">פלטפורמות בטון לטורבינות רוח ימיות; חלופה לפלדה — עלות נמוכה יותר לעומק 30–60 מ'</div>
+      <a class="psrc" href="https://www.4coffshore.com/" target="_blank">4C Offshore — Offshore Wind Foundations</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#73</div>
+      <div class="pname">בתים מודולריים מבטון $75,000</div>
+      <div class="pdesc">יחידת מגורים עצמאית בעלות נמוכה; ICON ו-1Earth Home מובילים — פוטנציאל לדיור בר-השגה בישראל</div>
+      <a class="psrc" href="https://www.iconbuild.com/" target="_blank">ICON — 3D Printed & Modular Concrete Homes</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#74</div>
+      <div class="pname">מרכזי נתונים מבטון (Data Center Shells)</div>
+      <div class="pdesc">מבנה בטון לאחסון שרתי AI; בידוד תרמי טבעי מפחית צריכת קירור ב-30%; ביקוש AI עצום</div>
+      <a class="psrc" href="https://uptimeinstitute.com/" target="_blank">Uptime Institute — Data Center Design</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#75</div>
+      <div class="pname">Solar Pavers — אבני מדרכה סולאריות</div>
+      <div class="pdesc">ייצור חשמל בדריסה; PLATIO מייצרת 112W/מ"ר — פוטנציאל לשבילי רכיבה ומגרשי ספורט</div>
+      <a class="psrc" href="https://platio.co/" target="_blank">PLATIO — Solar Pavement Tiles</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#76</div>
+      <div class="pname">Pavegen — אבלי מדרכה מייצרי חשמל</div>
+      <div class="pdesc">פיזוחשמל ממדרכות עירוניות עמוסות; לאו-גארדיה ניו יורק, ווסטפילד לונדון — יישומים מוכחים</div>
+      <a class="psrc" href="https://www.pavegen.com/" target="_blank">Pavegen — Kinetic Energy Flooring</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#77</div>
+      <div class="pname">CO₂ Cured Precast — ריפוי בפחמן</div>
+      <div class="pdesc">הזרקת CO₂ לבטון במהלך הריפוי; קיבוע 50 ק"ג CO₂ לטון + חוזק גבוה ב-10%. CarbonCure מובילה</div>
+      <a class="psrc" href="https://www.carboncure.com/" target="_blank">CarbonCure — CO₂ Concrete Technology</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#78</div>
+      <div class="pname">Graphene Concrete — בטון גרפן</div>
+      <div class="pdesc">הוספת גרפן מגדילה חוזק ב-30% ומפחיתה מלט ב-20%; Gerdau ו-Versarien מוכרות מסחרית 2024</div>
+      <a class="psrc" href="https://www.versarien.com/" target="_blank">Versarien — Graphene Enhanced Concrete</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#79</div>
+      <div class="pname">Self-Healing Concrete — בטון מרפא עצמי</div>
+      <div class="pdesc">חיידקים מייצרים קלציט ומאטמים סדקים אוטומטית; TU Delft — הפחתת 90% מעלויות תחזוקה</div>
+      <a class="psrc" href="https://www.tudelft.nl/en/ceg/about-faculty/departments/materials-mechanics-management-design-3md/sections-labs/microlab/research/bio-concrete/" target="_blank">TU Delft — Bioconcrete Research</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#80</div>
+      <div class="pname">גשרים מודפסים בתלת-מימד (3D Printed Bridges)</div>
+      <div class="pdesc">MX3D הדפיסה גשר פלדה 12 מ' באמסטרדם; באירלנד הודפס גשר בטון 12 מ' ב-2023</div>
+      <a class="psrc" href="https://mx3d.com/projects/bridge/" target="_blank">MX3D — World's First 3D Printed Steel Bridge</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#81</div>
+      <div class="pname">Mass Timber + Concrete Hybrid</div>
+      <div class="pdesc">שילוב עץ מהנדס ובטון לחיזוק קיימות; חיסכון 40% פחמן לעומת בטון טהור — מגמה בבניה ירוקה</div>
+      <a class="psrc" href="https://www.thinkwood.com/building-better/mass-timber" target="_blank">Think Wood — Mass Timber Hybrid Systems</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#82</div>
+      <div class="pname">Carbon-Negative Concrete — בטון שלילי פחמן</div>
+      <div class="pdesc">Solidia ו-Novacem מייצרות בטון שקולט CO₂ רב יותר ממה שהוא פולט — הסחורה הבאה בשוק</div>
+      <a class="psrc" href="https://www.solidiatech.com/" target="_blank">Solidia Technologies — Carbon Negative Concrete</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#83</div>
+      <div class="pname">גשרי UHPC דקים (Ultra-Thin Bridges)</div>
+      <div class="pdesc">גשרים בעובי 3–5 ס"מ, ספק 150–200 MPa; חיסכון 60% משקל לעומת גשר רגיל, גולשרים נהדרים</div>
+      <a class="psrc" href="https://www.ductal.com/en/civil-engineering/bridges/" target="_blank">Ductal — UHPC Bridge Structures</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#84</div>
+      <div class="pname">ICF Panels — תבניות בטון מבודדות</div>
+      <div class="pdesc">תבנית EPS נשארת כבידוד קבוע; חיסכון 25–50% בעלויות אנרגיה לאורך 30 שנה</div>
+      <a class="psrc" href="https://www.nudura.com/" target="_blank">Nudura — Insulated Concrete Forms</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#85</div>
+      <div class="pname">Smart IoT Precast — פאנלים עם חיישנים מובנים</div>
+      <div class="pdesc">חיישני לחץ, טמפרטורה וסדקים מובנים בפאנל; ניטור מבני מרחוק בזמן אמת</div>
+      <a class="psrc" href="https://www.structural-monitoring.com/" target="_blank">Structural Monitoring Systems — Smart Concrete</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#86</div>
+      <div class="pname">Recycled Aggregate Precast — בטון מהריסות</div>
+      <div class="pdesc">שימוש ב-30–50% אגרגט ממוחזר; ישראל מייצרת 5M טון פסולת בנייה — כ-70% מסולקת לא יאוחדת</div>
+      <a class="psrc" href="https://www.wrap.org.uk/taking-action/built-environment/construction" target="_blank">WRAP — Recycled Concrete Aggregates</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#87</div>
+      <div class="pname">Ultra-Thin GRC Facade Panels</div>
+      <div class="pdesc">פאנל GRC ב-1.5 ס"מ משקל 40 ק"ג/מ"ר; חזיתות כרמל סנטר, מגדל עזריאלי — ביקוש עולה</div>
+      <a class="psrc" href="https://www.grcprecast.com/" target="_blank">GRC Precast — Architectural Facades</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#88</div>
+      <div class="pname">EV Charging Infrastructure Base</div>
+      <div class="pdesc">בסיסי בטון טרומי לתחנות טעינה לרכב חשמלי; ישראל מתכננת 5,000 תחנות טעינה ציבוריות עד 2027</div>
+      <a class="psrc" href="https://www.precast.org/2022/06/ev-charging/" target="_blank">PCI — EV Charging Infrastructure</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#89</div>
+      <div class="pname">Transparent Concrete — LiTraCon</div>
+      <div class="pdesc">בטון המכיל סיבי אופטיקה המעבירים אור; שימוש בחזיתות יוקרה ובגשרים אסתטיים — מחיר $1,000/מ"ר</div>
+      <a class="psrc" href="https://www.litracon.hu/" target="_blank">LiTraCon — Light-Transmitting Concrete</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#90</div>
+      <div class="pname">Bioactive Concrete Facade — חזית ירוקה</div>
+      <div class="pdesc">חזיתות מגדלות אצות וצמחיה; קירור טבעי -3°C, ספיגת CO₂ — מגמה בבנייה ביופילית</div>
+      <a class="psrc" href="https://www.dezeen.com/2021/11/25/algae-building-facade-bioreactor/" target="_blank">Dezeen — Algae Facade Buildings</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#91</div>
+      <div class="pname">Anti-Blast Wall Panels</div>
+      <div class="pdesc">קירות עמידים לפיצוץ IED ולרסיסים; ייחודי לישראל — צה"ל, שב"ס, ורנות ירי אזרחיות</div>
+      <a class="psrc" href="https://www.hardwallsystems.com/" target="_blank">Hardwall Systems — Blast Resistant Precast</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#92</div>
+      <div class="pname">Timber-Look Precast — בטון כמו עץ</div>
+      <div class="pdesc">פאנלי בטון עם מרקם ועיצוב עץ; עמידות 100 שנה בחוץ לעומת 10 שנה לעץ — בחירה ב-Scandinavia</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Architectural Precast Finishes</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#93</div>
+      <div class="pname">Acoustic Diffuser Wall Panels</div>
+      <div class="pdesc">לוחות בצורות גאומטריות להפזרת קול; לאולמות קונצרטים, בתי ספר ומרכזי כנסים</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Acoustic Precast Applications</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#94</div>
+      <div class="pname">Concrete Canvas — בד בטון גמיש</div>
+      <div class="pdesc">בד ספוג צמנט שמתקשה במגע מים; ציפוי תעלות, שיפוע ומגן על מדרונות — הצבת 1 מ"ר/דקה</div>
+      <a class="psrc" href="https://www.concretecanvas.com/" target="_blank">Concrete Canvas — Flexible Concrete Products</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#95</div>
+      <div class="pname">Mycelium Reinforced Concrete</div>
+      <div class="pdesc">שימוש בפטרייה כרכיב מחזק טבעי; ביו-בטון ב-40% עלות נמוכה יותר, בפיתוח אקדמי 2025</div>
+      <a class="psrc" href="https://www.ecovative.com/" target="_blank">Ecovative Design — Mycelium Materials</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#96</div>
+      <div class="pname">Rapid Deployment Concrete Shelters</div>
+      <div class="pdesc">מקלטים מהירי הרכבה לחירום; 6 שעות הקמה ל-20 אנשים — שוק גדל בישראל אחרי 7.10</div>
+      <a class="psrc" href="https://www.mamad.gov.il/" target="_blank">פיקוד העורף — פתרונות מיגון</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#97</div>
+      <div class="pname">Amphibious House Foundations</div>
+      <div class="pdesc">יסודות צפים לבניינים באזורי שיטפון; Waterstudio הולנד בנתה 13,000 יחידות — רלוונטי לים המלח</div>
+      <a class="psrc" href="https://waterstudio.nl/" target="_blank">Waterstudio — Floating Architecture</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#98</div>
+      <div class="pname">Smart Tunnel Lining with Sensors</div>
+      <div class="pdesc">ריצוף מנהרות עם חיישני לחץ, רטיבות ורעידות מובנים; ניטור בטיחות מנהרה בזמן אמת</div>
+      <a class="psrc" href="https://www.structural-monitoring.com/" target="_blank">Structural Monitoring Systems — Tunnel Sensors</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#99</div>
+      <div class="pname">Vacuum Formed Precast — בטון בוואקום</div>
+      <div class="pdesc">הסרת מים עודפים בוואקום; משטח חלק ב-99%, צפיפות גבוהה ב-20% — לחזיתות יוקרה</div>
+      <a class="psrc" href="https://www.precast.org/" target="_blank">PCI — Advanced Precast Manufacturing</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#100</div>
+      <div class="pname">Solar Ballast Ground-Mount</div>
+      <div class="pdesc">קנקני בטון לייצוב פאנלים סולאריים ללא קידוח; פשוט לייצור, ביקוש עצום עם פריסת סולאר</div>
+      <a class="psrc" href="https://www.nextracker.com/" target="_blank">Nextracker — Ballasted Solar Mounting</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#101</div>
+      <div class="pname">Highway Sound Barrier Systems</div>
+      <div class="pdesc">מערכות מחסומי קול לאורך כבישים מהירים; פאנלים NRC ≥ 0.85 מפחיתים רעש ב-15 dB</div>
+      <a class="psrc" href="https://www.smithmidland.com/sound-barriers" target="_blank">Smith Midland — Highway Sound Barriers</a>
+    </div>
+
+    <div class="product-card-full">
+      <div class="pid">#102</div>
+      <div class="pname">Mass Timber + Precast Podium</div>
+      <div class="pdesc">בסיס בטון טרומי + קומות עץ מהנדס; חיסכון 25% זמן, 40% פחמן — Standard בשוויץ וקנדה</div>
+      <a class="psrc" href="https://www.thinkwood.com/building-better/mass-timber" target="_blank">Think Wood — Timber-Concrete Podium Design</a>
+    </div>
+
+  </div><!-- /Category C -->
+
+  <!-- Chapter 10 - Strategic Meeting -->
+  <div class="section-divider">פגישת המשך — חיפה, 15 בפברואר 2026 | מפגש אסטרטגי</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+    <div class="meeting-item">
+      <h4>10.1 — אלמנטי TBM: מפעלים לייצור טבעות מנהרה</h4>
+      <p>מטרו תל אביב M1/M2/M3 — $49 מיליארד; ~20 מכונות TBM; פתיחה שלב 1: 2037. כל טבעת = 6 Segments במשקל 3–6 טון. דיוק נדרש: ±0.5 מ״מ. תפוקה: 100–200 Segments/יום. יצרן מוביל: <a href="https://www.herrenknecht.com/en/" target="_blank" style="color:var(--blue)">Herrenknecht</a> (גרמניה), <a href="https://www.cbe-group.com/" target="_blank" style="color:var(--blue)">CBE Group</a> (צרפת).</p>
+      <span class="highlight">⭐ עדיפות עליונה — שוק ₪100M+/שנה</span>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.2 — קירות אקוסטיים טרומיים</h4>
+      <p>NRC ≥ 0.70; גובה עד 8 מ׳; עלות $400–$1,200/מ״ר. כבישים 1, 4, 6 + מסילות רכבת. בישראל אין יצרן פאנלים טרומיים. <a href="https://www.smithmidland.com/" target="_blank" style="color:var(--blue)">Smith Midland</a> (ארה״ב) ו-Durisol (גרמניה) — מודלים מובילים.</p>
+      <span class="highlight">⭐ שוק פתוח בישראל — אין מתחרה</span>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.3 — קווי ייצור חסכוניים באנרגיה</h4>
+      <p>ממוצע ענפי: 58.21 kWh/טון. אנרגיה = 15–25% מעלות הייצור. פתרונות: CO₂ Curing (ללא תנורים), GGBS 30–50%, חשמל מתחדש על גג המפעל. לוח״דים באקסטרוזיה — הצריכה הנמוכה ביותר.</p>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.4 — צינורות דחיקה (Jacking Pipes)</h4>
+      <p>חציית תשתיות ללא חפירה פתוחה. בישראל: <a href="https://www.wolfman.co.il/" target="_blank" style="color:var(--blue)">וולפמן</a> + <a href="https://www.akrstein.co.il/" target="_blank" style="color:var(--blue)">אקרשטיין</a> בלבד (בטון). ייצור GRP/FRP מקומי — לא קיים. <a href="https://www.amiblu.com/" target="_blank" style="color:var(--blue)">Amiblu</a> (אוסטריה) — מוביל עולמי. הזדמנות: להיות יצרן GRP ראשון בישראל.</p>
+      <span class="highlight">שוק פתוח ל-GRP בישראל</span>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.5 — מטילות: מכונות ייצור לוח״ד</h4>
+      <p>Extruder/Slipformer — מניח לוחות חלולים בשיטת אקסטרוזיה. <a href="https://www.elematic.com/" target="_blank" style="color:var(--blue)">Elematic</a> (35% שוק), <a href="https://www.nordimpianti.it/" target="_blank" style="color:var(--blue)">Nordimpianti</a> (20%), Weiler (15%). מכונה: €300K–€600K. מגמה: IoT מובנה, PLC, +8.6% מכירות גלובליות ב-2024.</p>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.6 — בלוקי לגו מבטון (Redi-Rock)</h4>
+      <p>~1 טון/בלוק; קירות עד 7.3 מ׳ ללא עיגון; ללא מלט. 130+ יצרנים מורשים ב-5 יבשות. יישומים: קירות תמך, מחצבות, אחסון, גדרות בטיחות. אין יצרן מורשה בישראל — <a href="https://www.redi-rock.com/become-a-manufacturer/" target="_blank" style="color:var(--blue)">הזדמנות לרישיון</a>.</p>
+      <span class="highlight">אין Redi-Rock בישראל — הזדמנות</span>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.7 — אדני רכבת עם כבלה מובנית</h4>
+      <p>מטרו תל אביב: Direct Fixation (DFF) או Bi-block Tunnel Sleepers. אפשרות לשלב תעלות כבלים ואותות מובנות באדן — חיסכון בהתקנה ובתחזוקה. <a href="https://www.vossloh.com/en/" target="_blank" style="color:var(--blue)">Vossloh</a> (גרמניה), <a href="https://www.salcef.it/" target="_blank" style="color:var(--blue)">Overail-Salcef</a> (איטליה).</p>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.8 — אבנים משתלבות חדשניות</h4>
+      <p>שוק גלובלי: $15.2B (2024) → $23.3B (2031), CAGR 6.3%. מגמות: PICP (ספיגת מי גשמים), Solar Pavers (<a href="https://platio.co/" target="_blank" style="color:var(--blue)">PLATIO</a>), <a href="https://www.pavegen.com/" target="_blank" style="color:var(--blue)">Pavegen</a> (חשמל מדריסה). בישראל: <a href="https://www.akrstein.co.il/" target="_blank" style="color:var(--blue)">אקרשטיין</a> מובילה.</p>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.9 — מדרגות מגדלים במידות קבועות</h4>
+      <p>תקן SI 1143: מידות אחידות → ייצור סדרתי מלא. תבנית אחת = אלפי יחידות. קצב: 15–20 דקות לקומה (מנוף + 2 עובדים). <a href="https://www.ramt.co.il/" target="_blank" style="color:var(--blue)">רמט טרום</a> כבר מייצרת; הזדמנות לנפח גדול יותר.</p>
+    </div>
+
+    <div class="meeting-item">
+      <h4>10.10 — מטווחי ירי</h4>
+      <p>קירות בליסטיים, תקרות, מחיצות. 20–30 ס״מ בטון = עמידות לקליבר 7.62 מ״מ. שוק: צה״ל, משטרה, שב״ס, ורנות ירי אזרחיות. <a href="https://www.inveris.com/" target="_blank" style="color:var(--blue)">InVeris</a> — 15,000+ מטווחים ב-40+ מדינות. מעבר לגומי גרגירי (GranTrap).</p>
+    </div>
+  </div>
+
+  <!-- priorities table -->
+  <div class="section-divider" style="margin-top:28px">טבלת עדיפויות — הזדמנויות לשיכון ובינוי</div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>עדיפות</th>
+          <th>מוצר</th>
+          <th>ביקוש ישראלי</th>
+          <th>מחסום כניסה</th>
+          <th>פוטנציאל שנתי</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-green">⭐⭐⭐</span></td>
+          <td><strong>סגמנטי TBM</strong></td>
+          <td>מטרו $49B; 20 TBMs</td>
+          <td>השקעה ייעודית + דיוק ±0.5 מ״מ</td>
+          <td style="color:#10b981;font-weight:700">₪100M+/שנה</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-green">⭐⭐⭐</span></td>
+          <td><strong>קירות אקוסטיים</strong></td>
+          <td>כבישים 1,4,6 + מסילות</td>
+          <td>קו ייצור פאנלים + אישור DOT</td>
+          <td style="color:#10b981;font-weight:700">₪50–200M/שנה</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-green">⭐⭐⭐</span></td>
+          <td><strong>צינורות דחיקה GRP</strong></td>
+          <td>שוק פתוח לחלוטין</td>
+          <td>ציוד FRP + ידע טכני</td>
+          <td style="color:#10b981;font-weight:700">שוק פתוח</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-amber">⭐⭐</span></td>
+          <td><strong>יחידות אמבטיה PBU</strong></td>
+          <td>מלונות, מעונות סטודנטים</td>
+          <td>שינוי תקנות + DFMA</td>
+          <td style="color:#f59e0b;font-weight:700">חיסכון 20 שבועות/פרויקט</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-amber">⭐⭐</span></td>
+          <td><strong>בסיסי מערכות סולאריות</strong></td>
+          <td>ישראל = שמש; תוכניות מדינה</td>
+          <td>מינימלי</td>
+          <td style="color:#f59e0b;font-weight:700">שוק גדל מהיר</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-amber">⭐⭐</span></td>
+          <td><strong>מדרגות סדרתיות</strong></td>
+          <td>81,000+ יחידות/שנה; תקן אחיד</td>
+          <td>תבניות; מינימלי</td>
+          <td style="color:#f59e0b;font-weight:700">נפח גדול</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">⭐</span></td>
+          <td><strong>PPVC — דירות מודולריות</strong></td>
+          <td>משבר דיור + מחסור כוח אדם</td>
+          <td>שינוי גדול בתכנון + רגולציה</td>
+          <td style="color:#3b82f6;font-weight:700">פוטנציאל ארוך טווח</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — מוספי בטון
+══════════════════════════════════════════ -->
+<section id="s4">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(20,184,166,.15);color:#14b8a6">04</div>
+    <div>
+      <h2>מוספי בטון (Concrete Admixtures)</h2>
+      <p>שוק גלובלי, סוגים, שוק ישראל, השוואת מעבדה פנימית/חיצונית, חדשנות | מקורות: Fortune Business Insights, Grand View Research, NRMCA</p>
+    </div>
+  </div>
+
+  <!-- intro prose -->
+  <div class="prose-block" style="background:rgba(20,184,166,.04);border:1px solid rgba(20,184,166,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p>
+      <strong>מוספי בטון (Concrete Admixtures)</strong> הם חומרים כימיים או מינרלים שמתווספים לתערובת הבטון כדי לשנות את תכונותיו — קצב הקשייה, עמידות, זרימה, ועוד. מוסף נכון יכול לחסוך 8–15% בעלות כל קוב בטון ולמנוע כשלים מבניים קלים. לכן, בחירת מוספים היא לא רק שאלת חומרים — היא שאלה אסטרטגית של ייצוב רווחיות.
+    </p>
+    <p>
+      ישראל מציגה אתגרים ייחודיים למוספים: <strong>חום קיצוני</strong> (35–45°C בקיץ) מאיץ את קשייה הבטון ויכול לגרום לסדקים — נדרשים מאחרים (Retarders). <strong>קרבת הים</strong> לאורך 190 ק"מ חוף ים-תיכוני מחייבת מעכבי קורוזיה ואיטום קריסטלי להגנה על ברזל הזיון. <strong>הצורך במנהרות</strong> (מטרו תל אביב: 20 מכונות TBM) מחייב Superplasticizers PCE לסגמנטים מדויקים.
+    </p>
+    <p>
+      שוק המוספים הגלובלי גדל מ-22.78 מיליארד דולר ב-2024 לצפי של 42.9 מיליארד עד 2032 — כ-8.9% לשנה. בסבירות גבוהה, כמו חברות נוספות בתעשייה, קיימת מעבדה פנימית כלשהי. השאלה האסטרטגית: האם להוסיף עליה שיתוף פעולה עם ספקים חיצוניים (Sika, BASF, Enermit) לפורמולציות מורכבות — ייתכן שגישה היברידית היא המיטבית.
+    </p>
+  </div>
+
+  <!-- global market charts -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="chart-title">שוק מוספי בטון גלובלי ($מיליארד)</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartAdmix"></canvas>
+      </div>
+      <div class="source-chip"><a href="https://www.fortunebusinessinsights.com/concrete-admixtures-market-102832" target="_blank">Fortune Business Insights</a> + <a href="https://www.grandviewresearch.com/industry-analysis/concrete-admixtures-market" target="_blank">Grand View Research 2024</a></div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> שוק מוספי הבטון הגלובלי — $26.8 מיליארד ב-2024, צפוי לגדול ל-$45 מיליארד עד 2032 בצמיחה של 6.6% לשנה. שוק שצומח מהר מהשוק הכללי של הבטון.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> הצמיחה מוסברת בחלקה על-ידי המעבר לצמנט חלופי (fly ash, GGBS) שדורש יותר מוספים לשמירת ביצועים. למי שנמצא בשוק הבטון, מוספים הם מרגין גבוה יחסית לנפח — והזדמנות להגדלת ערך לכל קוב.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">פיצול שוק לפי סוג מוסף</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartAdmixTypes"></canvas>
+      </div>
+      <div class="source-chip">מקור: Grand View Research + IMARC Group 2024</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> Superplasticizers מובילים בכ-35% מהשוק הגלובלי, אחריהם מאיצים (20%), מאחרים (15%), ואיטום (12%). שאר המוספים — קורוזיה, SRA, סיבים — מחלקים את היתרה.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> Superplasticizers הם הלב של בטון ביצועי — UHPC, SCC וטרומי מתקדם דורשים כולם PCE. חברה שמבינה את ה-mix design עם PCE נכון יכולה לחסוך 8–12% בעלות לקוב ולהגדיל מרגין ללא העלאת מחיר ללקוח.
+      </div>
+    </div>
+  </div>
+
+  <!-- player market share + geographic -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="chart-title">שחקנים עיקריים — נתחי שוק גלובלי</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartAdmixPlayers"></canvas>
+      </div>
+      <div class="source-chip"><a href="https://www.globenewswire.com/news-release/2025/01/22/3013231/28124/en/Concrete-Admixtures-Industry-Report-2025-2030-Analysis-of-Growth-Trends-and-Strategic-Developments-Featuring-Sika-BASF-GCP-Applied-Technologies-More.html" target="_blank">GlobeNewsWire — Admixtures Industry 2025–2030</a></div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> שוק המוספים הגלובלי מרוכז בשלושה ענקים: Sika, BASF/Master Builders, ו-GCP Applied Technologies — ביחד כ-45–50% מהשוק העולמי. Sika מובילה עם 22–25%.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> הספקים הגדולים מסוגלים להציע "חבילות" — PCE + inhibitor + fiber — בחוזה ארוך-טווח. לשיכון ובינוי תעשיות, משא ומתן כחברה קבוצתית (שיכון ובינוי) מאפשר leverage ממשי להשיג מחיר עדיף ותמיכה טכנית מקצועית.
+      </div>
+    </div>
+    <div class="card">
+      <div class="chart-title">פיצול גיאוגרפי — נתח שוק 2024</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="chartAdmixGeo"></canvas>
+      </div>
+      <div class="source-chip">מקור: Fortune Business Insights + IMARC 2024</div>
+      <div class="chart-explanation">
+        <strong>מה אנחנו רואים:</strong> פיצול גיאוגרפי — אסיה-פסיפיק מובילה ב-40%+ (בעיקר סין, הודו), אירופה שנייה בכ-25%, צפון אמריקה שלישית בכ-20%. המזרח התיכון ואפריקה — כ-7%.
+        <br><br>
+        <strong>מה אפשר ללמוד:</strong> הצמיחה הגדולה באסיה מגדרת מדיניות מחיר עולמית ומייצרת לחץ כלפי מטה. ישראל, כשוק קטן, מסתמכת על ייבוא — ולכן רגישה לשינויי שע"ח ולוגיסטיקה. פיתוח יצרן מקומי (כמו Enermit) הוא הכרחי.
+      </div>
+    </div>
+  </div>
+
+  <!-- admixture types grid -->
+  <div class="section-divider">סוגי מוספי בטון — ASTM C494</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+    <div class="admix-type" style="border-color:#3b82f6">
+      <h4>Superplasticizers (Type F/G)</h4>
+      <p>הפחתת מים עד 40%. ממיר בטון 7 ס״מ שקיעה ל-22 ס״מ. בסיס PCE — הדור החדש. חיוני ל-UHPC ו-SCC.</p>
+    </div>
+    <div class="admix-type" style="border-color:#ef4444">
+      <h4>מאחרים (Type B/D)</h4>
+      <p>האטת קשייה. חיוני בבנייה בחום ישראלי. סוכרים, ליגנוסולפונטים. יציקות גדולות ושינוע לאתרים מרוחקים.</p>
+    </div>
+    <div class="admix-type" style="border-color:#10b981">
+      <h4>מאיצים (Type C/E)</h4>
+      <p>האצת קשייה + חוזק מוקדם. שחרור מהיר של תבניות. שוטקריט. חיוני לסגמנטי TBM.</p>
+    </div>
+    <div class="admix-type" style="border-color:#f59e0b">
+      <h4>מוספי אטימה</h4>
+      <p>חסימת נקבוביות קפילריות. קריטי למנהרות + מבנים ימיים + מאגרי מים. עמידות 100 שנה.</p>
+    </div>
+    <div class="admix-type" style="border-color:#8b5cf6">
+      <h4>מעכבי קורוזיה</h4>
+      <p>הגנת ברזל זיון. יעילות עד 99% בסביבת ים. קריטי לחוף הים התיכון, נמל אשדוד וחיפה.</p>
+    </div>
+    <div class="admix-type" style="border-color:#14b8a6">
+      <h4>הפחתת כיווץ (SRA)</h4>
+      <p>מפחית סדקי ייבוש. שיפור יציבות מידות. גשרים, כבישים, ריצוף תעשייתי.</p>
+    </div>
+    <div class="admix-type" style="border-color:#ec4899">
+      <h4>סיבי חיזוק</h4>
+      <p>פלדה (UHPC), פולי-פרופילן (כיווץ), זכוכית (GRC). שילוב פלדה + PP = שליטה כפולה בסדקים.</p>
+    </div>
+    <div class="admix-type" style="border-color:#f97316">
+      <h4>מוספי אוויר</h4>
+      <p>4–8% בועות אוויר. עמידות קפיאה-הפשרה. רלוונטי: ירושלים, חרמון. פחות קריטי לבנייה שפלה.</p>
+    </div>
+  </div>
+
+  <!-- In-house vs External lab -->
+  <div class="section-divider">מעבדה פנימית מול מעבדה חיצונית</div>
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <h3 style="color:#10b981;margin-bottom:16px">✅ מעבדה פנימית (In-House Lab)</h3>
+      <div class="stat-row">
+        <div class="label">החזר השקעה</div>
+        <div class="bar-wrap"><div class="bar" style="width:90%;background:#10b981"></div></div>
+        <div class="val" style="color:#10b981">6–12 חודשים</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">תוצאות בזמן אמת</div>
+        <div class="bar-wrap"><div class="bar" style="width:95%;background:#10b981"></div></div>
+        <div class="val" style="color:#10b981">מיידי</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">עיכובי לוח זמנים</div>
+        <div class="bar-wrap"><div class="bar" style="width:10%;background:#10b981"></div></div>
+        <div class="val" style="color:#10b981">מינימלי</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">שליטה בתהליך</div>
+        <div class="bar-wrap"><div class="bar" style="width:100%;background:#10b981"></div></div>
+        <div class="val" style="color:#10b981">מלאה</div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">⚠ דרישה: כוח אדם מיומן + ציוד. לא תמיד מספיק לאישור רגולטורי.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:#3b82f6;margin-bottom:16px">🏛 מעבדה חיצונית (External Lab)</h3>
+      <div class="stat-row">
+        <div class="label">זמן לתוצאות</div>
+        <div class="bar-wrap"><div class="bar" style="width:95%;background:#ef4444"></div></div>
+        <div class="val" style="color:#ef4444">28 יום</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">עלות לבדיקה</div>
+        <div class="bar-wrap"><div class="bar" style="width:70%;background:#f59e0b"></div></div>
+        <div class="val" style="color:#f59e0b">$500–$1,500</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">עצמאות/אמינות</div>
+        <div class="bar-wrap"><div class="bar" style="width:100%;background:#3b82f6"></div></div>
+        <div class="val" style="color:#3b82f6">מלאה</div>
+      </div>
+      <div class="stat-row">
+        <div class="label">עמידה ברגולציה</div>
+        <div class="bar-wrap"><div class="bar" style="width:100%;background:#3b82f6"></div></div>
+        <div class="val" style="color:#3b82f6">מלאה</div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">✅ תקן ISO, ASTM, ת״י. מחויב ברגולציה. ⚠ מחכה 28 יום — מעכב בנייה.</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.3)">
+    <h3 style="color:#60a5fa;margin-bottom:8px">המלצה: גישה היברידית</h3>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7">
+      <strong style="color:var(--text)">in-house</strong> — שליטת תהליך + החלטות בזמן אמת + קיצור מחזורי תבניות.
+      <strong style="color:var(--text)">חיצונית</strong> — אישור רגולטורי + תיעוד רשמי.
+      <br>עבור <strong style="color:#60a5fa">שיכון ובינוי תעשיות</strong>: בסבירות גבוהה קיימת מעבדה פנימית כלשהי. השאלה היא הוספת שיתוף פעולה חיצוני לפורמולציות מורכבות — גישה היברידית.
+    </p>
+  </div>
+
+  <!-- Innovation trends -->
+  <div class="section-divider" style="margin-top:28px">חדשנות במוספי בטון 2024–2026</div>
+  <div class="grid-2">
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(59,130,246,.15)">🌊</div>
+      <div>
+        <h4>SCC — בטון דביק-עצמי</h4>
+        <p>מתמלא ללא ויברטור. חיסכון בכוח אדם. איכות גבוהה יותר. מפחית רעש. חיוני לברזל זיון צפוף.</p>
+        <div class="source-chip"><a href="https://www.sika.com" target="_blank">Sika SCC Solutions</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(16,185,129,.15)">🏗</div>
+      <div>
+        <h4>UHPC — בטון ביצועים אולטרה-גבוהים</h4>
+        <p>150–250 MPa. עמידות 100+ שנה. חיסכון 70% בעובי. דורש Superplasticizers PCE + ננו-סיליקה + סיבי פלדה.</p>
+        <div class="source-chip"><a href="https://www.indexbox.io/store/israel-ultra-high-performance-concrete-market-analysis-forecast-size-trends-and-insights/" target="_blank">IndexBox — Israel UHPC Market</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(139,92,246,.15)">⚗</div>
+      <div>
+        <h4>גרפן ב-בטון (Gerdau 2024)</h4>
+        <p>+280% גסות משטח סיב, −37.5% נקבוביות, −20% מים. עדיין יקר. מעבר מחקר → מסחרי בתהליך.</p>
+        <div class="source-chip"><a href="https://www.globenewswire.com/news-release/2026/01/22/3223619/28124/en/Precast-Concrete-Industry-Set-for-6-6-CAGR-Through-2031-Amidst-Green-Building-Boom.html" target="_blank">GlobeNewsWire ינואר 2026</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(20,184,166,.15)">🌱</div>
+      <div>
+        <h4>מוספים Low-Carbon — עד 50% הפחתת CO₂</h4>
+        <p>Chryso EnviroMix. PCE + תחליפי מלט (GGBS, fly ash). CO₂ Curing (ריפוי ב-CO₂). MIT (2023): בטון שקע פחמן.</p>
+        <div class="source-chip"><a href="https://www.chryso.com/concrete/enviromix-low-carbon-concrete-solutions/" target="_blank">Chryso EnviroMix</a> + <a href="https://news.mit.edu/2023/new-additives-concrete-effective-carbon-sink-0328" target="_blank">MIT 2023</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Israel suppliers -->
+  <div class="section-divider" style="margin-top:28px">ספקי מוספי בטון בישראל</div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>ספק</th><th>מעמד</th><th>מוצרים</th><th>מקור/ייבוא</th><th>קישור</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(16,185,129,.05)">
+          <td><strong>Enermit</strong></td>
+          <td><span class="tag tag-green">מוביל שוק</span></td>
+          <td>מוספים כימיים, Superplasticizers, מוספי עמידות; מאז 1994</td>
+          <td>ייצור מקומי + ייצוא</td>
+          <td><a href="https://www.enermit.co.il/en/about" target="_blank" style="color:var(--blue)">enermit.co.il</a></td>
+        </tr>
+        <tr>
+          <td><strong>Chemocrete (ReadyMix)</strong></td>
+          <td><span class="tag tag-blue">חטיבה</span></td>
+          <td>חומרי גלם, מוספים; 60+ מפעלים</td>
+          <td>מקומי</td>
+          <td><a href="https://readymix.co.il/en/products-services/concrete-admixtures/" target="_blank" style="color:var(--blue)">readymix.co.il</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sika ישראל</strong></td>
+          <td><span class="tag tag-purple">גלובלי</span></td>
+          <td>מגוון מלא — Sika שוויץ (17% שוק עולמי)</td>
+          <td>יבוא + מקומי</td>
+          <td><a href="https://isr.sika.com/" target="_blank" style="color:var(--blue)">isr.sika.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>BASF / MBS ישראל</strong></td>
+          <td><span class="tag tag-purple">גלובלי</span></td>
+          <td>Master Builders Solutions — UHPC, SCC, Low-Carbon</td>
+          <td>יבוא</td>
+          <td><a href="https://www.master-builders-solutions.com/" target="_blank" style="color:var(--blue)">master-builders-solutions.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px;padding:12px;background:rgba(245,158,11,.07);border-radius:8px;border:1px solid rgba(245,158,11,.2)">
+      <div style="font-size:12px;color:#fbbf24;font-weight:600">ייבוא מול מקומי</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">מוספים סטנדרטיים (Type A–E): <strong style="color:var(--text)">70–80% מקומי</strong> (Enermit, Chemocrete). מוספים מתקדמים (UHPC, ננו, Superplasticizers PCE): <strong style="color:#f59e0b">20–30% יבוא</strong> (Sika, BASF). ננו-סיליקה + גרפן: <strong style="color:#ef4444">כמעט 100% יבוא</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — חדשנות גלובלית
+══════════════════════════════════════════ -->
+<section id="s5">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(236,72,153,.15);color:#ec4899">05</div>
+    <div>
+      <h2>חדשנות גלובלית — Construction 4.0</h2>
+      <p>טכנולוגיות, מגמות, מקרי בוחן ותוכניות ממשלה | מקורות: תוכנית אסטרטגית לחדשנות בענף הבניה, משרד הבינוי והשיכון 2025</p>
+    </div>
+  </div>
+
+  <!-- intro prose -->
+  <div class="prose-block" style="background:rgba(236,72,153,.04);border:1px solid rgba(236,72,153,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p>
+      ענף הבנייה הוא אחד הענפים הפחות מדוגיטליים בכלכלה המודרנית. בעוד יצרנות, מסחר ופיננסים הכפילו ואף שילשו את פריון העבודה שלהם בין 1995 ל-2015, ענף הבנייה העולמי לא שיפר את פריונו כלל — מדד אחד של McKinsey שמסביר הרבה על עלויות הבנייה הגבוהות שכולם חשים.
+    </p>
+    <p>
+      <strong>Construction 4.0</strong> הוא שם השדה לגל הטכנולוגי שמשנה את הענף: BIM (מידול מידע לבנייה), רובוטיקה, Digital Twin, AI בניהול פרויקטים, ובנייה מתועשת (prefabrication/precast). מדינות שהשכילו לאמץ מדיניות ממשלתית — בריטניה עם Construction Sector Deal, סינגפור עם מנדט PPVC, יפן עם תוכניות SMART — כבר מדווחות על קיצורים של 15–35% בזמני הבנייה.
+    </p>
+    <p>
+      ישראל נמצאת בנקודת מפנה: זמן הבנייה הממוצע גדל מ-22 חודשים ב-1998 ל-39 חודשים ב-2024 — עלייה של 77%. ב-2023 קיבלה הממשלה <a href="https://www.moch.gov.il/" target="_blank" style="color:#ec4899">החלטה 1002</a> שמגדירה תמריצים לאימוץ טכנולוגיות בנייה מתקדמות. עבור שיכון ובינוי, ראשוניות באימוץ BIM ועיצוב מכוון ייצור (DfMA) יכולה להפוך ממחויבות רגולטורית ליתרון תחרותי ממשי — הן במכרזים ממשלתיים והן בשוק הפרטי.
+    </p>
+  </div>
+
+  <!-- productivity gap -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="chart-title">שיפור פריון עבודה 1995–2015 — בנייה לעומת תעשיות אחרות</div>
+    <div class="chart-wrap" style="height:200px">
+      <canvas id="chartProductivity"></canvas>
+    </div>
+    <div class="source-chip">מקור: <a href="https://www.mckinsey.com/capabilities/operations/our-insights/reinventing-construction-through-a-productivity-revolution" target="_blank">McKinsey Global Institute 2017</a> + תוכנית אסטרטגית לחדשנות בענף הבנייה 2025</div>
+    <div class="chart-explanation">
+      <strong>מה אנחנו רואים:</strong> השוואת שיפור פריון העבודה 1995–2015 לפי ענף — בנייה: 0% שיפור. תעשייה: +103%. מסחר: +47%. כלל הכלכלה: +55%. הבנייה הוא הענף היחיד שלא שיפר פריון.
+      <br><br>
+      <strong>מה אפשר ללמוד:</strong> בנייה היא הענף הפחות-פרודוקטיבי בכלכלה המודרנית. הסיבות: פרגמנטציה, תהליכים ידניים, מעט דיגיטציה. אחרי 2015 ו-AI — פער זה גדל. חברות שמאמצות BIM, Last Planner System וטרומי מרוויחות יתרון תחרותי עצום בשוק שרוב שחקניו עדיין עובדים עם פקס ואקסל.
+    </div>
+  </div>
+
+  <!-- tech grid -->
+  <div class="section-divider">טכנולוגיות מרכזיות — Construction 4.0</div>
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(59,130,246,.15)">📐</div>
+      <div>
+        <h4>BIM — Building Information Modeling</h4>
+        <p>מודל דיגיטלי תלת-ממדי לכל מחזור חיי המבנה. רמה 2: תיאום מלא + CDE. בריטניה חייבה BIM לפרויקטים ממשלתיים (2016). ישראל: תמריץ ממשלתי + יעד הטמעה 2025–2030.</p>
+        <div class="source-chip"><a href="https://www.gov.il/he/departments/ministry_of_housing" target="_blank">תוכנית אסטרטגית 2025, עמ׳ 20–22</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(16,185,129,.15)">🔮</div>
+      <div>
+        <h4>Digital Twin — תאום דיגיטלי</h4>
+        <p>מירור דיגיטלי של מבנה/מפעל בזמן אמת. ניטור, סימולציה, תחזוקה. תקן ISO 19650. מרכז AI: בסיס ל-Digital Twin.</p>
+        <div class="source-chip">תוכנית אסטרטגית 2025, עמ׳ 21–22</div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(139,92,246,.15)">🤖</div>
+      <div>
+        <h4>רובוטיקה ואוטומציה</h4>
+        <p>יפן: SMART, T-Up, Big Canopy, Akatuki-21. 15% האצה בלוח זמנים (T-Up). אוטומציה של ליבות בנייה (Core systems). ישראל: שלב מוקדם.</p>
+        <div class="source-chip"><a href="https://www.construction-physics.com" target="_blank">Construction Physics</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(245,158,11,.15)">🌍</div>
+      <div>
+        <h4>DfMA — עיצוב לייצור והרכבה</h4>
+        <p>סינגפור: כל פרויקט >25,000 מ״ר חייב 60% פרפבריקציה. PPVC + PBU = הרחבה מהמודל הסינגפורי. BCA מקדם תמריצים כספיים.</p>
+        <div class="source-chip"><a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma" target="_blank">BCA Singapore DfMA</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(20,184,166,.15)">📊</div>
+      <div>
+        <h4>AI ו-Data Analytics במפעלים</h4>
+        <p>ניבוי תקלות, אופטימיזציה של תערובות, בקרת איכות אוטומטית. Elematic P7 (2026) — IoT מובנה. PLC ב-52% ממכונות שנמסרו ב-2024.</p>
+        <div class="source-chip"><a href="https://www.elematic.com/product/extruder-e9/" target="_blank">Elematic E9/P7</a></div>
+      </div>
+    </div>
+    <div class="inno-item">
+      <div class="icon" style="background:rgba(239,68,68,.15)">🚛</div>
+      <div>
+        <h4>חדשנות בתחבורה ולוגיסטיקה</h4>
+        <p>מפעלים ניידים (HI-TECH Concrete — 8 מפעלים ניידים ב-UAE). גישת "מפעל מגיע לאתר". תנועה ממוצה עם GPS ו-IoT. מיזעור נסיעות ריק.</p>
+        <div class="source-chip"><a href="https://hitechconcrete.ae/en" target="_blank">HI-TECH Concrete UAE</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- global case studies -->
+  <div class="section-divider">מקרי בוחן עולמיים — תוכניות ממשלה</div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>מדינה / תוכנית</th><th>שנה</th><th>מה עשו</th><th>תוצאה / יעד</th><th>רלוונטי לישראל?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🇬🇧 בריטניה</strong><br><span style="font-size:11px;color:var(--muted)">Construction Sector Deal</span></td>
+          <td>2018</td>
+          <td>תוכנית לאומית; BIM חובה; UKRI/TCC £170M ממשלה + £250M תעשייה</td>
+          <td>יעד 2025: 33% פחות פגמים, 50% קיצור זמן</td>
+          <td><span class="tag tag-green">גבוהה</span></td>
+        </tr>
+        <tr>
+          <td><strong>🇸🇬 סינגפור</strong><br><span style="font-size:11px;color:var(--muted)">DfMA Mandate</span></td>
+          <td>2015+</td>
+          <td>חובה: >25,000 מ״ר = 60% פרפבריקציה מבנית, 80% ארכיטקטוני</td>
+          <td>תיעוש הבנייה; PBU + PPVC סטנדרט</td>
+          <td><span class="tag tag-green">גבוהה מאוד</span></td>
+        </tr>
+        <tr>
+          <td><strong>🇭🇰 הונג קונג</strong><br><span style="font-size:11px;color:var(--muted)">CITF Fund</span></td>
+          <td>2018+</td>
+          <td>$1B HKD לקידום BIM + בנייה מודולרית</td>
+          <td>עד HK$17M לפרויקט; MiC = PPVC HK</td>
+          <td><span class="tag tag-amber">בינונית</span></td>
+        </tr>
+        <tr>
+          <td><strong>🇩🇪 גרמניה</strong><br><span style="font-size:11px;color:var(--muted)">Fraunhofer</span></td>
+          <td>מתמשך</td>
+          <td>מודל מו״פ אקדמי-תעשייתי; "חנות אחת" למחקר יישומי</td>
+          <td>קידום BIM, AI, מפעלי בנייה אוטומטיים</td>
+          <td><span class="tag tag-amber">בינונית</span></td>
+        </tr>
+        <tr>
+          <td><strong>🇸🇪 שוודיה</strong><br><span style="font-size:11px;color:var(--muted)">Build 4.0</span></td>
+          <td>2017</td>
+          <td>תמריצים לאוטומציה ובנייה מתועשת</td>
+          <td>יעד: 50% הפחתת עלויות בנייה</td>
+          <td><span class="tag tag-blue">אפשרי</span></td>
+        </tr>
+        <tr>
+          <td><strong>🇮🇱 ישראל</strong><br><span style="font-size:11px;color:var(--muted)">החלטה 1002 + תוכנית 2025</span></td>
+          <td>2023–2025</td>
+          <td>תמריצים לקבלנים לטכנולוגיה; פלטפורמת חדשנות; BIM Mandate שלב א׳</td>
+          <td>יעד דיור: 65,000–77,000/שנה עד 2050</td>
+          <td><span class="tag tag-green">ישיר</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="source-chip" style="margin-top:12px">מקור: <a href="https://www.gov.il/he/departments/ministry_of_housing" target="_blank">תוכנית אסטרטגית לחדשנות בענף הבנייה, משרד הבינוי והשיכון 2025</a></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — ממצאים והמלצות
+══════════════════════════════════════════ -->
+<section id="s6">
+  <div class="section-header">
+    <div class="section-number" style="background:rgba(249,115,22,.15);color:#f97316">06</div>
+    <div>
+      <h2>ממצאים מרכזיים והמלצות</h2>
+      <p>סינתזה של כל המחקר | עדכון: מרץ 2026</p>
+    </div>
+  </div>
+
+  <!-- prose intro -->
+  <div class="prose-block" style="background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.2);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+    <p>פרק זה הוא סינתזה — הוא לא מוסיף מידע חדש, אלא מארגן את הממצאים מכל עשרת תחומי המחקר לכדי תמונה אחידה וקבל-החלטות. הממצאים מבוססים על <a href="https://www.gov.il/he/departments/ministry_of_construction_and_housing" target="_blank">מסמכי ממשלה ישראלית</a>, דוחות מחקרי שוק, <a href="https://www.oecd.org/construction" target="_blank">ניתוחי OECD</a>, ומקורות תעשייתיים שנסרקו לאורך הפרויקט. כל ממצא מקושר למקורו המקורי לאפשרות בחינה עצמאית.</p>
+    <p>ישראל עומדת בנקודת מפנה נדירה: לאחר שנת 2024 — שנת שפל בשוק הבנייה בשל המלחמה — הביקוש מתאושש בחדות. 81,020 התחלות בנייה בין אוקטובר 2024 לספטמבר 2025, גידול של 31.5% שנה-על-שנה, מאותת שהענף עומד לפני גאות. בנוסף, השינוי בשוק המלט (הפסקת יצוא טורקי), הריכוז הגיאוגרפי בשוק הבטון, והפוטנציאל הלא-מנוצל בדרום ישראל — כולם מצטברים להזדמנות אסטרטגית עם חלון זמן מוגבל.</p>
+    <p>ההמלצות מסוכמות לשלושה אופקי זמן: <strong>מיידי (0–12 חודשים)</strong> — החלטות שיש לקבל עוד לפני שהמתחרים יתנעו; <strong>בינוני (1–3 שנים)</strong> — בנייה ורישוי מפעל; <strong>ארוך טווח (3–7 שנים)</strong> — פיתוח יכולת טרומי ומוספים כקטגוריות ערך גבוה. לכל המלצה מצורפת הנמקה עסקית ורמת דחיפות.</p>
+  </div>
+
+  <!-- key findings -->
+  <div class="section-divider">ממצאים מרכזיים — פרקים א–י</div>
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="tag tag-blue" style="margin-bottom:10px">פרקים א–ג — שוק ישראל</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9">
+        <li>3 חברות שולטות ב-80% שוק הבטון: רדימיקס (33%) + שפיר (30%) + הנסון (20%)</li>
+        <li>~175 מפעלי בטון מוכן בסה״כ; Big 4 = 109–115</li>
+        <li>נשר — מונופול מלט מ-1925; שבר עם יבוא מ-2016; 50/50 ב-2022–2023</li>
+        <li>⚠️ מאי 2024: <strong>טורקיה הפסיקה יצוא מלט לישראל לחלוטין</strong> — שוק הייבוא בשינוי מהותי</li>
+        <li>ריכוז גיאוגרפי: גוש דן + חיפה — הצפופים; הדרום — פחות מכוסה</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="tag tag-amber" style="margin-bottom:10px">פרקים ד–ה — ביקוש והיצע</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9">
+        <li>ביקוש חומרי חציבה: 68.1M → 80.6M טון (2015–2020); שיא 82.3M ב-2017</li>
+        <li>תחזית 2040 (בסיס): 94–112M טון/שנה; (צמיחה): 132M</li>
+        <li>Q4 2023: ירידה 34.8% בפעילות; שוק בטון מוכן 2024: ירידה 21%</li>
+        <li>81,020 התחלות בנייה אוק׳ 2024–ספט׳ 2025 = +31.5% שנה קודמת</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="tag tag-green" style="margin-bottom:10px">פרק ו — המלצות מיקום</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9">
+        <li>עדיפות 1: הדרום (אשדוד–שדרות–ק. גת) — 27,478 יחידות מאושרות + תקומה</li>
+        <li>אופקים #4 ארצי בהתחלות בנייה (3,120 יחידות) — לא צפינו זאת</li>
+        <li>עדיפות 2: הצפון — 18,223 יחידות מאושרות + 68,000 בהסכמי גג + שיקום</li>
+        <li>רדיוס כלכלי: 30–50 ק״מ בלבד — מיקום = גורם ראשון</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="tag tag-purple" style="margin-bottom:10px">פרקים ז–י — חדשנות גלובלית</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9">
+        <li>ענף הבנייה: פיגור 20 שנה בדיגיטציה; 0% שיפור פריון 1995–2015</li>
+        <li>Construction 4.0: BIM, Digital Twin, AI, רובוטיקה, DfMA</li>
+        <li>ישראל: החלטה 1002 (2023) — תמריצים לטכנולוגיה; 6–7% מהתמ״ג לטק</li>
+        <li>זמן בנייה ממוצע: 22 חודשים (1998) → 39 חודשים (2024) — +77%</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- strategic recommendations -->
+  <div class="section-divider">המלצות אסטרטגיות — שיכון ובינוי</div>
+  <div class="grid-3">
+    <div class="card" style="border-top:3px solid #10b981">
+      <div class="tag tag-green" style="margin-bottom:10px">טווח קצר — 0–12 חודשים</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:2">
+        <li>סקר מיקום — תחילת בדיקת היתכנות לדרום (אשדוד/שדרות)</li>
+        <li>הכנת מפרטי TBM Segments לרכש מטרו</li>
+        <li>הרחבת מעבדת המוספים הקיימת + שיתוף פעולה עם ספקים חיצוניים לפורמולציות מורכבות</li>
+        <li>שותפות עם Enermit לתערובות מותאמות אישית</li>
+        <li>ייצוג בתהליך רכש המטרו (ENR 2024)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #3b82f6">
+      <div class="tag tag-blue" style="margin-bottom:10px">טווח בינוני — 1–3 שנים</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:2">
+        <li>פתיחת מפעל בטון מוכן בדרום (אשדוד–שדרות)</li>
+        <li>רישיון Redi-Rock לישראל — שוק פתוח</li>
+        <li>קו ייצור קירות אקוסטיים — שוק פתוח</li>
+        <li>ניסוי SCC ו-CO₂ Curing בשיכון ובינוי תעשיות</li>
+        <li>שותפות Sika/BASF לישראל — מוספים מתקדמים</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #f59e0b">
+      <div class="tag tag-amber" style="margin-bottom:10px">טווח ארוך — 3–7 שנים</div>
+      <ul style="padding-right:16px;font-size:13px;line-height:2">
+        <li>UHPC Lab — יכולת ייצור UHPC ישראלי</li>
+        <li>PPVC Pilot — מגורים מודולריים שלמים</li>
+        <li>מפעל שני בצפון (קריות/עכו) — שיקום</li>
+        <li>ייצוא מוצרים לאמירויות + מרוקו</li>
+        <li>Digital Twin למפעל הקיים</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SWOT -->
+  <div class="section-divider" style="margin-top:28px">ניתוח SWOT — שיכון ובינוי בשוק הבטון</div>
+  <div class="grid-2">
+    <div class="card" style="border-top:3px solid #10b981">
+      <h3 style="color:#10b981;margin-bottom:12px">✅ חוזקות (Strengths)</h3>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9;color:var(--muted)">
+        <li>מפעל טרום קיים — שיכון ובינוי תעשיות</li>
+        <li>קשרי ממשלה וידע בפרויקטים גדולים</li>
+        <li>נוכחות בכל שרשרת הבנייה</li>
+        <li>מותג חזק בישראל (100+ שנה)</li>
+        <li>ISO 9001:2015 + ת״י 466</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #ef4444">
+      <h3 style="color:#ef4444;margin-bottom:12px">⚠ חולשות (Weaknesses)</h3>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9;color:var(--muted)">
+        <li>לא מייצרת קירות אקוסטיים / TBM</li>
+        <li>תלות בספקי מוספים חיצוניים</li>
+        <li>4 קווי ייצור בלבד — מוגבל</li>
+        <li>אין R&D פנימי</li>
+        <li>כמעט ללא מודעות שיווקית</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #3b82f6">
+      <h3 style="color:#3b82f6;margin-bottom:12px">🚀 הזדמנויות (Opportunities)</h3>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9;color:var(--muted)">
+        <li>מטרו $49B — TBM Segments עצום</li>
+        <li>שיקום צפון + עזה — ביקוש חסר תקדים</li>
+        <li>81,020 התחלות + 223K יחידות מאושרות</li>
+        <li>שוק קירות אקוסטיים — פתוח לחלוטין</li>
+        <li>שוק Redi-Rock — אין יצרן בישראל</li>
+        <li>Low-Carbon — תמריצי ממשלה</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #f59e0b">
+      <h3 style="color:#f59e0b;margin-bottom:12px">⚡ איומים (Threats)</h3>
+      <ul style="padding-right:16px;font-size:13px;line-height:1.9;color:var(--muted)">
+        <li>אשקריט (אשטרום) — מוביל שוק TBM</li>
+        <li>Sika/BASF — שירות מלא גלובלי</li>
+        <li>תנודות מחירי מלט + יבוא</li>
+        <li>רגולציה מקשה על תערובות חדשות</li>
+        <li>לחץ מחיר ממפעלים ערביים (UAE)</li>
+        <li>עיכובי מטרו — לוח זמנים לא ודאי</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="margin-top:40px;padding:24px;background:var(--surface);border-radius:12px;border:1px solid var(--border);text-align:center">
+    <div style="font-size:13px;color:var(--muted)">מחקר אסטרטגי עבור שיכון ובינוי | הוכן ע״י Salted Mind</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px">עודכן: מרץ 2026 | כל הנתונים מבוססים על מקורות מאומתים בלבד</div>
+    <div style="font-size:11px;color:rgba(148,163,184,.5);margin-top:8px">
+      מקורות ראשיים: כנסת ישראל | משרד האנרגיה | הלמ״ס | NPCA | PCI | Grand View Research | Fortune Business Insights | ENR | BCA Singapore
+    </div>
+  </div>
+</section>
+
+</main><!-- /main -->
+
+<script>
+// ── RTL + default chart defaults ──
+Chart.register(ChartDataLabels);
+Chart.defaults.font.family = "'Segoe UI', Arial, sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = '#334155';
+// Disable datalabels globally by default (opt-in per chart)
+Chart.defaults.plugins.datalabels = { display: false };
+
+const BLUE='#3b82f6', GREEN='#10b981', AMBER='#f59e0b', RED='#ef4444',
+      PURPLE='#8b5cf6', TEAL='#14b8a6', PINK='#ec4899', ORANGE='#f97316';
+
+// helper
+function mkChart(id, type, data, opts={}) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  return new Chart(el, { type, data, options: { responsive:true, maintainAspectRatio:false, ...opts }});
+}
+
+// ── 1. Market Share Pie ──
+mkChart('chartMarketShare','doughnut',{
+  labels:['רדימיקס (CEMEX)','שפיר אולטרה','הנסון (Heidelberg)','ישראבטון (אשטרום)','שיכון ובינוי','אחרים'],
+  datasets:[{data:[33,30,20,10,3,4],backgroundColor:['#3b82f6','#f59e0b','#8b5cf6','#10b981','#a78bfa','#64748b'],borderWidth:0,hoverOffset:6}]
+},{plugins:{legend:{position:'right',labels:{boxWidth:12,padding:14}},datalabels:{
+  display:(ctx)=>ctx.dataset.data[ctx.dataIndex]>=15,
+  color:'#fff',font:{size:12,weight:'700'},
+  formatter:(v,ctx)=>{const total=12;const vol=(v*total/100).toFixed(1);return v+'%\n~'+vol+'M מ״ק';}
+}}});
+
+// ── 2. Readymix Volume ──
+mkChart('chartReadymixVol','bar',{
+  labels:['2019','2020','2021','2022','2023','2024*','2025F'],
+  datasets:[{label:'מ"ק (מיליון)',data:[9.5,9,11,12,9.5,7.5,10],
+    backgroundColor:[BLUE,BLUE,BLUE,BLUE,AMBER,RED,GREEN],borderRadius:6,borderSkipped:false}]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'M'}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>v+'M'}}});
+
+// ── 3. Cement bar ──
+mkChart('chartCement','bar',{
+  labels:['1995','2006','2016','2019','2022','2023'],
+  datasets:[
+    {label:'ייצור נשר',data:[6264,3907,3800,3800,4200,4000],backgroundColor:'#3b82f6',borderRadius:4},
+    {label:'יבוא',data:[50,350,2000,3500,3800,4000],backgroundColor:'#f59e0b',borderRadius:4}
+  ]
+},{scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v>=1000?Math.round(v/1000)+'K':v}}},plugins:{legend:{labels:{boxWidth:12}},datalabels:{display:true,anchor:'center',align:'center',color:'#fff',font:{size:10,weight:'600'},formatter:v=>v>=1000?Math.round(v/1000)+'K':v}}});
+
+// ── 4. War Impact ──
+mkChart('chartWar','bar',{
+  labels:['Q3 2023','Q4 2023','Q1 2024','Q2 2024','Q3 2024','Q4 2024','Q1 2025'],
+  datasets:[{label:'שינוי % פעילות בנייה',
+    data:[2,-34.8,-28,-18,-12,-8,5],
+    backgroundColor:d=> d.raw < 0 ? RED : GREEN,
+    borderRadius:6, borderSkipped:false
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:(ctx)=>ctx.dataset.data[ctx.dataIndex]>=0?'top':'bottom',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>v+'%'}}});
+
+// ── 5. Demand Forecast ──
+mkChart('chartDemand','line',{
+  labels:['2015','2020','2025','2030','2035','2040'],
+  datasets:[
+    {label:'בפועל',data:[68.1,80.6,null,null,null,null],borderColor:BLUE,backgroundColor:'rgba(59,130,246,.1)',fill:true,pointRadius:5,tension:.4},
+    {label:'תחזית בסיס',data:[null,80.6,86,94,103,112],borderColor:GREEN,backgroundColor:'rgba(16,185,129,.08)',fill:true,borderDash:[5,3],tension:.4,pointRadius:4},
+    {label:'תחזית צמיחה',data:[null,80.6,90,100,116,132],borderColor:AMBER,backgroundColor:'rgba(245,158,11,.05)',fill:true,borderDash:[8,4],tension:.4,pointRadius:4}
+  ]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'M T'},min:60},x:{grid:{display:false}}},plugins:{legend:{labels:{boxWidth:12}}}});
+
+// ── 6. Population ──
+mkChart('chartPop','line',{
+  labels:['2000','2005','2010','2015','2020','2025F','2030F','2035F','2040F'],
+  datasets:[{
+    label:'אוכלוסייה (מיליון)',
+    data:[6.37,6.98,7.7,8.46,9.3,10.19,11.13,12.13,13.22],
+    borderColor:TEAL,backgroundColor:'rgba(20,184,166,.1)',fill:true,tension:.4,pointRadius:4
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},min:6,max:14},x:{grid:{display:false}}},plugins:{legend:{display:false}}});
+
+// ── 7. Top Cities ──
+mkChart('chartCities','bar',{
+  labels:['ירושלים','תל אביב-יפו','ראשל"צ','אופקים','נתניה','אשדוד','חיפה','פ"ת','ב"ש','בת ים'],
+  datasets:[{
+    label:'התחלות בנייה',
+    data:[6600,5870,3800,2990,3050,2900,2400,2200,2100,1900],
+    backgroundColor:(_,i)=>i===3?GREEN:BLUE, borderRadius:6, borderSkipped:false
+  }]
+},{indexAxis:'y',scales:{x:{grid:{color:'rgba(255,255,255,.05)'}},y:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>v.toLocaleString()}}});
+
+// ── 8. Districts ──
+mkChart('chartDistricts','bar',{
+  labels:['דרום','ירושלים','מרכז','חיפה','צפון','ת"א'],
+  datasets:[{
+    label:'יחידות מאושרות 2025',
+    data:[27478,27079,26686,20558,18223,14459],
+    backgroundColor:[RED,PURPLE,BLUE,AMBER,GREEN,TEAL], borderRadius:6, borderSkipped:false
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v>=1000?Math.round(v/1000)+'K':v}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>Math.round(v/1000)+'K'}}});
+
+// ── 9. Tekuma ──
+mkChart('chartTekuma','bar',{
+  labels:['אופקים','נתיבות','שדרות','עוטף עזה','אשקלון דרום','קריית גת'],
+  datasets:[{
+    label:'יחידות מתוכננות',
+    data:[10000,5000,4000,5000,3000,2000],
+    backgroundColor:[GREEN,AMBER,BLUE,RED,TEAL,PURPLE], borderRadius:6, borderSkipped:false
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v>=1000?Math.round(v/1000)+'K':v}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>Math.round(v/1000)+'K'}}});
+
+// ── 10. Precast Global ──
+mkChart('chartPrecastGlobal','line',{
+  labels:['2022','2023','2024','2025','2026','2028','2030','2032'],
+  datasets:[{
+    label:'$מיליארד',
+    data:[148,158,168,178,190,218,250,285],
+    borderColor:PURPLE,backgroundColor:'rgba(139,92,246,.1)',fill:true,tension:.4,pointRadius:4
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}},plugins:{legend:{display:false}}});
+
+// ── 11. Precast CAGR comparison ──
+mkChart('chartPrecastCagr','bar',{
+  labels:['שוק גלובלי\n(Grand View)','שוק גלובלי\n(GlobeNewsWire)','שוק ישראל'],
+  datasets:[{label:'CAGR %',data:[5.93,6.6,4.5],backgroundColor:[PURPLE,BLUE,GREEN],borderRadius:8,borderSkipped:false}]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},max:9,ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:12,weight:'700'},formatter:v=>v+'%'}}});
+
+// ── 12. Admixtures market ──
+mkChart('chartAdmix','line',{
+  labels:['2022','2023','2024','2025','2026','2028','2030','2032'],
+  datasets:[{
+    label:'$מיליארד',
+    data:[18.5,20.5,22.78,25.1,27.6,33.5,39,42.9],
+    borderColor:TEAL,backgroundColor:'rgba(20,184,166,.1)',fill:true,tension:.4,pointRadius:4
+  }]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}},plugins:{legend:{display:false}}});
+
+// ── 13. Admixtures by type ──
+mkChart('chartAdmixTypes','doughnut',{
+  labels:['מפחיתי מים (Water Reducers)','מאיצי קשייה','הפחתת כיווץ','מוספי אוויר','אחרים'],
+  datasets:[{data:[47.9,18,12,8,14.1],backgroundColor:[TEAL,GREEN,BLUE,PURPLE,AMBER],borderWidth:0}]
+},{plugins:{legend:{position:'right',labels:{boxWidth:12,padding:12}},datalabels:{display:true,color:'#fff',font:{size:12,weight:'700'},formatter:v=>v+'%'}}});
+
+// ── 14. Admixtures players ──
+mkChart('chartAdmixPlayers','bar',{
+  labels:['Sika AG','BASF MBS','GCP Applied','Mapei','Fosroc','אחרים'],
+  datasets:[{label:'נתח שוק %',data:[17,14,10,9,8,42],
+    backgroundColor:[TEAL,BLUE,GREEN,AMBER,PURPLE,'#475569'],borderRadius:6,borderSkipped:false}]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'%'},max:50},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:11,weight:'600'},formatter:v=>v+'%'}}});
+
+// ── 15. Admixtures geo ──
+mkChart('chartAdmixGeo','doughnut',{
+  labels:['אסיה-פסיפיק','צפון אמריקה','אירופה','מזה"ת + אפריקה','אחרים'],
+  datasets:[{data:[64.57,18,13,4,0.43],backgroundColor:[BLUE,GREEN,AMBER,TEAL,'#475569'],borderWidth:0}]
+},{plugins:{legend:{position:'right',labels:{boxWidth:12,padding:12}},datalabels:{display:true,color:'#fff',font:{size:11,weight:'700'},formatter:v=>v<1?'<1%':Math.round(v)+'%'}}});
+
+// ── 16. Productivity ──
+mkChart('chartProductivity','bar',{
+  labels:['ייצור','מסחר קמעונאי','כלל המשק','בנייה'],
+  datasets:[{label:'שיפור פריון % (1995–2015)',data:[100,60,30,0],
+    backgroundColor:[GREEN,BLUE,AMBER,RED],borderRadius:8,borderSkipped:false}]
+},{scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'%'},max:110},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#f1f5f9',font:{size:12,weight:'700'},formatter:v=>v+'%'}}});
+
+// ── EXEC-0: Market Share (סיכום מנהלים) ──
+mkChart('chartExecMarket','doughnut',{
+  labels:['רדימיקס (CEMEX)','שפיר (אולטרה בטון)','הנסון (Heidelberg)','ישראבטון (אשטרום)','שיכון ובינוי תעשיות','אחרים'],
+  datasets:[{
+    data:[33,30,20,10,3,4],
+    backgroundColor:['#3b82f6','#f59e0b','#8b5cf6','#10b981','#a78bfa','#64748b'],
+    borderWidth:0, hoverOffset:6
+  }]
+},{
+  plugins:{
+    legend:{position:'right',labels:{boxWidth:10,padding:10,font:{size:11}}},
+    datalabels:{
+      display:(ctx)=>ctx.dataset.data[ctx.dataIndex]>=15,
+      color:'#fff', font:{size:12,weight:'700'},
+      formatter:(v)=>v+'%'
+    }
+  }
+});
+
+// ── EXEC-1: Demand Forecast (סיכום מנהלים) ──
+mkChart('chartExecDemand','line',{
+  labels:['2015','2020','2025','2030','2035','2040'],
+  datasets:[
+    {label:'בפועל', data:[68.1,80.6,null,null,null,null],
+      borderColor:BLUE, backgroundColor:'rgba(59,130,246,.12)', fill:true,
+      pointRadius:5, pointBackgroundColor:BLUE, tension:.4},
+    {label:'תרחיש שמרני (94M)', data:[null,80.6,83,88,91,94],
+      borderColor:GREEN, backgroundColor:'rgba(16,185,129,.06)', fill:true,
+      borderDash:[5,3], tension:.4, pointRadius:3},
+    {label:'תרחיש מאקרו (112M)', data:[null,80.6,86,94,103,112],
+      borderColor:AMBER, backgroundColor:'rgba(245,158,11,.05)', fill:true,
+      borderDash:[5,3], tension:.4, pointRadius:3},
+    {label:'תרחיש צמיחה (132M)', data:[null,80.6,90,100,116,132],
+      borderColor:RED, backgroundColor:'rgba(239,68,68,.04)', fill:true,
+      borderDash:[8,4], tension:.4, pointRadius:3}
+  ]
+},{
+  scales:{
+    y:{
+      grid:{color:'rgba(255,255,255,.05)'},
+      ticks:{callback:v=>v+'M T', font:{size:11}},
+      min:60, max:145
+    },
+    x:{grid:{display:false}, ticks:{font:{size:11}}}
+  },
+  plugins:{
+    legend:{labels:{boxWidth:12, padding:12, font:{size:11}}},
+    datalabels:{display:false}
+  }
+});
+
+// ── Active nav highlight on scroll ──
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+secs.forEach(s=>observer.observe(s));
+document.querySelector('nav a[href="#hero"]')?.addEventListener('click',()=>{
+  links.forEach(l=>l.classList.remove('active'));
+  document.querySelector('nav a[href="#hero"]').classList.add('active');
+});
+</script>
+</body>
+</html>
