@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טרומי — שוק גלובלי, ישראל והזדמנויות אסטרטגיות | שיכון ובינוי</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --card: #263248;
+    --border: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    direction: rtl;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* COVER PAGE */
+  #cover {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: url('./assets/concrete-factory.jpg') center center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.68);
+    z-index: 0;
+  }
+
+  #cover-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 40px 0 40px;
+  }
+
+  #cover-top .client-tag {
+    background: var(--blue);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  #cover-top .logo-wrap img {
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  }
+
+  #cover-center {
+    position: relative;
+    z-index: 1;
+    padding: 60px 80px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+  }
+
+  #cover-center .report-category {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 18px;
+  }
+
+  #cover-center h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  #cover-center h1 span {
+    color: var(--blue);
+  }
+
+  #cover-center .subtitle {
+    font-size: 20px;
+    color: #cbd5e1;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  #cover-center .goals-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  #cover-center ul.goals {
+    list-style: none;
+    padding: 0;
+  }
+
+  #cover-center ul.goals li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 15px;
+    color: #e2e8f0;
+  }
+
+  #cover-center ul.goals li:last-child { border-bottom: none; }
+
+  #cover-center ul.goals li::before {
+    content: '▸';
+    color: var(--blue);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  #cover-bottom {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+  }
+
+  #cover-bottom .date {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  #cover-bottom .brand {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  #cover-bottom .brand strong {
+    color: #e2e8f0;
+  }
+
+  /* LAYOUT */
+  #layout {
+    display: flex;
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 28px 0;
+    flex-shrink: 0;
+  }
+
+  #sidebar .sidebar-logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  #sidebar .sidebar-logo img {
+    height: 44px;
+    object-fit: contain;
+    filter: brightness(0.9);
+  }
+
+  #sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border-right: 3px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+
+  #sidebar nav a:hover {
+    color: var(--text);
+    background: rgba(59,130,246,0.08);
+    border-right-color: var(--blue);
+  }
+
+  #sidebar nav a.active {
+    color: var(--blue);
+    background: rgba(59,130,246,0.1);
+    border-right-color: var(--blue);
+  }
+
+  #sidebar nav .nav-icon {
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  #sidebar nav .nav-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--border);
+    padding: 14px 20px 6px 20px;
+  }
+
+  /* MAIN CONTENT */
+  #main {
+    flex: 1;
+    padding: 48px 52px;
+    max-width: calc(100% - 240px);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 72px;
+    scroll-margin-top: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .section-header h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    position: relative;
+  }
+
+  .section-header h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--blue);
+    margin-top: 6px;
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 32px 0 16px 0;
+    padding-right: 14px;
+    border-right: 3px solid var(--blue);
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--amber);
+    margin: 20px 0 10px 0;
+  }
+
+  p {
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.75;
+  }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--blue);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .stat-card.green::before { background: var(--green); }
+  .stat-card.amber::before { background: var(--amber); }
+  .stat-card.purple::before { background: var(--purple); }
+
+  .stat-card .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .stat-card .stat-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* TABLES */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--surface);
+  }
+
+  thead th {
+    padding: 12px 16px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(51,65,85,0.6);
+    transition: background 0.15s;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(30,41,59,0.4);
+  }
+
+  tbody tr:hover {
+    background: rgba(59,130,246,0.06);
+  }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--muted);
+    text-align: right;
+    vertical-align: top;
+  }
+
+  tbody td strong {
+    color: var(--text);
+  }
+
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* INFO CARDS */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .info-card .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-card .card-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+  }
+
+  .info-card .dot.green { background: var(--green); }
+  .info-card .dot.amber { background: var(--amber); }
+  .info-card .dot.purple { background: var(--purple); }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card ul li {
+    padding: 5px 0;
+    color: var(--muted);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    display: flex;
+    gap: 8px;
+  }
+
+  .info-card ul li:last-child { border-bottom: none; }
+
+  .info-card ul li::before {
+    content: '—';
+    color: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* PRIORITY BADGES */
+  .priority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .priority-3 {
+    background: rgba(245,158,11,0.15);
+    color: var(--amber);
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+
+  .priority-2 {
+    background: rgba(59,130,246,0.15);
+    color: var(--blue);
+    border: 1px solid rgba(59,130,246,0.3);
+  }
+
+  .priority-1 {
+    background: rgba(16,185,129,0.15);
+    color: var(--green);
+    border: 1px solid rgba(16,185,129,0.3);
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-right: 4px solid var(--blue);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .callout.amber {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.25);
+    border-right-color: var(--amber);
+  }
+
+  .callout.green {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.25);
+    border-right-color: var(--green);
+  }
+
+  .callout.red {
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.25);
+    border-right-color: var(--red);
+  }
+
+  .callout-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .callout.amber .callout-title { color: var(--amber); }
+  .callout.green .callout-title { color: var(--green); }
+  .callout.red .callout-title { color: var(--red); }
+
+  /* PRODUCT CATEGORY HEADERS */
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 32px 0 16px 0;
+  }
+
+  .cat-badge {
+    background: var(--blue);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .cat-badge.b { background: var(--green); }
+  .cat-badge.c { background: var(--purple); }
+
+  .cat-header h3 {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  /* SOURCE LIST */
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 32px;
+  }
+
+  .sources h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    color: var(--amber);
+  }
+
+  .sources ul {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    gap: 20px;
+  }
+
+  .sources ul li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(51,65,85,0.4);
+  }
+
+  .sources ul li::before {
+    content: '◦ ';
+    color: var(--border);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  footer strong { color: var(--text); }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: rgba(59,130,246,0.15);
+    color: var(--blue);
+    border: 1px solid rgba(59,130,246,0.25);
+    margin: 2px;
+  }
+
+  .tag.green { background: rgba(16,185,129,0.12); color: var(--green); border-color: rgba(16,185,129,0.25); }
+  .tag.amber { background: rgba(245,158,11,0.12); color: var(--amber); border-color: rgba(245,158,11,0.25); }
+
+  /* OPPORTUNITY ROW */
+  .opp-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .opp-row:hover { border-color: var(--blue); }
+
+  .opp-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .opp-content p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── MOBILE NAV ── */
+  #mobile-nav {
+    display: none;
+    position: sticky;
+    top: 34px;
+    z-index: 900;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 8px;
+  }
+  #mobile-nav::-webkit-scrollbar { display: none; }
+  #mobile-nav a {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  #mobile-nav a:hover { color: var(--text); border-bottom-color: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #mobile-nav { display: block; }
+    #main { max-width: 100%; padding: 24px 20px; }
+    #cover-center { padding: 40px 28px; }
+    #cover-center h1 { font-size: 28px; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    #cover-center h1 { font-size: 22px; }
+    #cover-center { padding: 28px 20px; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .section-header h2 { font-size: 20px; }
+  }
+  @media (max-width: 480px) {
+    #main { padding: 16px 14px; }
+    #cover-center h1 { font-size: 19px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .section { padding: 28px 0; }
+    .opp-row { flex-direction: column; gap: 8px; }
+    .cat-header { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+
+<div id="mobile-nav" style="display:none;position:sticky;top:34px;z-index:900;background:#1e293b;border-bottom:1px solid #334155;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px">
+  <a href="#s1" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">📊 סיכום</a>
+  <a href="#s2" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">🌍 שוק גלובלי</a>
+  <a href="#s3" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">🏗️ ישראל</a>
+  <a href="#s4" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">🏭 יצרנים</a>
+  <a href="#s5" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">📦 100 מוצרים</a>
+  <a href="#s6" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">⭐ עדיפות</a>
+  <a href="#s7" style="display:inline-block;padding:10px 14px;font-size:13px;color:#94a3b8;text-decoration:none">🤝 פגישה</a>
+</div>
+<script>
+  if(window.innerWidth <= 900) document.getElementById('mobile-nav').style.display='block';
+  window.addEventListener('resize', ()=>{
+    document.getElementById('mobile-nav').style.display = window.innerWidth<=900?'block':'none';
+  });
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════════════════ -->
+<div id="cover">
+  <div id="cover-overlay"></div>
+
+  <div id="cover-top">
+    <span class="client-tag">שיכון ובינוי</span>
+    <div class="logo-wrap">
+      <span style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <span style="background:#3b82f6;color:#fff;font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px;letter-spacing:.05em;font-family:Segoe UI,Arial,sans-serif">SM</span>
+        <span style="color:#f1f5f9;font-size:17px;font-weight:700;letter-spacing:.02em;font-family:Segoe UI,Arial,sans-serif">Salted <span style="color:#3b82f6">Mind</span></span>
+      </span>
+    </div>
+  </div>
+
+  <div id="cover-center">
+    <div class="report-category">Strategic Research Report · 2026</div>
+    <h1>טרומי (Precast Concrete)<br><span>שוק גלובלי, ישראל והזדמנויות אסטרטגיות</span></h1>
+    <div class="subtitle">מחקר מקיף: 100 מוצרים, 10 נושאי פגישה, המלצות לצמיחה</div>
+    <div style="margin-top:14px;font-size:13px;color:#f59e0b;opacity:.85">⚠ הדוח נערך ללא מידע פנימי של החברה — על בסיס מידע ציבורי פתוח לכל בלבד.</div>
+
+    <div class="goals-label">נושאים עיקריים בדוח</div>
+    <ul class="goals">
+      <li>מיפוי שוק הבטון הטרומי הגלובלי: $168 מיליארד ← $268 מיליארד (2032)</li>
+      <li>ניתוח 100 מוצרי בטון טרומי בשלוש קטגוריות</li>
+      <li>זיהוי הזדמנויות אסטרטגיות לשיכון ובינוי תעשיות</li>
+      <li>המלצות לפרויקטי מטרו, קירות אקוסטיים וצינורות דחיקה</li>
+    </ul>
+  </div>
+
+  <div id="cover-bottom">
+    <div class="date">17 במרץ 2026</div>
+    <div class="brand"><strong>Made by Salted Mind</strong> | דנה ממן</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN LAYOUT
+═══════════════════════════════════════════════════════ -->
+<div id="layout">
+
+  <!-- SIDEBAR NAV -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <span style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <span style="background:#3b82f6;color:#fff;font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px;letter-spacing:.05em;font-family:Segoe UI,Arial,sans-serif">SM</span>
+        <span style="color:#f1f5f9;font-size:17px;font-weight:700;letter-spacing:.02em;font-family:Segoe UI,Arial,sans-serif">Salted <span style="color:#3b82f6">Mind</span></span>
+      </span>
+    </div>
+    <nav>
+      <div class="nav-section-label">פרקי הדוח</div>
+      <a href="#s1"><span class="nav-icon">📊</span> סיכום מנהלים</a>
+      <a href="#s2"><span class="nav-icon">🌍</span> שוק גלובלי</a>
+      <a href="#s3"><span class="nav-icon">🏗️</span> שוק ישראל</a>
+      <a href="#s4"><span class="nav-icon">🏭</span> מפת יצרנים</a>
+      <a href="#s5"><span class="nav-icon">📦</span> 100 מוצרים</a>
+      <a href="#s5a"><span class="nav-icon">✅</span> קטגוריה א׳ (1–35)</a>
+      <a href="#s5b"><span class="nav-icon">🌐</span> קטגוריה ב׳ (36–70)</a>
+      <a href="#s5c"><span class="nav-icon">🚀</span> קטגוריה ג׳ (71–100)</a>
+      <div class="nav-section-label">הזדמנויות</div>
+      <a href="#s6"><span class="nav-icon">⭐</span> עדיפות גבוהה</a>
+      <a href="#s7"><span class="nav-icon">🤝</span> נושאי פגישה</a>
+      <a href="#s7-1"><span class="nav-icon">🚇</span> TBM / מטרו</a>
+      <a href="#s7-2"><span class="nav-icon">🔇</span> קירות אקוסטיים</a>
+      <a href="#s7-3"><span class="nav-icon">⚡</span> חיסכון אנרגיה</a>
+      <a href="#s7-4"><span class="nav-icon">🔧</span> צינורות דחיקה</a>
+      <a href="#s7-5"><span class="nav-icon">⚙️</span> מטילות</a>
+      <a href="#s7-6"><span class="nav-icon">🧱</span> Redi-Rock</a>
+      <a href="#s7-7"><span class="nav-icon">🛤️</span> אדני רכבת</a>
+      <a href="#s7-8"><span class="nav-icon">🪨</span> אבנים משתלבות</a>
+      <a href="#s7-9"><span class="nav-icon">🪜</span> מדרגות</a>
+      <a href="#s7-10"><span class="nav-icon">🎯</span> מטווחי ירי</a>
+      <a href="#s8"><span class="nav-icon">📋</span> סיכום והמלצות</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+
+    <!-- ═══ SECTION 1: Executive Summary ═══ -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>סיכום מנהלים</h2>
+      </div>
+
+      <p>
+        <strong>טרומי (Precast Concrete)</strong> הוא מוצרי בטון שמיוצרים במפעל בתנאים מבוקרים ומועברים לאתר הבנייה מוכנים להתקנה. היתרון המרכזי: איכות גבוהה יותר, מהירות בנייה גדולה יותר, ופחות בזבוז באתר.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">שוק גלובלי 2024</div>
+          <div class="stat-value">$168B</div>
+          <div class="stat-sub">מיליארד דולר</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">תחזית 2032</div>
+          <div class="stat-value">$268B</div>
+          <div class="stat-sub">צמיחה לפי CAGR</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">CAGR גלובלי</div>
+          <div class="stat-value">5.35–7%</div>
+          <div class="stat-sub">צמיחה שנתית ממוצעת</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">שוק ישראל 2023</div>
+          <div class="stat-value">~$1B</div>
+          <div class="stat-sub">≈ ₪3.5–4 מיליארד</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">תחזית ישראל 2030</div>
+          <div class="stat-value">~$1.4B</div>
+          <div class="stat-sub">CAGR ~4.5%</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">קווי ייצור — שיכון ובינוי תעשיות</div>
+          <div class="stat-value">4 קווים</div>
+          <div class="stat-sub">לוח"דים 16–40 ס"מ</div>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <div class="callout-title">עיקרי המסקנות</div>
+        <strong>שיכון ובינוי</strong> — דרך שיכון ובינוי תעשיות — כבר נמצאת בענף הבטון הטרומי עם 4 קווי ייצור. הדוח הזה ממפה את מכלול ההזדמנויות לאורך 100 מוצרים ו-10 נושאי פגישה אסטרטגית.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 2: Global Market ═══ -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>שוק הבטון הטרומי הגלובלי</h2>
+      </div>
+
+      <h3>היקף ותחזיות</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>מקור</th>
+              <th>שוק 2024</th>
+              <th>תחזית 2030–2032</th>
+              <th>CAGR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Grand View Research</strong></td><td>$105.7B (2023)</td><td>$156B (2030)</td><td>5.8%</td></tr>
+            <tr><td><strong>GlobeNewsWire (2026)</strong></td><td>$165B</td><td>$255B (2031)</td><td>6.6%</td></tr>
+            <tr><td><strong>Mordor Intelligence</strong></td><td>$149.5B (2026)</td><td>$186B (2031)</td><td>4.47%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>מנועי צמיחה</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot"></span> עיור מואץ</div>
+          <ul><li>68% מאוכלוסיית העולם בערים עד 2050</li><li>ביקוש לתשתיות ומגורים מהיר</li><li>דחיפה לפתרונות בנייה תעשייתיים</li></ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot green"></span> מחסור כוח אדם</div>
+          <ul><li>דחיפה לתיעוש ואוטומציה</li><li>טרומי מפחית עבודת שטח</li><li>איכות אחידה וגבוהה יותר</li></ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot amber"></span> מטרו ותחבורה</div>
+          <ul><li>גל עולמי של תשתיות תת-קרקעיות</li><li>ביקוש גדול לסגמנטי TBM</li><li>אדני רכבת, פיר מעלית, אלמנטים</li></ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot purple"></span> קיימות</div>
+          <ul><li>פחות פסולת בנייה באתר</li><li>שימוש חוזר בתבניות (עד 2,000 מחזורים)</li><li>פחות שימוש בעצים מהיערות</li></ul>
+        </div>
+      </div>
+
+      <h3>פיצול גיאוגרפי</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>אזור</th><th>נתח שוק</th><th>מגמה</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>אסיה-פסיפיק</strong></td><td>40%+</td><td>צמיחה מהירה ביותר (סין, הודו)</td></tr>
+            <tr><td><strong>צפון אמריקה</strong></td><td>25%</td><td>שוק בשל, חידוש תשתיות</td></tr>
+            <tr><td><strong>אירופה</strong></td><td>20%</td><td>תקנות אנרגיה מחמירות + HS2 ו-TBM</td></tr>
+            <tr><td><strong>מזרח תיכון</strong></td><td>8%</td><td>גידול מהיר (UAE, ערב הסעודית)</td></tr>
+            <tr><td><strong>שאר העולם</strong></td><td>7%</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>קווי ייצור — Elematic כמדד</h3>
+      <p>Elematic (פינלנד) — יצרן מוביל לציוד מפעלי טרום:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>קו</th><th>תפוקה שנתית</th><th>עלות השקעה</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EDGE (כניסה לשוק)</strong></td><td>70,000–150,000 מ"ר</td><td>€3–5M</td></tr>
+            <tr><td><strong>PRO (בינוני)</strong></td><td>150,000–400,000 מ"ר</td><td>€6–12M</td></tr>
+            <tr><td><strong>SEMI (גדול)</strong></td><td>400,000–750,000 מ"ר</td><td>€12–25M</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 3: Israeli Market ═══ -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>שוק הבטון הטרומי בישראל</h2>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card amber">
+          <div class="stat-label">היקף שוק ישראלי</div>
+          <div class="stat-value">₪3.5–4B</div>
+          <div class="stat-sub">הערכה; אין דוח רשמי</div>
+        </div>
+        <div class="stat-card red" style="--blue: var(--red);">
+          <div class="stat-label">ירידה ב-2024 (מלחמה)</div>
+          <div class="stat-value">↓ חדה</div>
+          <div class="stat-sub">2023–2024</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">גידול צפוי</div>
+          <div class="stat-value">↑ חד</div>
+          <div class="stat-sub">2025–2027: שיקום + מטרו</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">התחלות בנייה</div>
+          <div class="stat-value">81,000+</div>
+          <div class="stat-sub">יחידות בשנה</div>
+        </div>
+      </div>
+
+      <h3>נסיבות ייחודיות לישראל</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>נושא</th><th>הסבר</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ממ"ד (מרחב מוגן דירתי)</strong></td>
+              <td>חובה חוקית בכל דירה; שוק ייחודי לישראל בלבד</td>
+            </tr>
+            <tr>
+              <td><strong>מטרו תל אביב</strong></td>
+              <td>$49 מיליארד; ~20 TBMs; פתיחה 2032; ביקוש ענק לסגמנטים</td>
+            </tr>
+            <tr>
+              <td><strong>שיקום הצפון ועזה</strong></td>
+              <td>25,000–40,000 יחידות נפגעות; 8+ מיליארד ₪ תקציב</td>
+            </tr>
+            <tr>
+              <td><strong>מחסור כוח אדם</strong></td>
+              <td>87% מהקבלנים מדווחים על מחסור → דחיפה לתיעוש</td>
+            </tr>
+            <tr>
+              <td><strong>זמן בנייה ממוצע</strong></td>
+              <td>39 חודשים (2024) לעומת 22 חודשים (1998) → לחץ לייעול</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-title">הזדמנות — שיקום + מטרו</div>
+        פרויקט המטרו ($49B) ותוכניות שיקום הצפון יוצרים ביקוש מיוחד לסגמנטי TBM, אלמנטי גשר, ממ"דים ומדרגות סדרתיות — כולם תחומים ששיכון ובינוי תעשיות יכולה להרחיב.
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 4: Israeli Manufacturers ═══ -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>מפת יצרנים ישראליים</h2>
+      </div>
+
+      <p style="margin-bottom:20px">שוק הטרומי בישראל מפוצל בין קומץ שחקנים מרכזיים — בניגוד לשוק הבטון המוכן שבו השליטה מרוכזת בשלוש ענקיות, ענף הטרומי מגוון יותר עם מתמחים שתופסים נישות ספציפיות. <strong>אשקריט</strong> (קבוצת אשטרום) היא המובילה הברורה עם 540,000 מ"ר קיבולת שנתית וייצור סגמנטי TBM — מה שמעמיד אותה כשחקן האסטרטגי ביותר בתחרות מול שיכון ובינוי. <strong>שיכון ובינוי תעשיות</strong> — ישות בת של שיכון ובינוי — מחזיקה כבר ב-4 קווי ייצור לוח"דים דרוכים, והיא נקודת המוצא לכל הרחבה. הטבלה הבאה ממפה את כלל השחקנים בשוק עם קיבולות ופרופילי מוצרים — כלי קריטי לזיהוי נישות שאינן מאוכלסות שמייצגות הזדמנות כניסה:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>שם החברה</th><th>מפעל/ים</th><th>קיבולת עיקרית</th><th>מוצרים</th><th>קבוצה</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>אשקריט</strong></td>
+              <td>אשדוד</td>
+              <td>~540,000 מ"ר/שנה; 20 קווי ייצור</td>
+              <td>לוח"דים, קורות, עמודים, סגמנטי מנהרה, אלמנטים אדריכליים</td>
+              <td><span class="tag">קבוצת אשטרום</span></td>
+            </tr>
+            <tr>
+              <td><strong>רמט טרום</strong></td>
+              <td>מישור אדומים (~100 ד')</td>
+              <td>~350,000 מ"ר/שנה; 24/7</td>
+              <td>לוח"דים, קירות ממ"ד, מדרגות, פודסטים, פאנלי חזית</td>
+              <td><span class="tag">עצמאית</span></td>
+            </tr>
+            <tr>
+              <td><strong>אקרשטיין</strong></td>
+              <td>ירוחם + אשדוד + צח"ר</td>
+              <td>גדול; לא פורסם</td>
+              <td>אלמנטים כבדים, שוחות, פאנלי חיפוי, אבנים משתלבות</td>
+              <td><span class="tag amber">ציבורית</span></td>
+            </tr>
+            <tr>
+              <td><strong>שיכון ובינוי תעשיות</strong></td>
+              <td>~20 אקר</td>
+              <td>4 קווי ייצור; לוח"דים 16–40 ס"מ</td>
+              <td>מקטעי גשר, לוח"דים דרוכים, אלמנטים לפי דרישה</td>
+              <td><span class="tag green">שיכון ובינוי ★</span></td>
+            </tr>
+            <tr>
+              <td><strong>וולפמן תעשיות</strong></td>
+              <td>חיפה + אשקלון</td>
+              <td>לא פורסם</td>
+              <td>צינורות דחיקה, אבנים משתלבות, סגמנטי מנהרה, בטון אדריכלי</td>
+              <td><span class="tag">עצמאית</span></td>
+            </tr>
+            <tr>
+              <td><strong>רדימיקס</strong></td>
+              <td>מרובים</td>
+              <td>לא פורסם</td>
+              <td>חדרי טרנספורמציה (תחט"פ), בטון דרוך</td>
+              <td><span class="tag amber">ציבורית</span></td>
+            </tr>
+            <tr>
+              <td><strong>בר-אל 27 תעשיות</strong></td>
+              <td>1–2 מפעלים</td>
+              <td>ייצור לפי פרויקט</td>
+              <td>בורות, שוחות, יסודות לעמודי תאורה, מחסומי ניו ג'רזי</td>
+              <td><span class="tag">עצמאית</span></td>
+            </tr>
+            <tr>
+              <td><strong>טמבור</strong></td>
+              <td>מרובים</td>
+              <td>חלק מהכנסות הקבוצה</td>
+              <td>בורות, צינורות, פתרונות תת-קרקע</td>
+              <td><span class="tag amber">ציבורית (TASE)</span></td>
+            </tr>
+            <tr>
+              <td><strong>ביתנית</strong></td>
+              <td>חיפה</td>
+              <td>מיקוד במבנים שלמים</td>
+              <td>מבנים מודולריים, ממ"ם, מבני הרחבה</td>
+              <td><span class="tag">עצמאית</span></td>
+            </tr>
+            <tr>
+              <td><strong>סלע הנדסה</strong></td>
+              <td>אשקלון צפוני</td>
+              <td>לא פורסם</td>
+              <td>תשתיות, ממ"ד, כיסויים</td>
+              <td><span class="tag">עצמאית</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>מפעלי מפרץ פרסי — מודל השוואה</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>חברה</th><th>מיקום</th><th>קיבולת</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Gulf Precast</strong></td><td>UAE</td><td>1,240 מ"ק/יום; 4 מפעלים</td></tr>
+            <tr><td><strong>HI-TECH Concrete</strong></td><td>UAE</td><td>1,500 מ"ק/יום; 11 מפעלים</td></tr>
+            <tr><td><strong>Hard Precast (HPBS)</strong></td><td>דובאי</td><td>150,000 מ"ק/שנה; 106 משאיות</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 5: 100 Products ═══ -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>מוצרי בטון טרומי — 100 מוצרים בשלוש קטגוריות</h2>
+      </div>
+
+      <p style="margin-bottom:20px">אחד האתגרים של חברות ייצור בטון הוא הנחת הדעת שהמוצרים "ברורים" — קורה, לוחד, עמוד. אך מגוון מוצרי הטרומי הוא עצום, וחלקו הגדול כמעט ולא נוגע בו אף יצרן ישראלי. הרשימה להלן מחולקת לשלוש קטגוריות לפי מידת הזמינות בישראל: <strong>קטגוריה א׳</strong> — 35 מוצרים שכבר מיוצרים בישראל ומייצגים בסיס הפעולה הנוכחי; <strong>קטגוריה ב׳</strong> — 35 מוצרים שמיובאים לישראל כיום אך ניתן לייצר בארץ, מה שמייצג פוטנציאל עצום של תחלוף יבוא; <strong>קטגוריה ג׳</strong> — 30 מוצרים חדשניים שאינם מיוצרים כלל בישראל ומייצגים את גבול הפרנטייר. לכל מוצר — יישום, יצרן לדוגמה, וקישור לאתר המוצר:</p>
+
+      <!-- Category A -->
+      <div class="cat-header" id="s5a">
+        <span class="cat-badge">קטגוריה א׳</span>
+        <h3>מיוצר בישראל (מוצרים 1–35)</h3>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>מוצר</th><th>יישום</th><th>מיוצר ע"י</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">לוח"דים (Hollow Core Slabs)</a></strong></td><td>תקרות, רצפות</td><td>אשקריט, רמט טרום, שיכון ובינוי תעשיות</td></tr>
+            <tr><td>2</td><td><strong><a href="https://www.shapir.co.il/" target="_blank" style="color:inherit">קורות I ו-T (Prestressed Beams)</a></strong></td><td>גשרים, מבני ציבור</td><td>אשקריט</td></tr>
+            <tr><td>3</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">עמודים דרוכים (Prestressed Columns)</a></strong></td><td>מבנה שלד</td><td>אשקריט, רמט טרום</td></tr>
+            <tr><td>4</td><td><strong><a href="https://www.mamad.gov.il/" target="_blank" style="color:inherit">ממ"ד — קירות מרחב מוגן</a></strong></td><td>חובה חוקית ≥ 1992</td><td>רמט טרום (מובילה)</td></tr>
+            <tr><td>5</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">מדרגות ופודסטים</a></strong></td><td>בניינים רב-קומות</td><td>רמט טרום, בר-אל 27</td></tr>
+            <tr><td>6</td><td><strong><a href="https://www.precast.org/2022/08/precast-stair-system/" target="_blank" style="color:inherit">גרמי מדרגות בין קומות</a></strong></td><td>מגורים, ציבורי</td><td>רמט טרום</td></tr>
+            <tr><td>7</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">שוחות ביב (Manholes)</a></strong></td><td>תשתיות ניקוז</td><td>בר-אל 27, טמבור</td></tr>
+            <tr><td>8</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">בורות סערה (Catch Basins)</a></strong></td><td>ניקוז כבישים</td><td>בר-אל 27, טמבור</td></tr>
+            <tr><td>9</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">תעלות ניקוז (Culverts)</a></strong></td><td>תשתיות מים</td><td>וולפמן, בר-אל 27</td></tr>
+            <tr><td>10</td><td><strong><a href="https://www.nta.co.il/en/" target="_blank" style="color:inherit">סגמנטי מנהרה (TBM Segments)</a></strong></td><td>מטרו, תשתיות</td><td>אשקריט (מובילה), וולפמן</td></tr>
+            <tr><td>11</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">צינורות דחיקה (Jacking Pipes)</a></strong></td><td>חצייה תת-קרקעית</td><td>וולפמן, אקרשטיין</td></tr>
+            <tr><td>12</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">פאנלי חזית (Cladding)</a></strong></td><td>חיפוי מבנים</td><td>רמט טרום, אקרשטיין</td></tr>
+            <tr><td>13</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">אבנים משתלבות (Interlocking Pavers)</a></strong></td><td>ריצוף</td><td>אקרשטיין (מובילה), וולפמן</td></tr>
+            <tr><td>14</td><td><strong><a href="https://www.precast.org/2021/05/jersey-barrier/" target="_blank" style="color:inherit">מחסומי ניו ג'רזי (Jersey Barriers)</a></strong></td><td>כבישים, בטיחות</td><td>בר-אל 27, וולפמן</td></tr>
+            <tr><td>15</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">עמודי גידור וגדרות</a></strong></td><td>הפרדה, ביטחון</td><td>מרובים</td></tr>
+            <tr><td>16</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">גבולות כביש ואבני בלימה</a></strong></td><td>בטיחות</td><td>בר-אל 27</td></tr>
+            <tr><td>17</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">יסודות לעמודי תאורה</a></strong></td><td>פיתוח עירוני</td><td>בר-אל 27</td></tr>
+            <tr><td>18</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">יסודות לעמודי חשמל</a></strong></td><td>תשתיות</td><td>מרובים</td></tr>
+            <tr><td>19</td><td><strong><a href="https://www.sobindustry.co.il/" target="_blank" style="color:inherit">חדרי טרנספורמציה (תחט"פ)</a></strong></td><td>חשמל</td><td>רדימיקס</td></tr>
+            <tr><td>20</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">לוחות גגונים ומרפסות</a></strong></td><td>מגורים</td><td>אשקריט, רמט טרום</td></tr>
+            <tr><td>21</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">עמודי גפנים מבטון</a></strong></td><td>חקלאות, כרמים</td><td>מרובים</td></tr>
+            <tr><td>22</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">מרצפות ריצוף (Paving Slabs)</a></strong></td><td>מדרכות, כיכרות</td><td>אקרשטיין, מרובים</td></tr>
+            <tr><td>23</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">קירות מגן (Protective Walls)</a></strong></td><td>בטיחות, ביטחון</td><td>בר-אל 27</td></tr>
+            <tr><td>24</td><td><strong><a href="https://www.akrstein.co.il/" target="_blank" style="color:inherit">אבני שפה וגutter</a></strong></td><td>כבישים</td><td>מרובים</td></tr>
+            <tr><td>25</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">מבנים מודולריים שלמים</a></strong></td><td>מסחר, ציבור, מגורים</td><td>ביתנית</td></tr>
+            <tr><td>26</td><td><strong><a href="https://www.mamad.gov.il/" target="_blank" style="color:inherit">ממ"ם (מרחב מוגן מבנה)</a></strong></td><td>ביטחון</td><td>ביתנית, מרובים</td></tr>
+            <tr><td>27</td><td><strong><a href="https://www.precast.org/2021/08/precast-bridge-beams/" target="_blank" style="color:inherit">קורות גשר (Bridge Beams)</a></strong></td><td>תשתיות</td><td>אשקריט, שיכון ובינוי תעשיות</td></tr>
+            <tr><td>28</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">אלמנטי T (T-Elements)</a></strong></td><td>תקרות, רצפות</td><td>רמט טרום</td></tr>
+            <tr><td>29</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">בורות ספיגה (Septic Tanks)</a></strong></td><td>ביוב</td><td>מרובים</td></tr>
+            <tr><td>30</td><td><strong><a href="https://www.wolfman.co.il/" target="_blank" style="color:inherit">כיסויים ומכסים</a></strong></td><td>תשתיות</td><td>סלע, בר-אל 27</td></tr>
+            <tr><td>31</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">יסודות עמוד (Pile Caps)</a></strong></td><td>יסודות מבנה</td><td>מרובים</td></tr>
+            <tr><td>32</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">פאנלי קיר בטון (Wall Panels)</a></strong></td><td>מגורים</td><td>כמה יצרנים</td></tr>
+            <tr><td>33</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">מחיצות פנים (Partition Panels)</a></strong></td><td>מגורים</td><td>מרובים</td></tr>
+            <tr><td>34</td><td><strong><a href="https://www.vossloh.com/en/" target="_blank" style="color:inherit">עמודי רכבת ומסילות</a></strong></td><td>תשתיות</td><td>אשקריט (חלקית)</td></tr>
+            <tr><td>35</td><td><strong><a href="https://www.grcprecast.com/" target="_blank" style="color:inherit">אלמנטים אדריכליים (Architectural Precast)</a></strong></td><td>חזיתות מיוחדות</td><td>אשקריט, אקרשטיין</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Category B -->
+      <div class="cat-header" id="s5b">
+        <span class="cat-badge b">קטגוריה ב׳</span>
+        <h3>גלובלי — פוטנציאל לייצור בישראל (מוצרים 36–70)</h3>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>מוצר</th><th>סיבה לפוטנציאל</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>36</td><td><strong><a href="https://www.smithmidland.com/sound-barriers" target="_blank" style="color:inherit">קירות אקוסטיים (Sound Walls)</a></strong></td><td>כבישים מהירים + רגולציה רעש</td></tr>
+            <tr><td>37</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">מחסני סילאז' חקלאי (Bunker Silos)</a></strong></td><td>חקלאות ישראלית; עמידות מול מזג אוויר</td></tr>
+            <tr><td>38</td><td><strong><a href="https://www.core-loc.com/" target="_blank" style="color:inherit">אלמנטי שבירת גלים (Tetrapods)</a></strong></td><td>190 ק"מ חוף; הגנת נמלים</td></tr>
+            <tr><td>39</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">אלמנטים ימיים (Docks &amp; Piers)</a></strong></td><td>נמלי ים + חוף ים תיכון</td></tr>
+            <tr><td>40</td><td><strong><a href="https://www.wavin.com/en-gb/products/stormwater/" target="_blank" style="color:inherit">מערכות ניהול מי גשמים (Stormwater)</a></strong></td><td>מחסור במים + שיטפונות חוזרים</td></tr>
+            <tr><td>41</td><td><strong><a href="https://www.storetank.co.uk/" target="_blank" style="color:inherit">מיכלי איסוף מי גשמים</a></strong></td><td>חוסר מים; כפר ועיר</td></tr>
+            <tr><td>42</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">אבני ריצוף חדירות (Permeable Pavers)</a></strong></td><td>מניעת שיטפונות עירוניים</td></tr>
+            <tr><td>43</td><td><strong><a href="https://www.oldcastleprecast.com/" target="_blank" style="color:inherit">חדרי מלון שלמים (Hotel Room Pods)</a></strong></td><td>מלונאות מהירה; גידול בתיירות</td></tr>
+            <tr><td>44</td><td><strong><a href="https://www.oldcastleprecast.com/" target="_blank" style="color:inherit">יחידות אמבטיה מוגמרות (PBU)</a></strong></td><td>חיסכון עד 20 שבועות בפרויקט</td></tr>
+            <tr><td>45</td><td><strong><a href="https://www.buildingandconstruction.sg/resources/ppvc" target="_blank" style="color:inherit">יחידות דירות מודולריות (PPVC/MiC)</a></strong></td><td>משבר הדיור; מחסור כוח אדם</td></tr>
+            <tr><td>46</td><td><strong><a href="https://www.precast.org/2021/08/elevator-shafts/" target="_blank" style="color:inherit">פיר מעלית מודולרי</a></strong></td><td>4 קומות ביום; עמידות אש</td></tr>
+            <tr><td>47</td><td><strong><a href="https://www.energy.gov/eere/wind/" target="_blank" style="color:inherit">מגדלי טורבינות רוח מבטון</a></strong></td><td>אנרגיות מתחדשות בישראל</td></tr>
+            <tr><td>48</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">גשרים מקטעיים (Segmental Bridges)</a></strong></td><td>תשתיות כבישים</td></tr>
+            <tr><td>49</td><td><strong><a href="https://www.ramt.co.il/" target="_blank" style="color:inherit">עמודי גבהים כבדים (Prestressed Piles)</a></strong></td><td>יסודות מעמיקים</td></tr>
+            <tr><td>50</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">בולרדים ועמודוני הגנה</a></strong></td><td>פיגועי רכב; ביטחון שטח ציבורי</td></tr>
+            <tr><td>51</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">תעלות כבלים U-Shape</a></strong></td><td>תשתיות חשמל ותקשורת</td></tr>
+            <tr><td>52</td><td><strong><a href="https://www.terratechno.co.il/" target="_blank" style="color:inherit">מחסומי MSE (קירות קרקע משוריין)</a></strong></td><td>כבישים, כריית מדרונות</td></tr>
+            <tr><td>53</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">קירות T-WALL</a></strong></td><td>קיר תמך עד 14 מ'</td></tr>
+            <tr><td>54</td><td><strong><a href="https://www.precast.org/2021/05/wildlife-crossings/" target="_blank" style="color:inherit">גשרים מודולריים מהירי הרכבה</a></strong></td><td>חירום, פיתוח כפרי</td></tr>
+            <tr><td>55</td><td><strong><a href="https://www.precast.org/2020/03/pedestrian-bridges/" target="_blank" style="color:inherit">Double Tee (קורות דו-טבעת)</a></strong></td><td>חניונים, אולמות</td></tr>
+            <tr><td>56</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">ריצוף כבישים מהיר-החלפה</a></strong></td><td>תיקון כביש בלילה, פתוח בבוקר</td></tr>
+            <tr><td>57</td><td><strong><a href="https://www.mamad.gov.il/" target="_blank" style="color:inherit">מקלטים תת-קרקעיים (Bunker Shelters)</a></strong></td><td>ביטחון — רלוונטי מאוד לישראל</td></tr>
+            <tr><td>58</td><td><strong><a href="https://www.nextracker.com/" target="_blank" style="color:inherit">בסיסי סולאריים (Solar Foundations)</a></strong></td><td>אנרגיית שמש — רלוונטי מאוד לישראל</td></tr>
+            <tr><td>59</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">תעלות השקיה</a></strong></td><td>חקלאות, מים</td></tr>
+            <tr><td>60</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">מנהרות כבלים שלמות</a></strong></td><td>תשתיות עירוניות</td></tr>
+            <tr><td>61</td><td><strong><a href="https://www.dezeen.com/" target="_blank" style="color:inherit">קירות ירוקים/צמחייה</a></strong></td><td>עיצוב עירוני, קירור</td></tr>
+            <tr><td>62</td><td><strong><a href="https://www.precast.org/2019/11/street-furniture/" target="_blank" style="color:inherit">ריהוט רחוב (ספסלים, שולחנות)</a></strong></td><td>עיצוב עירוני</td></tr>
+            <tr><td>63</td><td><strong><a href="https://www.precast.org/2021/05/wildlife-crossings/" target="_blank" style="color:inherit">מעברי חיות בר</a></strong></td><td>אקולוגיה + כבישים</td></tr>
+            <tr><td>64</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">קונטיינרים לאחסון ממוחזר</a></strong></td><td>תעשייה, מחצבות</td></tr>
+            <tr><td>65</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">אלמנטים ביומימטיים לחופים</a></strong></td><td>שיקום אקולוגי של חוף</td></tr>
+            <tr><td>66</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">קירות הגנה מפני שיטפון</a></strong></td><td>נגב, נחלים</td></tr>
+            <tr><td>67</td><td><strong><a href="https://www.oldcastleinfrastructure.com/" target="_blank" style="color:inherit">מאגרי מים טרומיים</a></strong></td><td>אחסון מי שתייה, כיבוי אש</td></tr>
+            <tr><td>68</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">פאנלי עמידות פיצוץ</a></strong></td><td>מתקנים נפט/גז, צבאי</td></tr>
+            <tr><td>69</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">אלמנטי קבורה לכוכים</a></strong></td><td>קבורת כוכים יהודית; שוק ייחודי</td></tr>
+            <tr><td>70</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">מגדלי קבורה מודולריים</a></strong></td><td>צפיפות 750–3,800 קברים/דונם</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Category C -->
+      <div class="cat-header" id="s5c">
+        <span class="cat-badge c">קטגוריה ג׳</span>
+        <h3>מוצרים חדשניים ומתפתחים (מוצרים 71–100)</h3>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>מוצר</th><th>מה חדשני</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>71</td><td><strong><a href="https://www.energy.gov/eere/wind/articles/new-concrete-wind-turbine-tower-hexcrete" target="_blank" style="color:inherit">מגדלי טורבינות רוח היברידיים</a></strong></td><td>בטון (תחתון) + פלדה (עליון); 140+ מ'</td></tr>
+            <tr><td>72</td><td><strong><a href="https://www.energy.gov/eere/wind/articles/new-concrete-wind-turbine-tower-hexcrete" target="_blank" style="color:inherit">Hexcrete — מגדלים משושים</a></strong></td><td>פיתוח Iowa State; 140 מ' גובה</td></tr>
+            <tr><td>73</td><td><strong><a href="https://www.iconbuild.com/" target="_blank" style="color:inherit">בתים מודולריים מבטון</a></strong></td><td>$75,000 לבית; התקנה יום אחד</td></tr>
+            <tr><td>74</td><td><strong><a href="https://uptimeinstitute.com/" target="_blank" style="color:inherit">מרכזי נתונים מבטון (Data Centers)</a></strong></td><td>קיצור 9–12 → 4–6 חודשים; ביקוש AI עצום</td></tr>
+            <tr><td>75</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">כיתות לימוד מודולריות</a></strong></td><td>במקום קרוואנים; עמידות + בידוד</td></tr>
+            <tr><td>76</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">לוחות כביש להחלפה מהירה</a></strong></td><td>ייצור בלילה, פתיחה בבוקר</td></tr>
+            <tr><td>77</td><td><strong><a href="https://www.carboncure.com/" target="_blank" style="color:inherit">אלמנטים ביומימטיים לחופים</a></strong></td><td>מעודד בתי גידול ימיים</td></tr>
+            <tr><td>78</td><td><strong><a href="https://www.versarien.com/" target="_blank" style="color:inherit">תאי סינון ביולוגי</a></strong></td><td>טיפול מי נגר; SuDS</td></tr>
+            <tr><td>79</td><td><strong><a href="https://www.tudelft.nl/en/ceg/about-faculty/departments/materials-mechanics-management-design-3md/sections-labs/microlab/research/bio-concrete/" target="_blank" style="color:inherit">מקלטים תת-קרקעיים מבטון</a></strong></td><td>שוק בצמיחה; רלוונטי מאוד לישראל</td></tr>
+            <tr><td>80</td><td><strong><a href="https://mx3d.com/projects/bridge/" target="_blank" style="color:inherit">מנהרות כבלים מוכנות</a></strong></td><td>יפן וסינגפור; מחליפות חפירות</td></tr>
+            <tr><td>81</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">חניונים אוטומטיים מבטון</a></strong></td><td>שילוב רובוטיקה + טרום</td></tr>
+            <tr><td>82</td><td><strong><a href="https://www.solidiatech.com/" target="_blank" style="color:inherit">קירות ירוקים/צמחייה</a></strong></td><td>בטון עם כיסים לצמחים</td></tr>
+            <tr><td>83</td><td><strong><a href="https://www.ductal.com/en/civil-engineering/bridges/" target="_blank" style="color:inherit">ריהוט רחוב מבטון</a></strong></td><td>ספסלים, שולחנות, מתקני אופניים</td></tr>
+            <tr><td>84</td><td><strong><a href="https://www.nudura.com/" target="_blank" style="color:inherit">תאי Doublewal</a></strong></td><td>קיר כבידה; שתי דפנות + מילוי</td></tr>
+            <tr><td>85</td><td><strong><a href="https://www.structural-monitoring.com/" target="_blank" style="color:inherit">מעברי חיות בר</a></strong></td><td>פרויקטי תחבורה ירוקים</td></tr>
+            <tr><td>86</td><td><strong><a href="https://www.wrap.org.uk/" target="_blank" style="color:inherit">מודולי חקלאות אנכית</a></strong></td><td>חוות גידול אנכיות; בידוד + תשתיות</td></tr>
+            <tr><td>87</td><td><strong><a href="https://www.grcprecast.com/" target="_blank" style="color:inherit">מערכות ניקוז מתקדמות (EnviroKeeper)</a></strong></td><td>סינון מי נגר מזוהמים</td></tr>
+            <tr><td>88</td><td><strong><a href="https://www.precast.org/2022/06/ev-charging/" target="_blank" style="color:inherit">מבנה לתחנות EV</a></strong></td><td>הגנה על תשתית טעינת רכב חשמלי</td></tr>
+            <tr><td>89</td><td><strong><a href="https://www.float-inc.com/" target="_blank" style="color:inherit">סכרים זעירים מבטון</a></strong></td><td>שליטה בנחלים; נחלי ישראל</td></tr>
+            <tr><td>90</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">גשרים מודולריים חירום</a></strong></td><td>הרכבה בימים; שיקום מהיר</td></tr>
+            <tr><td>91</td><td><strong><a href="https://www.hardwallsystems.com/" target="_blank" style="color:inherit">מערכות מחילה (Crib Wall)</a></strong></td><td>קירות תא פתוח עם צמחייה</td></tr>
+            <tr><td>92</td><td><strong><a href="https://www.dezeen.com/2021/11/25/algae-building-facade-bioreactor/" target="_blank" style="color:inherit">KOLOS — אלמנטי חוף</a></strong></td><td>דור חדש טטרפודים; פחות בטון</td></tr>
+            <tr><td>93</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">פונטונים צפים מבטון</a></strong></td><td>מרינות; עמידים יותר מפלסטיק</td></tr>
+            <tr><td>94</td><td><strong><a href="https://www.litracon.hu/" target="_blank" style="color:inherit">פאנלים עמידי פיצוץ</a></strong></td><td>נפט/גז, צבאי, שגרירויות</td></tr>
+            <tr><td>95</td><td><strong><a href="https://www.concretecanvas.com/" target="_blank" style="color:inherit">תעלות השקיה דרוכות</a></strong></td><td>אוסטרליה, הודו; רלוונטי לנגב</td></tr>
+            <tr><td>96</td><td><strong><a href="https://www.smithmidland.com/sound-barriers" target="_blank" style="color:inherit">בסיסי מערכות סולאריות</a></strong></td><td>ייצוב + ללא עיגון; שמש ישראלית</td></tr>
+            <tr><td>97</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">חדרי תחנות חשמל (Substations)</a></strong></td><td>עמידות אש, מזג אוויר, ונדליזם</td></tr>
+            <tr><td>98</td><td><strong><a href="https://www.precast.org/" target="_blank" style="color:inherit">שוחות שסתומים (Valve Chambers)</a></strong></td><td>רשויות מים; מוצר תשתיתי בסיסי</td></tr>
+            <tr><td>99</td><td><strong><a href="https://www.ecovative.com/" target="_blank" style="color:inherit">מיקרו-דיור (Micro-Housing Pods)</a></strong></td><td>12–20 מ"ר; פתרון מהיר למחוסרי דיור</td></tr>
+            <tr><td>100</td><td><strong><a href="https://www.mamad.gov.il/" target="_blank" style="color:inherit">בטון גרפן (Graphene-Enhanced)</a></strong></td><td>Gerdau Graphene (2024); +חוזק, ‑20% מים</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 6: High Priority Opportunities ═══ -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>הזדמנויות עדיפות גבוהה לישראל</h2>
+      </div>
+
+      <p style="margin-bottom:20px">מתוך 100 המוצרים שנסקרו בפרק הקודם, ניתן לזהות היררכיה ברורה של עדיפות עסקית — בין מוצרים שיש לפתח מיידית לבין כאלה שמתאימים לטווח ארוך יותר. הסיווג מבוסס על ארבעה פרמטרים: (1) <strong>גודל השוק הישראלי</strong> — כמה כסף נמצא בנישה הזאת; (2) <strong>ריכוז התחרות</strong> — כמה קשה יהיה להיכנס; (3) <strong>ההלימה עם יכולות קיימות</strong> של שיכון ובינוי תעשיות; (4) <strong>הזמן לייצור ראשון</strong> — עד כמה מהיר ניתן להתחיל להרוויח. ⭐⭐⭐ = יש לפעול עוד 2025; ⭐⭐ = יש לתכנן ב-2025 ולבצע ב-2026; ⭐ = לחשוב על כך בטווח 3–7 שנים:</p>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-3">⭐⭐⭐ עדיפות עליונה</span></div>
+        <div class="opp-content">
+          <h4>סגמנטי TBM למטרו</h4>
+          <p>מטרו תל אביב $49B; 20 TBMs | <strong>פוטנציאל: עשרות מיליוני ₪/שנה</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-3">⭐⭐⭐ עדיפות עליונה</span></div>
+        <div class="opp-content">
+          <h4>קירות אקוסטיים</h4>
+          <p>כבישים 6, 1, 4; מסילות; רגולציה רעש | <strong>פוטנציאל: ₪50–200M/שנה</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-3">⭐⭐⭐ עדיפות עליונה</span></div>
+        <div class="opp-content">
+          <h4>צינורות דחיקה GRP</h4>
+          <p>ייצור מקומי לא קיים! | <strong>שוק פתוח לחלוטין</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-2">⭐⭐ עדיפות גבוהה</span></div>
+        <div class="opp-content">
+          <h4>יחידות אמבטיה PBU</h4>
+          <p>מלונות, מעונות סטודנטים | <strong>חיסכון עד 20 שבועות/פרויקט</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-2">⭐⭐ עדיפות גבוהה</span></div>
+        <div class="opp-content">
+          <h4>בסיסי מערכות סולאריות</h4>
+          <p>ישראל = שמש; תוכניות מדינה | <strong>שוק גדל מהיר</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-2">⭐⭐ עדיפות גבוהה</span></div>
+        <div class="opp-content">
+          <h4>מקלטים תת-קרקעיים</h4>
+          <p>ישראל = ייחודי; שוק בגידול | <strong>פוטנציאל: ₪10–50M/שנה</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-2">⭐⭐ עדיפות גבוהה</span></div>
+        <div class="opp-content">
+          <h4>מדרגות סדרתיות</h4>
+          <p>81,000+ יחידות/שנה; תקן אחיד | <strong>נפח גדול</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-2">⭐⭐ עדיפות גבוהה</span></div>
+        <div class="opp-content">
+          <h4>אדני רכבת + כבלה מובנית</h4>
+          <p>מטרו + רכבת ישראל | <strong>פוטנציאל: ₪20–80M/שנה</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-1">⭐ פוטנציאל ארוך טווח</span></div>
+        <div class="opp-content">
+          <h4>יחידות PPVC (דירות מודולריות)</h4>
+          <p>משבר דיור + מחסור כוח אדם | <strong>פוטנציאל גדול ארוך טווח</strong></p>
+        </div>
+      </div>
+
+      <div class="opp-row">
+        <div><span class="priority-badge priority-1">⭐ פוטנציאל ארוך טווח</span></div>
+        <div class="opp-content">
+          <h4>Double Tee לחניונים</h4>
+          <p>אשדוד, נמל, תחנות | <strong>חניונים גדולים</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 7: Strategic Meeting Topics ═══ -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2>נושאי פגישה אסטרטגית</h2>
+      </div>
+
+      <!-- 7.1 TBM -->
+      <h3 id="s7-1">7.1 אלמנטי TBM – מפעלים לייצור טבעות מנהרה</h3>
+
+      <p>פרויקט המטרו של תל אביב (M1/M2/M3) — שנכנס לשלב ביצוע 2025 עם ~20 מכונות TBM ופתיחה צפויה 2032 — עשוי להיות הזדמנות שמחייבת ייצור מקומי של טבעות מנהרה.</p>
+
+      <div class="callout amber">
+        <div class="callout-title">עלות פרויקט המטרו</div>
+        $49 מיליארד (מקור: ENR, 2024) — אחד מפרויקטי התשתית הגדולים בעולם כיום.
+      </div>
+
+      <h4>מה זו טבעת מנהרה?</h4>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot"></span> פרמטרים טכניים</div>
+          <ul>
+            <li>כל "טבעת" = 5–7 מקטעי בטון (Segments) + מקטע מפתח</li>
+            <li>מנהרה קוטר פנים 6.5 מ' = 6 Segments + Key</li>
+            <li>משקל כל Segment: 3–6 טון</li>
+            <li>בטון: B60–B80 + דיוק ±0.5 מ"מ</li>
+            <li>תפוקה נדרשת: 100–200 Segments/יום</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot green"></span> יצרנים מובילים בעולם</div>
+          <ul>
+            <li>Herrenknecht Formwork (גרמניה) — תבניות פלדה; Turnkey</li>
+            <li>CBE Group (צרפת) — מערכות Carousel Plant</li>
+            <li>AB Tunnelling (איטליה) — תבניות + אטמי עיגום</li>
+            <li>Technopref (צרפת) — 150,000+ Segments; 35 ק"מ</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-title">מסקנה</div>
+        שיכון ובינוי תעשיות כבר מייצרים Segments. ייתכן פוטנציאל להשיג חלק מהחוזים למטרו.
+      </div>
+
+      <!-- 7.2 Acoustic -->
+      <h3 id="s7-2">7.2 קירות אקוסטיים טרומיים (גדרות רעש)</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>פרמטר</th><th>טווח טיפוסי</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>NRC (ספיגה)</td><td>0.55–0.95</td></tr>
+            <tr><td>STC (הפחתת העברה)</td><td>30–50 dB</td></tr>
+            <tr><td>גובה מקסימלי</td><td>עד 6–8 מ'</td></tr>
+            <tr><td>עלות</td><td>$400–$1,200/מ"ר</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout red">
+        <div class="callout-title">פוטנציאל כניסה ברור</div>
+        כבישים 1, 4, 6 + הרחבות מסילות → ביקוש קבוע. בישראל לא אותר יצרן טרומי לפאנלים — שוק פתוח לכניסה.
+      </div>
+
+      <!-- 7.3 Energy -->
+      <h3 id="s7-3">7.3 קווי ייצור חסכוניים באנרגיה</h3>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">ממוצע ענפי (UK 2023)</div>
+          <div class="stat-value">58.21</div>
+          <div class="stat-sub">kWh/טון מוצר טרומי</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">עלות האנרגיה</div>
+          <div class="stat-value">15–25%</div>
+          <div class="stat-sub">מעלות הייצור</div>
+        </div>
+      </div>
+
+      <h4>אסטרטגיות חיסכון</h4>
+      <div class="info-card" style="margin: 12px 0;">
+        <ul>
+          <li>CO₂ Curing — שימוש ב-CO₂ במקום אדים</li>
+          <li>GGBS + מלט דק — החלפת 30–50% מלט פורטלנד</li>
+          <li>חשמל מתחדש — פנלים על גג המפעל</li>
+          <li>מעבר לאקסטרוזיה (Hollow Core) — הקו הנמוך ביותר באנרגיה</li>
+        </ul>
+      </div>
+
+      <!-- 7.4 Jacking Pipes -->
+      <h3 id="s7-4">7.4 צינורות דחיקה (Jacking Pipes) — שוק פתוח</h3>
+      <p>רק וולפמן ואקרשטיין מייצרים בישראל. ייצור מקומי GRP/FRP — <strong>לא קיים בישראל</strong>. פוטנציאל להיות יצרן ראשון.</p>
+
+      <div class="callout green">
+        <div class="callout-title">הזדמנות ייחודית</div>
+        שוק פתוח לחלוטין — ייצור GRP/FRP מקומי יכול להחליף יבוא יקר ולהעניק יתרון תחרותי משמעותי.
+      </div>
+
+      <!-- 7.5 Extruder -->
+      <h3 id="s7-5">7.5 מטילות — מכונות ייצור לוח"ד טרומי</h3>
+      <p>"מטילה" (Extruder) = המכונה שמניחה לוחות חלולים דרוכים לאורך מסלולי ייצור ארוכים.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>יצרן</th><th>מדינה</th><th>נתח שוק</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Elematic (E9 Extruder)</strong></td><td>פינלנד</td><td>~35%</td></tr>
+            <tr><td><strong>Nordimpianti (EVO)</strong></td><td>איטליה</td><td>~20%</td></tr>
+            <tr><td><strong>Weiler GmbH</strong></td><td>גרמניה</td><td>~15%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 7.6 Redi-Rock -->
+      <h3 id="s7-6">7.6 קופסאות לגו מבטון — Redi-Rock</h3>
+      <p>בלוקי לגו מבטון = אלמנטים גדולים (~1 טון) עם בליטה עליונה ושקע תחתון. הרכבה ללא מלט, ללא עיגון. קירות עד 7.3 מ' ללא גיאוגריד.</p>
+
+      <div class="callout">
+        <div class="callout-title">הזדמנות לרישיון</div>
+        לא אותר יצרן Redi-Rock מורשה בישראל. <strong>הזדמנות לרישיון ייצור + שיווק</strong>.
+      </div>
+
+      <!-- 7.7 Railway -->
+      <h3 id="s7-7">7.7 אדני רכבת — כולל אדנים לפרויקטי TBM</h3>
+      <p>M1/M2/M3 — עשרות ק"מ מנהרות; ייצור אדנים מקומי + אפשרות לכבלה מובנית.</p>
+
+      <!-- 7.8 Interlocking -->
+      <h3 id="s7-8">7.8 אבנים משתלבות (Interlocking Pavers)</h3>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">שוק 2024</div>
+          <div class="stat-value">$15.2B</div>
+          <div class="stat-sub">מיליארד דולר</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">תחזית 2031</div>
+          <div class="stat-value">$23.3B</div>
+          <div class="stat-sub">CAGR: 6.3%</div>
+        </div>
+      </div>
+
+      <h4>מגמות חדשניות</h4>
+      <div class="info-card" style="margin: 12px 0;">
+        <ul>
+          <li>PICP — Permeable Interlocking (ספיגת מי גשם)</li>
+          <li>Solar Pavers (פנלים PV משולבים)</li>
+          <li>Kinetic Energy (ייצור חשמל מדריסה)</li>
+        </ul>
+      </div>
+
+      <!-- 7.9 Stairs -->
+      <h3 id="s7-9">7.9 מדרגות מגדלים במידות קבועות</h3>
+      <p>תקן SI 1143 — מידות קבועות → ייצור סדרתי מלא. קצב הרכבה: 15–20 דקות לקומה.</p>
+
+      <!-- 7.10 Shooting Range -->
+      <h3 id="s7-10">7.10 מטווחי ירי — אפשרויות גלובליות</h3>
+      <p>רלוונטיות ישראלית: צה"ל, משטרה, שב"ס, להק"ל, וורנות ירי אזרחיות. הזדמנות: ספק פאנלים בליסטיים.</p>
+    </section>
+
+    <!-- ═══ SECTION 8: Conclusions ═══ -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2>סיכום והמלצות</h2>
+      </div>
+
+      <h3>ממצאים מרכזיים</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-title"><span class="dot"></span> שוק גלובלי</div>
+          <ul>
+            <li>$168B (2024) → $268B (2032)</li>
+            <li>ישראל: ~$1B עם פוטנציאל $1.4B</li>
+            <li>CAGR גלובלי: 4.47–6.6% (לפי מקור)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot amber"></span> מצב שיכון ובינוי תעשיות</div>
+          <ul>
+            <li>4 קווי ייצור קיימים</li>
+            <li>לוח"דים + מקטעי גשר</li>
+            <li>ISO 9001:2015 + קשרי שיכון ובינוי</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="card-title"><span class="dot red"></span> פערים מול מתחרים</div>
+          <ul>
+            <li>אין סגמנטי TBM (אשקריט מובילה)</li>
+            <li>אין קירות אקוסטיים</li>
+            <li>אין PBU / אין Redi-Rock</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>3 הזדמנויות מיידיות גבוהות ביותר</h3>
+
+      <div class="opp-row" style="border-color: var(--amber);">
+        <div><span class="priority-badge priority-3">1</span></div>
+        <div class="opp-content">
+          <h4>סגמנטי TBM — מטרו $49B</h4>
+          <p>דחוף; ייצור מקומי מול יבוא כבד. אשקריט מובילה — נדרש כניסה מהירה.</p>
+        </div>
+      </div>
+
+      <div class="opp-row" style="border-color: var(--blue);">
+        <div><span class="priority-badge priority-2">2</span></div>
+        <div class="opp-content">
+          <h4>קירות אקוסטיים — שוק פתוח</h4>
+          <p>אין יצרן טרומי ישראלי. ביקוש קבוע מכבישים ומסילות.</p>
+        </div>
+      </div>
+
+      <div class="opp-row" style="border-color: var(--green);">
+        <div><span class="priority-badge priority-1">3</span></div>
+        <div class="opp-content">
+          <h4>צינורות דחיקה GRP — שוק פתוח לחלוטין</h4>
+          <p>אין יצרן בישראל. פוטנציאל להיות יצרן ראשון ומוביל.</p>
+        </div>
+      </div>
+
+      <h3>הזדמנויות בינוניות</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
+        <span class="tag">PBU — יחידות אמבטיה</span>
+        <span class="tag">מדרגות סדרתיות</span>
+        <span class="tag">אדני רכבת</span>
+        <span class="tag amber">בסיסי סולאריים</span>
+        <span class="tag amber">מקלטי ביטחון</span>
+      </div>
+
+      <h3>הזדמנות ארוכת טווח</h3>
+      <div class="callout">
+        <div class="callout-title">PPVC — דירות מודולריות שלמות</div>
+        פתרון לזמן בנייה הגבוה (39 חודשים) + מחסור כוח אדם. דרישה להשקעה ראשונית גדולה ולשינוי תפיסת שוק.
+      </div>
+
+      <div class="sources">
+        <h4>מקורות עיקריים</h4>
+        <ul>
+          <li>NPCA — National Precast Concrete Association</li>
+          <li>PCI — Precast/Prestressed Concrete Institute</li>
+          <li>Elematic — Precast Equipment &amp; Products</li>
+          <li>Grand View Research — Precast Market</li>
+          <li>ENR — Israel Metro $49B</li>
+          <li>BCA Singapore — PPVC/PBU</li>
+          <li>אשקריט | רמט טרום | אקרשטיין</li>
+          <li>וולפמן | שיכון ובינוי תעשיות</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>דוח אסטרטגי — <strong>שיכון ובינוי תעשיות</strong></div>
+  <div><strong>Made by Salted Mind</strong> | דנה ממן | מרץ 2026</div>
+</footer>
+
+<script>
+  // Active sidebar highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#sidebar nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
