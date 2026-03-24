@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ניהול מפעלי שיכון ובינוי תעשיות — בטון וטרומי: 12 קטגוריות ניהול 2026</title>
+<style>
+:root{
+  --blue:#1a5276;--blue-l:#2471a3;--blue-bg:#eaf2fb;
+  --green:#1a7040;--green-l:#27ae60;--green-bg:#e9f7ef;
+  --orange:#b7550a;--orange-l:#e67e22;--orange-bg:#fef5e7;
+  --purple:#6c3483;--purple-l:#9b59b6;--purple-bg:#f4ecf7;
+  --teal:#0e6655;--teal-l:#1abc9c;--teal-bg:#e8f8f5;
+  --gray:#4a5568;--gray-bg:#f7f8fa;
+  --text:#1a202c;--text-md:#4a5568;--border:#dde1e7;--white:#fff;
+  --sidebar-w:270px;--header-h:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:15px;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:var(--text);line-height:1.75;direction:rtl;}
+#progress-bar{position:fixed;top:0;right:0;width:0%;height:3px;background:linear-gradient(90deg,#e67e22,#9b59b6);z-index:9999;transition:width .1s;}
+.topnav{position:fixed;top:3px;right:0;left:0;height:var(--header-h);background:var(--blue);display:flex;align-items:center;padding:0 20px;gap:16px;z-index:900;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+.topnav h1{color:#fff;font-size:.95rem;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.topnav .ver{color:rgba(255,255,255,.6);font-size:.72rem;white-space:nowrap;}
+.layout{display:flex;margin-top:calc(var(--header-h)+3px);height:calc(100vh - var(--header-h) - 3px);overflow:hidden;}
+.sidebar{flex-shrink:0;width:var(--sidebar-w);min-width:var(--sidebar-w);background:#fff;border-left:1px solid var(--border);overflow-y:auto;padding:16px 0 40px;z-index:800;}
+.sidebar-title{font-size:.68rem;font-weight:700;letter-spacing:.08em;color:var(--text-md);text-transform:uppercase;padding:0 14px 8px;margin-bottom:4px;border-bottom:1px solid var(--border);}
+.nav-group{margin-bottom:1px;}
+.nav-chapter{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:.8rem;font-weight:600;color:var(--text);cursor:pointer;border-right:3px solid transparent;transition:all .18s;text-decoration:none;}
+.nav-chapter:hover{background:#f0f2f5;}
+.nav-chapter.active{font-weight:700;border-right-color:currentColor;background:var(--active-bg,#f0f2f5);}
+.nav-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.nav-sub{display:flex;align-items:center;padding:4px 14px 4px 26px;font-size:.76rem;color:var(--text-md);cursor:pointer;text-decoration:none;transition:background .15s;}
+.nav-sub:hover{background:#f0f2f5;color:var(--text);}
+.c-blue{color:var(--blue);--active-bg:var(--blue-bg);}
+.c-green{color:var(--green);--active-bg:var(--green-bg);}
+.c-orange{color:var(--orange);--active-bg:var(--orange-bg);}
+.c-purple{color:var(--purple);--active-bg:var(--purple-bg);}
+.c-teal{color:var(--teal);--active-bg:var(--teal-bg);}
+.c-gray{color:var(--gray);--active-bg:var(--gray-bg);}
+.dot-blue{background:var(--blue);}
+.dot-green{background:var(--green);}
+.dot-orange{background:var(--orange);}
+.dot-purple{background:var(--purple);}
+.dot-teal{background:var(--teal);}
+.dot-gray{background:var(--gray);}
+.main{flex:1;min-height:0;padding:24px 32px 80px;max-width:1060px;overflow-y:auto;}
+.section-card{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:24px;overflow:hidden;}
+.card-header{padding:16px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:12px;}
+.card-header .ch-num{font-size:1.4rem;font-weight:800;opacity:.18;line-height:1;}
+.card-header h2{font-size:1.15rem;font-weight:700;line-height:1.3;}
+.card-header h3{font-size:.98rem;font-weight:700;line-height:1.3;}
+.card-body{padding:18px 22px 22px;}
+.card-body h3{font-size:.98rem;font-weight:700;margin:18px 0 8px;color:var(--text);}
+.card-body h4{font-size:.88rem;font-weight:700;margin:14px 0 6px;color:var(--text-md);}
+.card-body p{margin-bottom:10px;color:var(--text-md);}
+.card-body ul,.card-body ol{margin-bottom:10px;padding-right:20px;}
+.card-body li{margin-bottom:4px;color:var(--text-md);}
+.stripe-blue .card-header{border-right:5px solid var(--blue);background:var(--blue-bg);}
+.stripe-green .card-header{border-right:5px solid var(--green);background:var(--green-bg);}
+.stripe-orange .card-header{border-right:5px solid var(--orange);background:var(--orange-bg);}
+.stripe-purple .card-header{border-right:5px solid var(--purple);background:var(--purple-bg);}
+.stripe-teal .card-header{border-right:5px solid var(--teal);background:var(--teal-bg);}
+.stripe-gray .card-header{border-right:5px solid var(--gray);background:var(--gray-bg);}
+.summary-box{border-radius:8px;padding:13px 17px;margin-bottom:16px;border-right:4px solid;font-size:.87rem;line-height:1.7;}
+.summary-box strong{display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;opacity:.75;}
+.summary-box.blue{background:var(--blue-bg);border-color:var(--blue);color:#1a3a5c;}
+.summary-box.green{background:var(--green-bg);border-color:var(--green);color:#0f3d24;}
+.summary-box.orange{background:var(--orange-bg);border-color:var(--orange);color:#5c2a04;}
+.summary-box.purple{background:var(--purple-bg);border-color:var(--purple);color:#3d1c5c;}
+.summary-box.teal{background:var(--teal-bg);border-color:var(--teal);color:#073c32;}
+.tbl-wrap{overflow-x:auto;margin:12px 0;}
+table{width:100%;border-collapse:collapse;font-size:.83rem;}
+th{background:#2c3e50;color:#fff;padding:9px 11px;text-align:right;font-weight:600;white-space:nowrap;}
+td{padding:7px 11px;border-bottom:1px solid #eceff1;vertical-align:top;color:var(--text-md);}
+tr:nth-child(even) td{background:#f8fafc;}
+tr:hover td{background:#f0f4f8;}
+td strong{color:var(--text);}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0;}
+.kpi-card{background:#fff;border-radius:8px;padding:13px 14px;border-top:3px solid;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.kpi-card .val{font-size:1.4rem;font-weight:800;line-height:1.2;}
+.kpi-card .lbl{font-size:.73rem;color:var(--text-md);margin-top:4px;line-height:1.3;}
+.kpi-card .src{font-size:.68rem;color:#9ea8b5;margin-top:2px;}
+.kpi-card.blue{border-color:var(--blue);}
+.kpi-card.green{border-color:var(--green);}
+.kpi-card.orange{border-color:var(--orange);}
+.kpi-card.purple{border-color:var(--purple);}
+.kpi-card.teal{border-color:var(--teal);}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.71rem;font-weight:700;vertical-align:middle;}
+.badge-blue{background:var(--blue-bg);color:var(--blue);}
+.badge-green{background:var(--green-bg);color:var(--green);}
+.badge-orange{background:var(--orange-bg);color:var(--orange);}
+.badge-red{background:#fdedec;color:#c0392b;}
+.badge-gray{background:#ecf0f1;color:#5d6d7e;}
+.callout{border-radius:7px;padding:11px 15px;margin:12px 0;font-size:.84rem;line-height:1.65;display:flex;gap:10px;}
+.callout-icon{font-size:1.05rem;flex-shrink:0;margin-top:1px;}
+.callout.info{background:#ebf5fb;border:1px solid #aed6f1;color:#1a3a5c;}
+.callout.warning{background:#fef9e7;border:1px solid #f9e79f;color:#5c4806;}
+.callout.success{background:#eafaf1;border:1px solid #a9dfbf;color:#145a32;}
+.callout.tip{background:#f4ecf7;border:1px solid #d2b4de;color:#4a235a;}
+.chap-divider{display:flex;align-items:center;gap:12px;margin:36px 0 18px;padding:13px 18px;border-radius:10px;color:#fff;}
+.chap-divider .cn{font-size:1.8rem;font-weight:900;opacity:.3;line-height:1;}
+.chap-divider .ct{font-size:1.1rem;font-weight:700;line-height:1.3;}
+.chap-divider .cs{font-size:.8rem;opacity:.8;margin-top:2px;}
+.bg-blue{background:linear-gradient(135deg,var(--blue),var(--blue-l));}
+.bg-green{background:linear-gradient(135deg,var(--green),var(--green-l));}
+.bg-orange{background:linear-gradient(135deg,var(--orange),var(--orange-l));}
+.bg-purple{background:linear-gradient(135deg,var(--purple),var(--purple-l));}
+.bg-teal{background:linear-gradient(135deg,var(--teal),var(--teal-l));}
+.bg-gray{background:linear-gradient(135deg,var(--gray),#718096);}
+.cover{background:linear-gradient(135deg,#1a3a5c 0%,#1a5276 60%,#2471a3 100%);color:#fff;border-radius:12px;padding:38px 34px;margin-bottom:24px;}
+.cover h1{font-size:1.6rem;font-weight:800;margin-bottom:8px;line-height:1.3;}
+.cover .sub{font-size:.95rem;opacity:.8;margin-bottom:22px;}
+.cover .meta{display:flex;gap:16px;flex-wrap:wrap;}
+.cover .meta-item{background:rgba(255,255,255,.12);border-radius:6px;padding:7px 13px;font-size:.78rem;}
+.cover .meta-item strong{display:block;font-size:.95rem;font-weight:700;}
+/* Two division blocks per category */
+.division-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+.division-block{border-radius:8px;padding:16px 18px;border:2px solid;}
+.division-block.concrete{border-color:var(--blue);background:linear-gradient(135deg,#f0f6ff 0%,#eaf2fb 100%);}
+.division-block.precast{border-color:var(--green);background:linear-gradient(135deg,#f0fff6 0%,#e9f7ef 100%);}
+.division-block h4{font-size:.9rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.division-block.concrete h4{color:var(--blue);}
+.division-block.precast h4{color:var(--green);}
+.div-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#fff;flex-shrink:0;}
+.div-icon.c{background:var(--blue);}
+.div-icon.p{background:var(--green);}
+.division-block ul{padding-right:18px;font-size:.83rem;color:var(--text-md);}
+.division-block li{margin-bottom:5px;}
+.division-block p{font-size:.83rem;color:var(--text-md);margin-bottom:8px;}
+.world-case{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.world-case h4{font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.world-case .tag{font-size:.7rem;padding:2px 9px;border-radius:12px;font-weight:600;}
+.tag-concrete{background:var(--blue-bg);color:var(--blue);}
+.tag-precast{background:var(--green-bg);color:var(--green);}
+.world-case p{font-size:.84rem;color:var(--text-md);margin-bottom:6px;}
+.world-case table{font-size:.8rem;}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.timeline{position:relative;padding-right:26px;margin:10px 0;}
+.timeline::before{content:'';position:absolute;right:9px;top:8px;bottom:8px;width:2px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:18px;}
+.tl-dot{position:absolute;right:-20px;top:4px;width:13px;height:13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px currentColor;}
+.tl-label{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.tl-title{font-size:.92rem;font-weight:700;margin-bottom:3px;}
+.tl-body{font-size:.8rem;color:var(--text-md);}
+#btt{position:fixed;bottom:22px;left:22px;background:var(--blue);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.1rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;z-index:900;}
+#btt.show{opacity:1;pointer-events:all;}
+#btt:hover{background:var(--blue-l);}
+a{color:var(--blue-l);text-decoration:none;}
+a:hover{text-decoration:underline;}
+strong{color:var(--text);}
+@media print{.sidebar,.topnav,#btt,#progress-bar{display:none!important;}.main{padding:0;}.section-card{box-shadow:none;break-inside:avoid;}}
+@media(max-width:900px){.layout{flex-direction:column;height:auto;overflow:visible;}.sidebar{display:none;}.main{padding:16px;}.division-grid,.case-grid{grid-template-columns:1fr;}.cover .meta{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="topnav">
+  <h1>ניהול שיכון ובינוי תעשיות — בטון וטרומי: 12 קטגוריות ניהול</h1>
+  <span class="ver">מרץ 2026</span>
+</nav>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-title">תוכן העניינים</div>
+  <div class="nav-group">
+    <a href="#exec" class="nav-chapter c-blue"><span class="nav-dot dot-blue"></span>תקציר מנהלים</a>
+    <a href="#part-a" class="nav-chapter c-orange"><span class="nav-dot dot-orange"></span>א׳ — מקרים מוצלחים מהעולם</a>
+    <a href="#a-concrete" class="nav-sub">בטון מובא — CEMEX, Heidelberg, Holcim</a>
+    <a href="#a-precast" class="nav-sub">טרומי — Tindall, Webuild, FP McCann, High Concrete</a>
+    <a href="#a-lean" class="nav-sub">Lean Six Sigma — תוצאות מתועדות</a>
+  </div>
+  <div class="nav-group">
+    <a href="#part-b" class="nav-chapter c-blue"><span class="nav-dot dot-blue"></span>ב׳ — 12 קטגוריות ניהול</a>
+    <a href="#c1" class="nav-sub">1 · אסטרטגיה וממשל</a>
+    <a href="#c2" class="nav-sub">2 · פיננסים ותמחור</a>
+    <a href="#c3" class="nav-sub">3 · תפעול וייצור</a>
+    <a href="#c4" class="nav-sub">4 · לוגיסטיקה וצי</a>
+    <a href="#c5" class="nav-sub">5 · איכות ומעבדה</a>
+    <a href="#c6" class="nav-sub">6 · ניהול מידע וטכנולוגיה</a>
+    <a href="#c7" class="nav-sub">7 · מסחר, לקוחות ושיווק</a>
+    <a href="#c8" class="nav-sub">8 · משאבי אנוש והכשרה</a>
+    <a href="#c9" class="nav-sub">9 · בטיחות</a>
+    <a href="#c10" class="nav-sub">10 · חדשנות ושיפור מתמיד</a>
+    <a href="#c11" class="nav-sub">11 · רגולציה וסביבה</a>
+    <a href="#c12" class="nav-sub">12 · ניהול סיכונים</a>
+  </div>
+  <div class="nav-group">
+    <a href="#div-concrete" class="nav-chapter c-blue"><span class="nav-dot dot-blue"></span>ג׳ — חטיבת הבטון</a>
+    <a href="#div-precast" class="nav-chapter c-green"><span class="nav-dot dot-green"></span>ד׳ — מפעלי הטרומי</a>
+    <a href="#roadmap" class="nav-chapter c-orange"><span class="nav-dot dot-orange"></span>ה׳ — תוכנית לעשור</a>
+    <a href="#glossary" class="nav-chapter c-gray"><span class="nav-dot dot-gray"></span>מילון מונחים</a>
+    <a href="#sources" class="nav-chapter c-gray"><span class="nav-dot dot-gray"></span>מקורות</a>
+  </div>
+</aside>
+<main class="main" id="main-scroll">
+<button id="btt" onclick="document.getElementById('main-scroll').scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>ניהול מפעלי שיכון ובינוי תעשיות<br>בטון מובא ומפעלי טרומי — 12 קטגוריות ניהול</h1>
+  <p class="sub">מסמך אסטרטגי לעשור 2026–2036 · מבוסס על ניסיון עולמי ומחקר עדכני</p>
+  <div class="meta">
+    <div class="meta-item"><strong>12</strong>קטגוריות ניהול</div>
+    <div class="meta-item"><strong>2</strong>חטיבות: בטון + טרומי</div>
+    <div class="meta-item"><strong>מרץ 2026</strong>עודכן</div>
+    <div class="meta-item"><strong>10 שנים</strong>אופק תכנון</div>
+  </div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<section id="exec">
+<div class="section-card stripe-blue">
+  <div class="card-header"><span class="ch-num">00</span><h2>תקציר מנהלים</h2></div>
+  <div class="card-body">
+    <p>שיכון ובינוי תעשיות מפעילה שני ענפי ייצור משלימים: <strong>מפעלי בטון מובא (Ready-Mix)</strong> ו<strong>מפעלי טרומי (Precast)</strong>. שני הענפים שייכים לאותה שרשרת ערך — תשתית הבנייה — אך שונים זה מזה בלוגיקת הייצור, במבנה העלויות, בפרופיל הלקוח, ובקצב החדשנות. מסמך זה מציג מסגרת ניהולית מובנית ב-12 קטגוריות, כאשר <strong>בכל קטגוריה מוצגת גישה ייעודית לכל אחד משני הענפים.</strong></p>
+    <div class="callout info"><span class="callout-icon">💡</span><div><strong>הרציונל המרכזי:</strong> "הכל עובד אבל לא מנוהל מספיק טוב" — הניסיון העולמי מראה כי חברות שעברו ממצב תפעולי ל<strong>מרכז רווח מנוהל</strong> השיגו שיפור של 10–20% בתפוקה, חיסכון של 15–30% בעלויות, ושיפור ברווחיות התפעולית של 1–3 נקודות אחוז. <a href="https://www.bcg.com/publications/2024/new-approach-to-cost-and-growth-in-process-companies" target="_blank">BCG Process Industries 2024</a></div></div>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>מפעלי בטון מובא — מצב נוכחי</h4>
+        <ul>
+          <li>מוצר מתכלה: חיי מדף <strong>90 דקות</strong> בלבד</li>
+          <li>לוגיסטיקה קריטית: דיספצ'ינג + GPS + eTicketing</li>
+          <li>עלות שולטת: צמנט 35–45% מהעלות הכוללת</li>
+          <li>Benchmark: OEE &gt;85%, On-Time Delivery &gt;97%</li>
+          <li>שוק ישראל: ~175 מפעלים, ~55 חברות; ריכוזיות גבוהה</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>מפעלי טרומי — מצב נוכחי</h4>
+        <ul>
+          <li>מוצר עמיד: מיוצר במפעל, מותקן באתר עם עגורן</li>
+          <li>מחזור ייצור: יציקה → ריפוי (24–72 שעות) → עיבוד → אחסון → הובלה</li>
+          <li>עלות שולטת: עבודה 30–35%, תבניות 10–15%</li>
+          <li>Benchmark: ניצול מצע &gt;80%, זמן מחזור &lt;24 שעות</li>
+          <li>שוק ישראל: ~₪3.5–4 מיליארד/שנה; אשקריט, רמט טרום, ש.ו.ב. תעשיות</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card blue"><div class="val">12.9%</div><div class="lbl">צמיחת שוק הבנייה ישראל 2025</div><div class="src"><a href="https://www.globaldata.com" target="_blank">GlobalData</a></div></div>
+      <div class="kpi-card green"><div class="val">$168B</div><div class="lbl">שוק הטרומי הגלובלי 2024</div><div class="src"><a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">Grand View Research</a></div></div>
+      <div class="kpi-card orange"><div class="val">₪32.5B</div><div class="lbl">תקציב שיקום דרום + צפון</div><div class="src">ממשלת ישראל 2025</div></div>
+      <div class="kpi-card teal"><div class="val">$49B</div><div class="lbl">פרויקט המטרו תל אביב</div><div class="src"><a href="https://www.enr.com/articles/62509-major-procurement-process-begins-for-israels-49b-tel-aviv-metro" target="_blank">ENR 2024</a></div></div>
+      <div class="kpi-card purple"><div class="val">39 חו'</div><div class="lbl">זמן בנייה ממוצע ישראל 2024 (+77% מ-1998)</div><div class="src">נתוני ענף</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PART A: WORLD SUCCESS STORIES -->
+<div id="part-a" class="chap-divider bg-orange">
+  <span class="cn">א</span>
+  <div><div class="ct">תהליכים אסטרטגיים מוצלחים בעולם</div>
+  <div class="cs">מקרי מופת בבטון מובא ובטרומי — עם נתונים, לקחים וקישורים</div></div>
+</div>
+
+<!-- Concrete World Cases -->
+<section id="a-concrete">
+<div class="section-card stripe-orange">
+  <div class="card-header"><span class="ch-num">א1</span><h3>מודלים מוצלחים — בטון מובא</h3></div>
+  <div class="card-body">
+    <div class="callout info"><span class="callout-icon">📌</span><div>חברות ייעוץ מובילות זיהו באופן עקבי שורה של תהליכים המבדילים בין חברות תעשייתיות מצליחות לחברות שנשארות מאחור. להלן הממצאים המרכזיים מ-2024–2025.</div></div>
+    <div class="tbl-wrap"><table>
+      <tr><th>מקור</th><th>ממצא עיקרי</th><th>נתונים</th><th>יישום</th></tr>
+      <tr><td><a href="https://www.deloitte.com" target="_blank">Deloitte Smart Manufacturing 2025</a></td><td>85%+ מהמפעלים רואים ב-Smart Factory את מנוע התחרות. ייצור המשתמש בחיישנים, נתונים ואוטומציה</td><td>שיפור 10–12% בתפוקה ובפריון</td><td>דיגיטליזציה מדורגת: הזמנות → דיספצ'ינג → OEE → תחזוקה מנבאת</td></tr>
+      <tr><td><a href="https://www.bain.com" target="_blank">Bain – Digital Lean</a></td><td>שילוב Lean עם כלים דיגיטליים מניב תוצאות טובות בהרבה מ-Lean בלבד</td><td>~30% הפחתת עלויות לעומת ~15% מ-Lean קלאסי</td><td>שילוב עקרונות Lean עם דשבורדים דיגיטליים</td></tr>
+      <tr><td><a href="https://www.bcg.com/publications/2024/new-approach-to-cost-and-growth-in-process-companies" target="_blank">BCG 2024 – Process Industries</a></td><td>גישת end-to-end לניתוח עלויות מכפילה את החיסכון לעומת שיפורים נקודתיים</td><td>חיסכון 10–20%; שיפור EBITDA ב-1–3 נ"א</td><td>ניתוח עלויות הוליסטי: רכש, ייצור, לוגיסטיקה, מכירות</td></tr>
+      <tr><td><a href="https://www.mckinsey.com/industries/engineering-construction-and-building-materials" target="_blank">McKinsey 2025 – SCMs</a></td><td>חומרים מצמנטיים משלימים = מנוע צמיחה חדש שמפחית עלויות ופליטות</td><td>שוק SCMs: $15–30B → $40–60B עד 2035</td><td>הכנה לשימוש מוגבר ב-SCMs כתחליפי צמנט</td></tr>
+    </table></div>
+
+    <div class="case-grid">
+      <div class="world-case">
+        <h4>CEMEX <span class="tag tag-concrete">בטון מובא</span></h4>
+        <p>חברת הצמנט והבטון המקסיקנית — מודל ראשון מסוגו לטרנספורמציה דיגיטלית בתעשייה כבדה.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>מדד</th><th>נתון</th><th>מקור</th></tr>
+          <tr><td>NPS (שביעות רצון)</td><td><strong>74</strong></td><td><a href="https://www.cemex.com/w/cemex-showcases-significant-operational-and-sustainability-advancements-in-its-2024-integrated-report" target="_blank">CEMEX Integrated Report 2024</a></td></tr>
+          <tr><td>Cemex Go – אימוץ</td><td>96% לקוחות חוזרים; 45% מכירות דיגיטליות</td><td><a href="https://www.cemexusa.com/-/cemex-completes-deployment-of-cemex-go-with-customers-worldwide" target="_blank">CEMEX Go – פריסה גלובלית</a></td></tr>
+          <tr><td>תוכנית Cutting Edge</td><td>הפחתת עלויות במנהלה, הפצה ולוגיסטיקה: מאות מיליוני $ חיסכון</td><td>CEMEX Annual Report</td></tr>
+        </table></div>
+        <p><strong>לקחים:</strong> פלטפורמה אחת מקצה לקצה · עוזר מכירות AI (Technical Xpert) · הדרגתיות: פיילוט → הכפלה → הרחבה. <a href="https://news.microsoft.com/source/latam/features/ai/cemex-technical-xpert-copilot/?lang=en" target="_blank">Microsoft News, 2024</a></p>
+      </div>
+      <div class="world-case">
+        <h4>Heidelberg Materials <span class="tag tag-concrete">בטון מובא</span></h4>
+        <p>חברת חומרי הבנייה הגדולה בעולם (בעלי הנסון ישראל) — אסטרטגיה 2030 עם יעדים כמותיים ברורים.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>יעד</th><th>ערך</th><th>מקור</th></tr>
+          <tr><td>חיסכון שנתי – Transformation Accelerator</td><td><strong>€500 מיליון</strong> עד סוף 2026</td><td><a href="https://www.heidelbergmaterials.com/en/strategy" target="_blank">Strategy 2030</a></td></tr>
+          <tr><td>צמיחת הכנסות שנתית</td><td>7–10%</td><td><a href="https://www.heidelbergmaterials.com/en/investor-relations" target="_blank">Investor Relations</a></td></tr>
+          <tr><td>הכנסות מוצרים בני-קיימא</td><td>&gt;50% עד 2030</td><td>Strategy 2030</td></tr>
+        </table></div>
+        <p><strong>לקחים:</strong> תוכנית ייעול עם יעד כספי ברור · Benchmark פנימי בין מפעלים · אסטרטגיית קיימות כמנוף מסחרי.</p>
+      </div>
+      <div class="world-case">
+        <h4>Holcim – ECOPact <span class="tag tag-concrete">בטון מובא</span></h4>
+        <p>חברת הצמנט השוויצרית מובילה בתחום הבטון הירוק המסחרי.</p>
+        <ul>
+          <li><strong>ECOPact</strong> — <strong>לפחות 30% הפחתת CO₂</strong> מול בטון CEM I, ללא ויתור על ביצועים. <a href="https://www.holcim.com/what-we-do/our-building-solutions/ready-mix-concrete/ecopact" target="_blank">Holcim ECOPact</a></li>
+          <li>פורטפוליו "מוצר" ממותג שמקצר מחזור מכירה ומאפשר שיחה עסקית על ערך סביבתי</li>
+          <li><strong>לקח:</strong> הפיכת קיימות לקו מוצר בעל מחיר פרימיום — לא "שדרוג בטון"</li>
+        </ul>
+      </div>
+      <div class="world-case">
+        <h4>ישראבטון — מעבדה מרכזית <span class="tag tag-concrete">ישראל</span></h4>
+        <p>מפעלי בטון ישראליים — מודל מעבדה מרושתת לבקרת איכות בזמן אמת.</p>
+        <ul>
+          <li>מעבדה מרכזית בבני ברק מרושתת on-line עם כל 10 המפעלים</li>
+          <li>בקרה מרחוק בזמן אמת על תוצאות קוביות, Slump, ותבניות</li>
+          <li>הסמכת ISO 9001 — <a href="https://www.israbeton.co.il" target="_blank">israbeton.co.il</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Precast World Cases -->
+<section id="a-precast">
+<div class="section-card stripe-green">
+  <div class="card-header"><span class="ch-num">א2</span><h3>מודלים מוצלחים — טרומי (Precast)</h3></div>
+  <div class="card-body">
+    <div class="callout success"><span class="callout-icon">🏗️</span><div>ענף הטרומי עובר טרנספורמציה גלובלית: מייצור סדרתי של אלמנטים סטנדרטיים ל<strong>פתרונות בנייה שלמים</strong> עם BIM, אוטומציה, ו-DfMA (Design for Manufacturing and Assembly). חברות שאימצו מודל זה מדווחות על קיצור של 30–50% בזמן בנייה וחיסכון של 20–35% בעלויות עבודה.</div></div>
+    <div class="case-grid">
+      <div class="world-case">
+        <h4>Tindall Corporation — ארה"ב <span class="tag tag-precast">טרומי</span></h4>
+        <p>אחד מיצרני הטרומי הגדולים בארה"ב, עם 11 מפעלים ב-7 מדינות. ידוע בחדשנות בייצור ובשיתופי פעולה עם מהנדסים בשלב התכנון.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>מאפיין</th><th>פרטים</th></tr>
+          <tr><td>פרויקטים בולטים</td><td>גשרים, חניונים, מבנים ציבוריים — Design-Assist בכולם</td></tr>
+          <tr><td>גישת BIM</td><td>מודל BIM מלא מהשלב המוקדם; מזעור שגיאות ותיקונים באתר</td></tr>
+          <tr><td>תוכנית איכות</td><td>הסמכת PCI (Precast/Prestressed Concrete Institute)</td></tr>
+        </table></div>
+        <p><strong>לקח:</strong> Design-Assist — מעורבות מוקדמת בתכנון = הזדמנות לשיפור ערך + הגדלת נתח בפרויקט. <a href="https://www.tindallcorp.com" target="_blank">tindallcorp.com</a></p>
+      </div>
+      <div class="world-case">
+        <h4>Gulf Precast — UAE <span class="tag tag-precast">טרומי</span></h4>
+        <p>יצרן מוביל במפרץ הפרסי — מדגים קיבולות שישראל טרם הגיעה אליהן.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>מדד</th><th>ערך</th></tr>
+          <tr><td>קיבולת יצור</td><td><strong>1,240 מ"ק/יום</strong> — 4 מפעלים</td></tr>
+          <tr><td>מוצרים</td><td>לוח"דים, קורות, עמודים, פאנלים, אלמנטים אדריכליים</td></tr>
+          <tr><td>לקוחות</td><td>פרויקטים גדולים ב-UAE, סעודיה, קטר</td></tr>
+        </table></div>
+        <p><strong>לקח:</strong> גידול מהיר בקיבולת על ידי הוספת קווי ייצור סדרתיים + אוטומציה של שלבי הרמה והעברה. <a href="https://www.gulfprecast.ae" target="_blank">gulfprecast.ae</a></p>
+      </div>
+      <div class="world-case">
+        <h4>Singapore BCA – DfMA Revolution <span class="tag tag-precast">טרומי</span></h4>
+        <p>סינגפור — מדיניות ממשלתית שהפכה את הטרומי לסטנדרט הבנייה הלאומי.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>יעד</th><th>ביצוע</th><th>מקור</th></tr>
+          <tr><td>אימוץ DfMA עד 2025</td><td><strong>65%</strong> מהפרויקטים הציבוריים</td><td><a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma" target="_blank">BCA Singapore</a></td></tr>
+          <tr><td>יחידות אמבטיה PBU</td><td>חיסכון עד <strong>20 שבועות</strong> בפרויקט</td><td><a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma/prefabricated-bathroom-unit" target="_blank">BCA PBU Guide</a></td></tr>
+          <tr><td>PPVC — יחידות מודולריות שלמות</td><td>הרכבת קומה שלמה בימים</td><td><a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma/prefabricated-prefinished-volumetric-construction" target="_blank">BCA PPVC</a></td></tr>
+        </table></div>
+        <p><strong>לקח לישראל:</strong> כאשר ממשלה מחייבת DfMA בפרויקטים ציבוריים, הביקוש לטרומי קופץ. ישראל נמצאת בנקודת זמן דומה עם עומס הדיור ומחסור הכוח אדם.</p>
+      </div>
+      <div class="world-case">
+        <h4>Elematic – פינלנד <span class="tag tag-precast">טרומי — ציוד וטכנולוגיה</span></h4>
+        <p>יצרן ציוד מוביל למפעלי טרומי — מגדיר את הסטנדרטים הגלובליים לקווי ייצור לוח"ד.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>קו ייצור</th><th>תפוקה שנתית</th><th>השקעה</th></tr>
+          <tr><td>EDGE (כניסה לשוק)</td><td>70,000–150,000 מ"ר</td><td>€3–5M</td></tr>
+          <tr><td>PRO (בינוני)</td><td>150,000–400,000 מ"ר</td><td>€6–12M</td></tr>
+          <tr><td>SEMI (גדול)</td><td>400,000–750,000 מ"ר</td><td>€12–25M</td></tr>
+        </table></div>
+        <p><strong>לקח:</strong> מערכת EMMA (Enterprise Manufacturing Management) של Elematic — תוכנה ייעודית לניהול ייצור טרומי, מהזמנה ועד משלוח. <a href="https://www.elematic.com" target="_blank">elematic.com</a></p>
+      </div>
+      <div class="world-case">
+        <h4>Webuild Roboplant — איטליה <span class="tag tag-precast">טרומי — אוטומציה מלאה</span></h4>
+        <p>אחד ממפעלי הטרומי האוטומטיים ביותר בעולם — נבנה לייצור סגמנטי מנהרה לתשתיות מגה. המפעל מוכיח שאוטומציה בקנה מידה גדול מניבה גם פריון גבוה וגם יתרון סביבתי.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>מדד</th><th>ביצוע</th><th>הסבר</th></tr>
+          <tr><td>מהירות ייצור</td><td><strong>סגמנט אחד כל 7 דקות</strong> (2 סגמנטים/מחזור)</td><td>48 טבעות מנהרה ביום</td></tr>
+          <tr><td>קיבולת כוללת</td><td>3.5 מיליון מ"ק בטון; 300 ק"מ מנהרות</td><td>4 מפעלים (Belpasso, Bovino, Etnaplant, Dittaino)</td></tr>
+          <tr><td>ערך ייצור</td><td><strong>€1.2 מיליארד</strong></td><td>Roboplant 1 — ~25,000 סגמנטים הופקו עד כה</td></tr>
+          <tr><td>תעסוקה</td><td>~450 משרות בארבעת המתקנים</td><td>ייצור + לוגיסטיקה + הנדסה</td></tr>
+        </table></div>
+        <p><strong>לקח:</strong> כאשר יש פרויקט תשתית בסדר גודל של מטרו תל אביב — מפעל ייעודי אוטומטי (Dedicated Factory) הוא המודל הכדאי. <a href="https://www.webuildgroup.com/en/roboplant-automated-environmentally-friendly-pre-cast-concrete-segment-factory/" target="_blank">Webuild Roboplant</a></p>
+      </div>
+      <div class="world-case">
+        <h4>FP McCann — בריטניה <span class="tag tag-precast">טרומי — חדשנות וקיימות</span></h4>
+        <p>יצרן הטרומי הגדול בבריטניה: 13 מפעלים, ~1,700 עובדים, ותוכנית השקעות של £90 מיליון. חלוץ בשילוב קיימות, דיגיטציה ומוצרים פורצי דרך.</p>
+        <ul>
+          <li><strong>פיתוח מוצר ראשוני:</strong> טרומי ללא צמנט (Geopolymer Binder) — <strong>הפחתת 80% CO₂</strong> לעומת Portland רגיל</li>
+          <li><strong>אנרגיה:</strong> מפעל גגות £30M פועל על <strong>100% אנרגיה סולארית</strong></li>
+          <li><strong>דיגיטציה:</strong> מניטור אנרגיה פנימי על כל המפעלים + AI ו-Digital Twins</li>
+          <li><strong>השקעה:</strong> £90M להרחבת מפעלים ופיתוח קווי מוצר חדשים (100+ משרות נוספות)</li>
+        </ul>
+        <p><strong>לקח לישראל:</strong> קיימות היא לא רק נטל רגולטורי — היא יתרון שיווקי. מפעל טרומי שיכול לספק EPD (Environmental Product Declaration) מנצח במכרזים ציבוריים. <a href="https://fpmccann.co.uk/about-us-2/" target="_blank">FP McCann About</a> | <a href="https://fpmccann.co.uk/portfolio-items/how-fp-mccann-is-driving-construction-innovation-through-systemised-design-and-build/" target="_blank">Innovation</a></p>
+      </div>
+      <div class="world-case">
+        <h4>High Concrete Group — ארה"ב <span class="tag tag-precast">טרומי — שינוי אסטרטגי</span></h4>
+        <p>75+ שנות ניסיון בטרומי מאז 1957. ב-2019 ביצעה High Concrete Group פיבוט אסטרטגי מרחיק לכת: עברה מטרומי מבני (חניונים) לטרומי אדריכלי (Architectural Precast) בעל מרווח גבוה יותר.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>שלב</th><th>פעולה</th><th>תוצאה</th></tr>
+          <tr><td>שנה 1–2</td><td>נסיעה לארה"ב ואירופה לאיתור שיטות עבודה מיטביות</td><td>הבנת המודל העסקי של Architectural Precast</td></tr>
+          <tr><td>שנה 3</td><td>השקעה של <strong>$8 מיליון</strong> בחידוש קו הייצור</td><td>מערכות ערבול, ציביעה וגימור ברמה עולמית</td></tr>
+          <tr><td>2023</td><td>3 פרסי PCI Design Awards (בתי ספר, חניון, תיאטרון)</td><td>הכרה ענפית כמוביל אדריכלי</td></tr>
+        </table></div>
+        <p><strong>לקח:</strong> המעבר מ"טרומי סטנדרטי" ל"טרומי אדריכלי" מכפיל מרווחים מבלי להוסיף קיבולת ייצור — רק ציוד ומיומנויות אחרים. <a href="https://www.globenewswire.com/news-release/2019/07/17/1884176/0/en/High-Concrete-Group-Kicks-off-8-Million-Manufacturing-Revitalization-Aimed-at-Architectural-Precast-Market.html" target="_blank">High Concrete $8M Revitalization (GlobeNewswire)</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Lean Six Sigma -->
+<section id="a-lean">
+<div class="section-card stripe-orange">
+  <div class="card-header"><span class="ch-num">א3</span><h3>Lean Six Sigma בתעשיית הבטון — תוצאות מתועדות</h3></div>
+  <div class="card-body">
+    <p>Lean Six Sigma משלבת שני עקרונות: <strong>Lean</strong> (הפחתת בזבוז וזרימה רציפה) ו-<strong>Six Sigma</strong> (הפחתת שונות וליקויים). מתודולוגיית DMAIC — Define, Measure, Analyze, Improve, Control — היא "צינור עבודה" שממיר בעיה תפעולית לשיפור מדיד שנשמר לאורך זמן.</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>Case Study</th><th>מיקום</th><th>מתודולוגיה</th><th>תוצאה</th><th>מקור</th></tr>
+      <tr><td>ייצור פאנלים טרומיים</td><td>סעודיה</td><td>Lean Six Sigma (DMAIC)</td><td>קפיצה מ-18 ל-<strong>75 פאנלים ליום</strong></td><td><a href="https://www.academia.edu" target="_blank">Bechtel / Academia.edu</a></td></tr>
+      <tr><td>מפעל בלוקי בטון</td><td>—</td><td>Six Sigma (DMAIC)</td><td>פסולת מ-18% ל-<strong>2%</strong>; ביטול השבתות</td><td><a href="https://www.emerald.com" target="_blank">Emerald Insight</a></td></tr>
+      <tr><td>טחינת צמנט</td><td>מצרים</td><td>Lean Six Sigma</td><td>תפוקה מ-&lt;50% ל-<strong>87%</strong>; +5,000 טון/שנה; <strong>$750K רווח שנתי</strong></td><td><a href="https://www.isssp.org" target="_blank">ISSSP</a></td></tr>
+      <tr><td>שיפור פריון — צמנט</td><td>הודו</td><td>Lean (5S, Kaizen, TPM)</td><td>שיפור ביעילות ציוד כוללת (OEE)</td><td><a href="https://pmc.ncbi.nlm.nih.gov" target="_blank">PMC/NIH 2025</a></td></tr>
+      <tr><td>מפעל טרומי — מחזור תבניות</td><td>אירופה</td><td>Value Stream Mapping</td><td>קיצור 40% בזמן הכנת תבנית</td><td><a href="https://www.npca.org" target="_blank">NPCA Best Practices</a></td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- PART B: 12 CATEGORIES -->
+<div id="part-b" class="chap-divider bg-blue">
+  <span class="cn">ב</span>
+  <div><div class="ct">המסגרת האסטרטגית — 12 קטגוריות ניהול</div>
+  <div class="cs">כל קטגוריה כוללת הסבר מפורט + גישה ייעודית לבטון מובא ולמפעלי טרומי</div></div>
+</div>
+
+<!-- C1: Strategy -->
+<section id="c1">
+<div class="section-card stripe-blue">
+  <div class="card-header"><span class="ch-num">01</span><h2>קטגוריה 1 — אסטרטגיה וממשל</h2></div>
+  <div class="card-body">
+    <p>הגדרת ה<strong>מרכז רווח (Profit Center)</strong> היא הצעד היסודי ביותר — בלעדיה כל שאר הקטגוריות נסמכות על הנחות אוויר. מרכז רווח פירושו: יחידה ארגונית שמדווחת על <strong>הכנסות + הוצאות = רווח</strong>, עם אחריות מלאה ועם סמכויות להשפיע. להלן מה נדרש:</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>פורום</th><th>תדירות</th><th>משתתפים</th><th>תוכן</th></tr>
+      <tr><td><strong>הנהלת חטיבה</strong></td><td>שבועית</td><td>מנהל חטיבה, מנהלי מפעלים, מנהל צי, מנהל איכות</td><td>KPI שוטפים, חריגות, תכנון שבועי</td></tr>
+      <tr><td><strong>דיון פיננסי</strong></td><td>חודשית</td><td>מנהל חטיבה, סמנכ"ל כספים, בקר</td><td>P&L, עלויות, רווחיות</td></tr>
+      <tr><td><strong>ועדה אסטרטגית</strong></td><td>רבעונית</td><td>מנהל חטיבה, CEO, CFO</td><td>ביצועים vs יעדים, השקעות</td></tr>
+      <tr><td><strong>סקירה שנתית</strong></td><td>שנתית</td><td>דירקטוריון/הנהלת קבוצה</td><td>תוכנית עסקית, תקציב, השקעות</td></tr>
+    </table></div>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — אסטרטגיה</h4>
+        <ul>
+          <li><strong>מחירי העברה (Transfer Pricing):</strong> מכירה לפרויקטים פנימיים במחיר שוק (arm's length) — B-30 ≈ 480 ש"ח/מ"ק</li>
+          <li>הגדרת פיצול: % מכירות לשוק פתוח vs פרויקטים פנימיים</li>
+          <li>יעדי Contribution Margin: &gt;25%; EBITDA: &gt;15%</li>
+          <li>יעדי נפח: מ"ק/שנה לפי מפעל ולפי אזור</li>
+          <li>אסטרטגיית כניסה למחצבות: אינטגרציה אנכית להבטחת אספקה</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — אסטרטגיה</h4>
+        <ul>
+          <li><strong>Design-Assist:</strong> מעורבות בשלב התכנון לשיפור ה-DfMA ולהגדלת נתח בפרויקט</li>
+          <li>אסטרטגיית מוצרים: מה לייצר סדרתי (לוח"דים, מדרגות) vs מה לפי דרישה</li>
+          <li>יעדי m²/שנה לפי קו ייצור; ניצול מצע &gt;80%</li>
+          <li>חוזים ארוכי טווח (3–5 שנים) עם קבלנים ראשיים — יציבות הכנסות</li>
+          <li>הגדרת מוצרי עדיפות לצמיחה: TBM segments, קירות אקוסטיים, PBU</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card blue"><div class="val">&gt;25%</div><div class="lbl">Contribution Margin יעד</div></div>
+      <div class="kpi-card blue"><div class="val">&gt;15%</div><div class="lbl">EBITDA Margin יעד</div></div>
+      <div class="kpi-card green"><div class="val">&gt;80%</div><div class="lbl">ניצול מצע טרומי</div></div>
+      <div class="kpi-card green"><div class="val">3–5 שנ'</div><div class="lbl">משך חוזים מועדפים טרומי</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- C2: Finance -->
+<section id="c2">
+<div class="section-card stripe-green">
+  <div class="card-header"><span class="ch-num">02</span><h2>קטגוריה 2 — פיננסים ותמחור</h2></div>
+  <div class="card-body">
+    <p>ניהול פיננסי מעמיק מחייב <strong>מיפוי מלא של מבנה העלות</strong> — בשני הענפים. ללא ידיעה מדויקת של עלויות, אין אפשרות לתמחר נכון, למדוד רווחיות, או לזהות הזדמנויות לחיסכון.</p>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — מבנה עלות למ"ק</h4>
+        <p style="font-size:.8rem;margin-bottom:8px;">מחיר ממוצע B-30: 400–550 ש"ח/מ"ק בישראל</p>
+        <table style="font-size:.79rem;">
+          <tr><th>רכיב</th><th>%</th></tr>
+          <tr><td>צמנט</td><td>35–45%</td></tr>
+          <tr><td>אגרגטים</td><td>15–20%</td></tr>
+          <tr><td>הובלה (דלק + שחיקה)</td><td>15–20%</td></tr>
+          <tr><td>עבודה (מפעל + נהגים)</td><td>10–15%</td></tr>
+          <tr><td>אנרגיה</td><td>3–5%</td></tr>
+          <tr><td>מוספים</td><td>3–5%</td></tr>
+          <tr><td>תחזוקה + פחת</td><td>6–10%</td></tr>
+          <tr><td>הוצאות כלליות</td><td>5–8%</td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — מבנה עלות למ"ר</h4>
+        <p style="font-size:.8rem;margin-bottom:8px;">מחיר ממוצע לוח"ד: ₪150–350/מ"ר תלוי עובי ומוצר</p>
+        <table style="font-size:.79rem;">
+          <tr><th>רכיב</th><th>%</th></tr>
+          <tr><td>חומרי גלם (בטון + פלדה)</td><td>25–35%</td></tr>
+          <tr><td>עבודה (יציקה, עיבוד, גימור)</td><td>30–35%</td></tr>
+          <tr><td>פחת תבניות ומכונות</td><td>10–15%</td></tr>
+          <tr><td>הובלה ועגורן</td><td>10–15%</td></tr>
+          <tr><td>אנרגיה (ריפוי, כלים)</td><td>5–8%</td></tr>
+          <tr><td>תחזוקה + פחת</td><td>5–7%</td></tr>
+          <tr><td>הוצאות כלליות</td><td>5–8%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout info"><span class="callout-icon">📊</span><div><strong>ההבדל המרכזי:</strong> בבטון מובא, <strong>צמנט</strong> הוא הרכיב הגדול ביותר ונרכש ברציפות. בטרומי, <strong>פחת תבניות</strong> הוא עלות הון ייחודית — תבנית ספציפית עולה €10k–500k ויש להפחיתה על פני 500–2,000 שימושים. תמחור שגוי של פחת תבניות = הפסד בלתי נראה.</div></div>
+    <div class="summary-box orange"><strong>כלכלת תבניות (Mold Economics) — נתונים עולמיים</strong>
+      <strong>תבניות פלדה:</strong> עלות ראשונית $50,000–200,000+ לתבנית. אורך חיים: 150–500+ שימושים. בפרויקטים שמשתמשים בתבניות בעלות עמידות גבוהה (100+ שימושים) חוסכים <strong>15–20%</strong> בעלויות חומרים ועבודה לאורך חיי הפרויקט לעומת תבניות זולות יותר עם 10–15 שימושים בלבד. הגדלת נפח ההזמנה מפחיתה עלות ליחידה ב-<strong>10–30%</strong> — כי ציוד, תבניות ומחזורי ייצור מאופטמלים לחזרתיות.
+      <br><br><strong>פרמיית הטרומי:</strong> פאנלי טרומי נמכרים ב-<strong>$450–750/יארד³</strong> לעומת $150–250/יארד³ לבטון מובא — פרמיה של <strong>2–4× על כל יחידת נפח</strong>. זו ההצדקה הפיננסית העיקרית להשקעה במפעל טרומי לעומת הרחבת מפעל בטון מובא. <a href="https://omegaprecast.com/blog/precast-concrete-cost/" target="_blank">Omega Precast Cost Breakdown 2025</a> | <a href="https://lockesolutions.com/how-much-does-precast-concrete-cost/" target="_blank">Locke Solutions</a>
+    </div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>בטון מובא</th><th>טרומי</th><th>תדירות</th></tr>
+      <tr><td>עלות ייצור ביחידה</td><td>עלות COGS/מ"ק</td><td>עלות/מ"ר</td><td>חודשית</td></tr>
+      <tr><td>מחיר ממוצע ביחידה</td><td>הכנסות/מ"ק</td><td>הכנסות/מ"ר</td><td>חודשית</td></tr>
+      <tr><td>Spread (מרווח)</td><td>מחיר – עלות/מ"ק</td><td>מחיר – עלות/מ"ר</td><td>חודשית</td></tr>
+      <tr><td>עלות תבנית/שימוש</td><td>לא רלוונטי</td><td>עלות תבנית ÷ שימושים בפועל</td><td>רבעונית</td></tr>
+      <tr><td>Contribution Margin</td><td>(מחיר – עלות משתנה)/מחיר</td><td>(מחיר – עלות משתנה)/מחיר</td><td>חודשית</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C3: Operations -->
+<section id="c3">
+<div class="section-card stripe-orange">
+  <div class="card-header"><span class="ch-num">03</span><h2>קטגוריה 3 — תפעול וייצור</h2></div>
+  <div class="card-body">
+    <p>תפעול הוא לב המפעל — כאן נוצר הערך ומתממשות הוצאות. שני הענפים מודדים ביצועים אך בצורה שונה מהותית.</p>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — OEE וניצול מפעל</h4>
+        <p><strong>OEE = זמינות × ביצועים × איכות</strong></p>
+        <ul>
+          <li><strong>זמינות:</strong> זמן ייצור בפועל ÷ זמן מתוכנן. יעד: &gt;90%<br>גורמי ירידה: תקלות מכניות, עיכוני חומרי גלם, חוסר כוח אדם</li>
+          <li><strong>ביצועים:</strong> קצב ייצור בפועל ÷ קצב תאורטי. יעד: &gt;90%<br>גורמי ירידה: המתנה למשאיות, הזמנות קטנות, שקילה איטית</li>
+          <li><strong>איכות:</strong> מ"ק תקינים ÷ סה"כ מ"ק. יעד: &gt;98%</li>
+          <li><strong>Benchmark (NRMCA):</strong> OEE &gt;85%; ניצול מפעל &gt;85%</li>
+          <li>מעבר: תחזוקה מתקנת → מונעת → מנבאת (IoT)</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — מחזור ייצור וניצול מצע</h4>
+        <p><strong>מדד מקביל ל-OEE: ניצול מצע (Bed Utilization)</strong></p>
+        <ul>
+          <li><strong>מחזור ייצור:</strong> הכנה → יציקה → ריפוי (24–48 שעות) → שחרור → עיבוד → אחסון</li>
+          <li><strong>ניצול מצע:</strong> % זמן מצע עם יציקה פעילה. יעד: &gt;80%</li>
+          <li><strong>מדדים ייצוריים:</strong> אלמנטים לתורן, מ"ר/מצע/יום, % מצעים בשימוש</li>
+          <li><strong>בקרת ריפוי:</strong> חיישני טמפרטורה (IoT) לאופטימיזציית זמן ריפוי ← חיסכון 10–20% בזמן מחזור</li>
+          <li><strong>Benchmark:</strong> מחזור 24 שעות ל-Long Line (לוח"דים); 16–24 שעות ל-Short Line</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warning"><span class="callout-icon">⚠️</span><div><strong>הבדל קריטי:</strong> בבטון מובא, "שבר מהיר" = זמן עד ערבול הבא (דקות). בטרומי, "שבר מהיר" = יום שלם לאובדן מחזור. לכן עלויות תקלה בטרומי גבוהות משמעותית ומחייבות תכנון תחזוקה מעמיק יותר.</div></div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>בטון מובא — יעד</th><th>טרומי — יעד</th><th>Benchmark</th></tr>
+      <tr><td>OEE / ניצול מצע</td><td>&gt;75–85%</td><td>&gt;75–80%</td><td>85%+ (NRMCA / NPCA)</td></tr>
+      <tr><td>Downtime לא מתוכנן</td><td>&lt;5% מזמן ייצור</td><td>&lt;5% מהמחזורים</td><td>&lt;3% best-in-class</td></tr>
+      <tr><td>פסולת ייצור</td><td>&lt;2% בטון מוחזר</td><td>&lt;3% בטון ממוחזר</td><td>&lt;1.5%</td></tr>
+      <tr><td>זמן מחזור</td><td>&lt;10 דק' לעומס 10 מ"ק</td><td>&lt;24 שעות/מחזור</td><td>~10 דק'/22 שעות</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C4: Logistics -->
+<section id="c4">
+<div class="section-card stripe-purple">
+  <div class="card-header"><span class="ch-num">04</span><h2>קטגוריה 4 — לוגיסטיקה וצי</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — דיספצ'ינג חכם</h4>
+        <p>בטון מובא הוא מוצר <strong>פריש</strong> — חיי מדף 90 דקות. דיספצ'ינג שגוי = בטון שמתקשה בדרך.</p>
+        <ul>
+          <li><strong>Linkoper AI Dispatch:</strong> 45% פחות שגיאות; 30% מהירות; 25% חיסכון עלויות. <a href="https://www.linkoper.com" target="_blank">linkoper.com</a></li>
+          <li><strong>Command Alkon Cloud:</strong> פלטפורמה מקיפה — דיספצ'ינג, GPS, בקרת איכות, חשבוניות. <a href="https://www.commandalkon.com" target="_blank">commandalkon.com</a></li>
+          <li><strong>GPS + eTicketing:</strong> 98% OTD (רדימיקס ישראל)</li>
+          <li>עומס ממוצע למשלוח: &gt;8 מ"ק (מתוך קיבולת 10 מ"ק)</li>
+          <li>רדיוס שירות: 30–50 ק"מ בלבד</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — הובלה כבדה ותיאום עגורן</h4>
+        <p>בטרומי, ההובלה שונה לחלוטין — אלמנטים של 1–50 טון, עגורנים באתר, ורצף הרכבה מחושב.</p>
+        <ul>
+          <li><strong>רדיוס שירות:</strong> 100–300 ק"מ (מכיוון שאלמנט טרומי עמיד לשעות)</li>
+          <li><strong>Just-in-Time לפי רצף הרכבה:</strong> האלמנטים חייבים להגיע בסדר הרכבה הפוך (אחרון עולה ראשון)</li>
+          <li><strong>תכנון עגורן:</strong> תיאום מוקדם עם קבלן לזמינות עגורן — עיכוב = אתר מושבת</li>
+          <li><strong>משאיות מתמחות:</strong> טריילר נמוך (Low-Loader) + היתרי משקל עיריה</li>
+          <li><strong>RFID על אלמנטים:</strong> מעקב בזמן אמת ממפעל עד התקנה</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warning"><span class="callout-icon">🚚</span><div><strong>סיכון ייחודי לטרומי:</strong> עיכוב משלוח אחד עלול לעצור אתר בנייה שלם. עלות אחד לקבלן: עשרות אלפי ₪ ביום. לכן, לוגיסטיקת טרומי דורשת תכנון מדויק ו-Buffer Stocks של אלמנטים.</div></div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>בטון מובא — יעד</th><th>טרומי — יעד</th></tr>
+      <tr><td>On-Time Delivery (OTD)</td><td>&gt;95% (Benchmark: 98%)</td><td>&gt;98% (סבלנות נמוכה יותר)</td></tr>
+      <tr><td>ניצול כלי רכב</td><td>&gt;4,500 מ"ק/משאית/שנה</td><td>אלמנטים/טריילר/שנה (תלוי מוצר)</td></tr>
+      <tr><td>עלות הובלה ליחידה</td><td>15–20% מהמחיר</td><td>10–15% מהמחיר</td></tr>
+      <tr><td>תקריות הובלה</td><td>&lt;1% מהמטענים</td><td>0 אלמנטים שבורים (סיכון אסטרטגי)</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C5: Quality -->
+<section id="c5">
+<div class="section-card stripe-teal">
+  <div class="card-header"><span class="ch-num">05</span><h2>קטגוריה 5 — איכות ומעבדה</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — מעבדה מרושתת</h4>
+        <ul>
+          <li><strong>תקן מחייב: ת"י 118</strong> — הסמכת SII; ביקורת שנתית</li>
+          <li><strong>מעבדה מרכזית:</strong> מרושתת on-line עם כל המפעלים (מודל ישראבטון)</li>
+          <li><strong>בדיקות שוטפות:</strong> Slump, קוביות חוזק, טמפרטורה, צפיפות</li>
+          <li><strong>תקנים נוספים:</strong> ת"י 26 (15 חלקים לשיטות בדיקה), ת"י 896 (מוספים)</li>
+          <li><strong>KPIs:</strong> % דחיות &lt;0.5%; % חריגות חוזק &lt;1%; תגובה לתלונה &lt;24 שעות</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — Factory Production Control</h4>
+        <ul>
+          <li><strong>FPC (Factory Production Control):</strong> מחויב ב-EN 13369 (אירופה) ות"י 1165 (ישראל)</li>
+          <li><strong>סבילויות ממדיות:</strong> קריטיות לטרומי — ±2 מ"מ לממ"ד; ±5 מ"מ ללוח"דים</li>
+          <li><strong>בדיקת מאמץ מתיחה:</strong> וריפיקציה של כוח הדריכה (Prestress Force) — קריטי לבטיחות</li>
+          <li><strong>גימור משטח:</strong> קטגוריות A–D לפי ISO 10565; עמידה בדרישת האדריכל</li>
+          <li><strong>RFID + מעקב:</strong> כל אלמנט מתועד ממרגע היציקה עד ההתקנה</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout success"><span class="callout-icon">✅</span><div><strong>הבדל מהותי:</strong> בבטון מובא, איכות מיושמת על מוצר שיוצק כמה שעות קודם. בטרומי, פגם שמתגלה לאחר ריפוי (24–48 שעה) עלול לאלץ השמדת אלמנט שלם בשווי ₪5,000–100,000. לכן בטרומי, בקרת תהליך (In-Process QC) קריטית יותר מבקרת תוצאה.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- C6: IT -->
+<section id="c6">
+<div class="section-card stripe-blue">
+  <div class="card-header"><span class="ch-num">06</span><h2>קטגוריה 6 — ניהול מידע וטכנולוגיה</h2></div>
+  <div class="card-body">
+    <p><strong>עקרון מנחה: "הזן פעם אחת — השתמש בכל מקום."</strong> בלי נתונים אמינים ובזמן, כל 11 הקטגוריות האחרות עובדות בחושך.</p>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — ארכיטקטורת מערכות</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>שכבה</th><th>מערכת</th><th>דוגמאות</th></tr>
+          <tr><td>ERP</td><td>מערכת ליבה</td><td>SAP, Priority</td></tr>
+          <tr><td>דיספצ'ינג</td><td>ניהול צי</td><td><a href="https://www.commandalkon.com" target="_blank">Command Alkon</a>, <a href="https://www.linkoper.com" target="_blank">Linkoper</a></td></tr>
+          <tr><td>בקרת ייצור</td><td>שקילה + ערבול</td><td>Liebherr, Simem</td></tr>
+          <tr><td>מעבדה/איכות</td><td>בדיקות + מתכונים</td><td>COMMANDqc</td></tr>
+          <tr><td>BI + דשבורד</td><td>KPIs ניהוליים</td><td>Power BI, Tableau</td></tr>
+          <tr><td>פורטל לקוח</td><td>הזמנות + מעקב</td><td>בהשראת <a href="https://www.cemex.com" target="_blank">Cemex Go</a></td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — BIM ומערכות ייצור</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>שכבה</th><th>מערכת</th><th>דוגמאות</th></tr>
+          <tr><td>BIM Integration</td><td>מודלים מאדריכלים/מהנדסים</td><td>Autodesk Revit, Tekla</td></tr>
+          <tr><td>ניהול ייצור</td><td>תכנון קו + מעקב אלמנטים</td><td><a href="https://www.elematic.com" target="_blank">Elematic EMMA</a>, Planbar</td></tr>
+          <tr><td>ERP טרומי</td><td>הזמנות, חשבוניות, תבניות</td><td>12d Synergy, BVBS</td></tr>
+          <tr><td>מעקב RFID</td><td>זיהוי אלמנט ממפעל לאתר</td><td>Trimble, Hilti</td></tr>
+          <tr><td>BI + דשבורד</td><td>ניצול מצע, KPIs</td><td>Power BI</td></tr>
+          <tr><td>פורטל לקוח</td><td>מעקב הזמנה + מסמכי משלוח</td><td>פיתוח מותאם</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>יעד שנה 2</th><th>יעד שנה 5</th><th>יעד שנה 10</th></tr>
+      <tr><td>% נתונים אוטומטיים</td><td>&gt;40%</td><td>&gt;70%</td><td>&gt;90%</td></tr>
+      <tr><td>זמן סגירת חודש (P&L)</td><td>&lt;10 ימים</td><td>&lt;5 ימים</td><td>&lt;3 ימים</td></tr>
+      <tr><td>% מפעלים מחוברים</td><td>&gt;50%</td><td>&gt;90%</td><td>100%</td></tr>
+      <tr><td>אימוץ מערכות ע"י משתמשים</td><td>&gt;60%</td><td>&gt;85%</td><td>&gt;95%</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C7: Commerce -->
+<section id="c7">
+<div class="section-card stripe-green">
+  <div class="card-header"><span class="ch-num">07</span><h2>קטגוריה 7 — מסחר, לקוחות ושיווק</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — פילוח לקוחות</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>סוג לקוח</th><th>אסטרטגיה</th></tr>
+          <tr><td><strong>פרויקטים פנימיים</strong></td><td>מחירי העברה; עדיפות באספקה</td></tr>
+          <tr><td><strong>קבלנים גדולים</strong></td><td>חוזי מסגרת; SLA ברור; מחיר תחרותי</td></tr>
+          <tr><td><strong>קבלנים בינוניים</strong></td><td>מחיר שוק; אפליקציה להזמנה</td></tr>
+          <tr><td><strong>קבלנים קטנים</strong></td><td>תשלום מראש; שירות דיגיטלי</td></tr>
+        </table>
+        <p style="font-size:.82rem;margin-top:8px;"><strong>פורטל לקוח:</strong> הזמנה דיגיטלית, מעקב משלוח בזמן אמת, חשבוניות, תעודות איכות. יעד NPS: &gt;50 (CEMEX = 74).</p>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — Design-Assist ושיווק ייחודי</h4>
+        <ul>
+          <li><strong>Design-Assist:</strong> מעורבות בשלב התכנון — הצעת שינויים שמפחיתים עלות ומשפרים ביצוע. לקוח שמשתף את מפעל הטרומי בתכנון נעול 6–18 חודשים לפני תחילת ייצור</li>
+          <li><strong>Value Engineering:</strong> הצעת פתרון טרומי חלופי לתכנון מקורי — חיסכון 5–15% בעלות הפרויקט</li>
+          <li><strong>שיווק ייחודי:</strong> מהירות בנייה (חיסכון 2–4 חודשים), איכות מפעל, פחות בזבוז באתר</li>
+          <li><strong>פורטל לקוח טרומי:</strong> מעקב אחר כל אלמנט ממפעל עד התקנה; תיעוד ביצועי ריפוי; תאום לוגיסטי</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>בטון מובא — יעד</th><th>טרומי — יעד</th></tr>
+      <tr><td>NPS</td><td>&gt;50 (CEMEX = 74)</td><td>&gt;60 (נאמנות גבוהה יותר)</td></tr>
+      <tr><td>שיעור הזמנות חוזרות</td><td>&gt;70% תוך 12 חודש</td><td>&gt;80% (חוזי רב-שנה)</td></tr>
+      <tr><td>ימי אשראי ממוצעים</td><td>&lt;45 יום</td><td>&lt;60 יום (פרויקטים ארוכים)</td></tr>
+      <tr><td>Design-Assist win rate</td><td>לא רלוונטי</td><td>&gt;40% מהצעות הופכות לחוזים</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C8: HR -->
+<section id="c8">
+<div class="section-card stripe-orange">
+  <div class="card-header"><span class="ch-num">08</span><h2>קטגוריה 8 — משאבי אנוש והכשרה</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — תפקידים ייחודיים</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>תפקיד</th><th>אחריות עיקרית</th></tr>
+          <tr><td>מנהל חטיבה</td><td>P&L, אסטרטגיה, ניהול כולל</td></tr>
+          <tr><td>מנהל צי / לוגיסטיקה</td><td>דיספצ'ינג, GPS, משלוחים</td></tr>
+          <tr><td>מנהל איכות</td><td>מעבדה, ת"י 118, SCMs</td></tr>
+          <tr><td>דיספצ'ר</td><td>תכנון משלוחים יומי; ניהול לחץ</td></tr>
+          <tr><td>מפעיל מערבל</td><td>הפעלת מנות; בקרת שקילה</td></tr>
+          <tr><td>נהג מערבל</td><td>הובלה; eTicketing; שירות לקוח</td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — מקצועות מתמחים</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>תפקיד</th><th>מיומנות ייחודית</th></tr>
+          <tr><td>טכנאי מתיחה (Stressing Tech.)</td><td>הפעלת מתלי דריכה; קריאת כוח; בטיחות תיל</td></tr>
+          <tr><td>מכין תבניות (Mold Prep.)</td><td>שמן שחרור; סגירות; דיוק ממדי ±2 מ"מ</td></tr>
+          <tr><td>יוצק (Concrete Finisher)</td><td>שפיכה אחידה; ויברציה; גימור משטח</td></tr>
+          <tr><td>מפעיל עגורן</td><td>הרמת אלמנטים כבדים; תיאום עם שטח</td></tr>
+          <tr><td>טכנאי BIM/Planbar</td><td>קריאת מודלים; הזנת פרמטרים לייצור</td></tr>
+          <tr><td>אחראי מלאי/אחסון</td><td>מיון אלמנטים; RFID; תיאום עם לוגיסטיקה</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout info"><span class="callout-icon">👷</span><div><strong>אתגר כוח אדם:</strong> בישראל, 87% מהקבלנים מדווחים על מחסור בעובדים (נתוני ענף 2024). בטרומי, מדובר במקצועות מתמחים שלוקח 6–12 חודשים לאמן. תכנות הכשרה פנימית + מסלולי קריירה ברורים = כלי שימור קריטי.</div></div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>בטון מובא — יעד</th><th>טרומי — יעד</th></tr>
+      <tr><td>Turnover (תחלופה שנתית)</td><td>&lt;15%</td><td>&lt;12% (מקצועות נדירים יותר)</td></tr>
+      <tr><td>שעות הכשרה/עובד/שנה</td><td>&gt;20 שעות</td><td>&gt;30 שעות</td></tr>
+      <tr><td>% תפקידים עם תיאור מעודכן</td><td>100%</td><td>100%</td></tr>
+      <tr><td>מדד מעורבות עובדים</td><td>&gt;70%</td><td>&gt;70%</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C9: Safety -->
+<section id="c9">
+<div class="section-card stripe-teal">
+  <div class="card-header"><span class="ch-num">09</span><h2>קטגוריה 9 — בטיחות</h2></div>
+  <div class="card-body">
+    <div class="callout warning"><span class="callout-icon">⚠️</span><div><strong>Benchmark עולמי:</strong> CEMEX מדווחת על Disabling Incident Rate של <strong>0.5</strong> — תאונה אחת לכל 2 מיליון שעות עבודה; <strong>96% מהמפעלים ללא אירוע</strong> (2024). <a href="https://www.cemex.com/w/cemex-showcases-significant-operational-and-sustainability-advancements-in-its-2024-integrated-report" target="_blank">CEMEX Integrated Report 2024</a></div></div>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — סיכונים ותוכנית</h4>
+        <ul>
+          <li><strong>סיכונים ייחודיים:</strong> נהיגה (תאונות דרכים), מסועים ומעבירים (כליאה), כימיקלים (בסיסיות גבוהה)</li>
+          <li><strong>Tool Box Talks:</strong> תדריך בטיחות 5 דקות לפני כל משמרת</li>
+          <li><strong>Near Miss Reporting:</strong> תרבות דיווח — יותר דיווחים = בטיחות טובה יותר</li>
+          <li><strong>PPE:</strong> קסדה, נעליים, אוזניות, משקפי מגן, כפפות (יומי)</li>
+          <li><strong>סקר סיכונים שנתי</strong> + <strong>Root Cause Analysis</strong> לכל תאונה תוך 48 שעות</li>
+          <li><strong>המוסד לבטיחות:</strong> <a href="https://www.osh.org.il" target="_blank">osh.org.il</a> — מוקד 9559*, מומחי בטיחות, סקרי סיכונים</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — סיכונים ייחודיים</h4>
+        <ul>
+          <li><strong>הרמת אלמנטים כבדים (1–50 טון):</strong> סכנת נפילה/ריסוק — Lift Plan מחויב לכל הרמה</li>
+          <li><strong>תיל דריכה (Pre-tensioning):</strong> סיכון קריסת תיל בכוח גבוה — מרחק בטוח + מחסות</li>
+          <li><strong>אבק סיליקה:</strong> חשיפה מוגברת בייצור — מסכות P2/P3; בדיקות ריאה תקופתיות</li>
+          <li><strong>חומרי שחרור תבניות:</strong> מגע עם עור — כפפות + הדרכה</li>
+          <li><strong>NPCA Safety Manual:</strong> <a href="https://www.npca.org/safety" target="_blank">npca.org/safety</a> — מדריך בטיחות ייעודי לתעשיית הטרומי</li>
+          <li><strong>PCI Safety Guidelines:</strong> הנחיות ספציפיות לדריכה, הרמה, ואחסון</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <tr><th>KPI</th><th>הגדרה</th><th>יעד</th></tr>
+      <tr><td>LTIR (Lost Time Incident Rate)</td><td>תאונות עם ימי היעדרות / מיליון שעות</td><td>&lt;1.0</td></tr>
+      <tr><td>Near Miss Rate</td><td>דיווחי Near Miss / 1,000 עובדים/חודש</td><td>&gt;10 (יותר = תרבות טובה)</td></tr>
+      <tr><td>שעות הדרכת בטיחות</td><td>שעות/עובד/שנה</td><td>&gt;16 (בטון); &gt;20 (טרומי)</td></tr>
+      <tr><td>ביקורות בטיחות</td><td>% מפעלים עם ביקורת חודשית</td><td>100%</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- C10: Innovation -->
+<section id="c10">
+<div class="section-card stripe-purple">
+  <div class="card-header"><span class="ch-num">10</span><h2>קטגוריה 10 — חדשנות ושיפור מתמיד</h2></div>
+  <div class="card-body">
+    <p>גישת <strong>"פיילוט → הוכחה → הרחבה"</strong> — כל הטמעה חדשה עוברת ארבעה שלבים: זיהוי הזדמנות (1–2 חודשים) → פיילוט במפעל אחד (3–6 חודשים) → הוכחת ROI (1 חודש) → הרחבה לכל המפעלים (6–12 חודשים).</p>
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — טכנולוגיות לפי ציר זמן</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>טווח</th><th>טכנולוגיה</th><th>ROI צפוי</th></tr>
+          <tr><td>מיידי (0–2 שנ')</td><td>דשבורד KPIs (Power BI)</td><td>שקיפות → שיפור 5–10%</td></tr>
+          <tr><td>מיידי</td><td>GPS + eTicketing</td><td>30% דיספצ'ינג מהיר</td></tr>
+          <tr><td>קצר (2–4 שנ')</td><td><a href="https://www.giatecscientific.com" target="_blank">Giatec SmartMix AI</a></td><td>$3–5/מ"ק חיסכון; 22% פחות צמנט</td></tr>
+          <tr><td>קצר</td><td>פורטל לקוח דיגיטלי</td><td>NPS +10–20 נקודות</td></tr>
+          <tr><td>בינוני (4–7 שנ')</td><td>IoT + תחזוקה מנבאת (<a href="https://www.uptake.com" target="_blank">Uptake</a>)</td><td>30% פחות התראות; 60% ירידה קריטית</td></tr>
+          <tr><td>בינוני</td><td><a href="https://www.carboncure.com" target="_blank">CarbonCure</a></td><td>7–11 ק"ג CO₂/מ"ק; +10% חוזק</td></tr>
+          <tr><td>ארוך (7–10 שנ')</td><td>Digital Twin מפעל</td><td>זיהוי צווארי בקבוק בזמן אמת</td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — חדשנות ייצורית</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>טווח</th><th>חדשנות</th><th>פוטנציאל</th></tr>
+          <tr><td>מיידי</td><td>חיישני ריפוי IoT (טמפרטורה + לחות)</td><td>קיצור 10–20% זמן מחזור</td></tr>
+          <tr><td>מיידי</td><td>RFID על כל אלמנט</td><td>מעקב מלא + ביטול שגיאות שינוע</td></tr>
+          <tr><td>קצר</td><td>תבניות מודפסות בתלת-ממד</td><td>Lead time מ-6 שבועות ל-3 ימים; <a href="https://www.stratasys.com" target="_blank">Stratasys</a></td></tr>
+          <tr><td>קצר</td><td>UHPC (Ultra-High Performance Concrete)</td><td>אלמנטים דקים יותר + חזקים יותר; <a href="https://www.ductal.com" target="_blank">Ductal</a></td></tr>
+          <tr><td>בינוני</td><td>אוטומציית חיזוק (Robotic Rebar)</td><td>-20% עבודה ידנית; <a href="https://www.progress-group.info" target="_blank">Progress Group</a></td></tr>
+          <tr><td>בינוני</td><td>Self-Compacting Concrete (SCC)</td><td>שיפור גימור + ביטול ויברציה</td></tr>
+          <tr><td>ארוך</td><td>Digital Twin קו ייצור</td><td>סימולציה של מחזורי ייצור</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- C11: Regulation -->
+<section id="c11">
+<div class="section-card stripe-green">
+  <div class="card-header"><span class="ch-num">11</span><h2>קטגוריה 11 — רגולציה וסביבה</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — תאימות ורגולציה</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>תחום</th><th>פעולה</th><th>תדירות</th></tr>
+          <tr><td><strong>ת"י 118</strong></td><td>מעקב עמידה; הכנה לביקורות SII</td><td>רציף + שנתי</td></tr>
+          <tr><td><strong>רישיון עסק</strong></td><td>חידוש; עמידה בתנאים</td><td>עד 10 שנים</td></tr>
+          <tr><td><strong>סביבה</strong></td><td>ניטור אבק, רעש, שפכים</td><td>שוטף + שנתי</td></tr>
+          <tr><td><strong>CBAM</strong></td><td>מעקב רגולציה אירופית; טביעת פחמן</td><td>רבעוני</td></tr>
+          <tr><td><strong>SCMs</strong></td><td>שימוש באפר פחם → חיסכון 10–20% בעלות צמנט</td><td>שוטף</td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — הסמכה וסביבה</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>תחום</th><th>פעולה</th><th>הערה</th></tr>
+          <tr><td><strong>FPC / ת"י 1165</strong></td><td>בקרת ייצור במפעל; תיעוד מלא</td><td>חובה ל-CE marking</td></tr>
+          <tr><td><strong>הסמכת PCI</strong></td><td>Plant Certification — בדיקה שנתית + audit</td><td>מוכר בישראל ובארה"ב</td></tr>
+          <tr><td><strong>מיחזור מים</strong></td><td>מים מהריפוי חוזרים לייצור — 90–95% שימוש חוזר. מפעלים מתקדמים ממחזרים <strong>~6.3 מיליון גלון לשנה</strong> — חיסכון של <strong>70%+ בחשבון המים</strong>. <a href="https://precast.org/blog/treating-and-recycling-concrete-process-water/" target="_blank">NPCA Process Water</a></td><td>יתרון סביבתי + חיסכון תפעולי</td></tr>
+          <tr><td><strong>עודפי בטון</strong></td><td>גרוס וייצור אגרגט ממוחזר (ת"י 5003)</td><td>כלכלה מעגלית</td></tr>
+          <tr><td><strong>פליטות CO₂</strong></td><td>אופטימיזציית מתכונים + SCMs</td><td>טרומי = פחות פסולת מ-in-situ</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout success"><span class="callout-icon">🌱</span><div><strong>יתרון סביבתי של טרומי:</strong> מפעל טרומי מנוהל היטב יכול למחזר 90–95% מהמים ו-100% מעודפי הבטון. בניגוד לבנייה מסורתית שמייצרת 20–30% פסולת באתר, טרומי מייצר &lt;3% פסולת. זו טענה שיווקית חזקה מול יזמים ציבוריים.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- C12: Risk -->
+<section id="c12">
+<div class="section-card stripe-gray">
+  <div class="card-header"><span class="ch-num">12</span><h2>קטגוריה 12 — ניהול סיכונים</h2></div>
+  <div class="card-body">
+    <div class="division-grid">
+      <div class="division-block concrete">
+        <h4><span class="div-icon c">B</span>בטון מובא — מפת סיכונים</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>סיכון</th><th>סבירות</th><th>השפעה</th><th>הפחתה</th></tr>
+          <tr><td>עליית מחיר צמנט</td><td><span class="badge badge-red">גבוהה</span></td><td><span class="badge badge-red">גבוהה</span></td><td>חוזים ארוכי טווח; SCMs; מקורות חלופיים</td></tr>
+          <tr><td>מחסור אגרגטים</td><td><span class="badge badge-orange">בינונית</span></td><td><span class="badge badge-red">גבוהה</span></td><td>מלאי בטחון; כניסה למחצבות</td></tr>
+          <tr><td>ירידת ביקוש</td><td><span class="badge badge-orange">בינונית</span></td><td><span class="badge badge-red">גבוהה</span></td><td>גמישות ייצור; גיוון לקוחות</td></tr>
+          <tr><td>תקלת ציוד קריטית</td><td><span class="badge badge-orange">בינונית</span></td><td><span class="badge badge-red">גבוהה</span></td><td>תחזוקה מנבאת; חלפים; המשכיות</td></tr>
+          <tr><td>אובדן הסמכה ת"י 118</td><td><span class="badge badge-green">נמוכה</span></td><td><span class="badge badge-red">קריטית</span></td><td>מערכת איכות; הכנה לביקורות</td></tr>
+        </table>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>טרומי — סיכונים ייחודיים</h4>
+        <table style="font-size:.79rem;">
+          <tr><th>סיכון</th><th>סבירות</th><th>השפעה</th><th>הפחתה</th></tr>
+          <tr><td>השקעה בתבנית לפרויקט שבוטל</td><td><span class="badge badge-orange">בינונית</span></td><td><span class="badge badge-red">גבוהה</span></td><td>חוזה עם מקדמה; ביטוח; תבניות גמישות</td></tr>
+          <tr><td>שינוי תכנון מאוחר</td><td><span class="badge badge-red">גבוהה</span></td><td><span class="badge badge-red">גבוהה</span></td><td>Design Freeze מוקדם; תוספת שינוי מחויבת</td></tr>
+          <tr><td>כישלון משלוח / אלמנט שבור</td><td><span class="badge badge-green">נמוכה</span></td><td><span class="badge badge-red">קריטית</span></td><td>בדיקת עומסים; חיזוק לשינוע; ביטוח</td></tr>
+          <tr><td>צבירת שגיאות ממדיות</td><td><span class="badge badge-orange">בינונית</span></td><td><span class="badge badge-orange">בינונית</span></td><td>BIM clash detection; בדיקות מדידה תוך-כדי</td></tr>
+          <tr><td>כישלון מאמץ דריכה</td><td><span class="badge badge-green">נמוכה</span></td><td><span class="badge badge-red">קריטית</span></td><td>נוהל דריכה קפדני; ציוד כיול; ביקורת בלתי-תלויה</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout info"><span class="callout-icon">📋</span><div><strong>מסגרת 4 הרמות לניהול סיכוני שרשרת אספקה בטרומי</strong> (מחקר ResearchGate): סיכוני שרשרת האספקה מסווגים ל-4 רמות: <span class="badge badge-gray">קל (4 סיכונים)</span> <span class="badge badge-orange">בינוני (12 סיכונים)</span> <span class="badge badge-red">חמור (3 סיכונים)</span> <span class="badge badge-red">קריטי (1 סיכון)</span>. לכל רמה אסטרטגיית תגובה שונה: <strong>קבלה / הפחתה / העברה / הימנעות</strong>. <a href="https://www.researchgate.net/publication/331283046_Managing_risks_of_precast_concrete_supply_chain_a_case_study" target="_blank">ResearchGate — Managing Risks of Precast Supply Chain</a></div></div>
+  </div>
+</div>
+</section>
+
+<!-- PART C: CONCRETE DEEP-DIVE -->
+<div id="div-concrete" class="chap-divider bg-blue">
+  <span class="cn">ג</span>
+  <div><div class="ct">התייחסות ספציפית — חטיבת הבטון המובא</div>
+  <div class="cs">עדיפויות פעולה, Benchmark, ויישום ישראלי</div></div>
+</div>
+<section>
+<div class="section-card stripe-blue">
+  <div class="card-header"><h2>חטיבת הבטון — עדיפויות ייחודיות לישראל</h2></div>
+  <div class="card-body">
+    <p>שוק הבטון המובא בישראל מאופיין ב<strong>ריכוזיות גבוהה</strong> (ארבע גדולות = 75–85% נתח שוק), <strong>בעלות זרה חלקית</strong> (CEMEX, Heidelberg), ו<strong>מחסור קרוב במחצבות</strong> (מ-80 מחצבות ב-1993 לכ-25 ב-2021). בנוסף, שוק הבנייה צפוי לצמוח ב-12.9% ב-2025 עם 32.5 מיליארד ₪ לשיקום. זהו חלון הזדמנות ייחודי.</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>עדיפות</th><th>למה עכשיו</th><th>פעולה ראשונה</th><th>ROI צפוי</th></tr>
+      <tr><td><strong>מערכת דיספצ'ינג + GPS</strong></td><td>חיי מדף 90 דק'; תחרות על שירות</td><td>RFP + פיילוט 3 חודשים</td><td>25–30% יעילות לוגיסטית</td></tr>
+      <tr><td><strong>דשבורד KPI (Power BI)</strong></td><td>אין שקיפות תפעולית נוכחית</td><td>הגדרת 10 KPIs + חיבור מקורות נתונים</td><td>5–10% שיפור OEE</td></tr>
+      <tr><td><strong>מיפוי עלות למ"ק</strong></td><td>אין ידיעה מדויקת של רווחיות</td><td>ניתוח עם FP&A + בקרים מפעליים</td><td>זיהוי 3–8% חיסכון</td></tr>
+      <tr><td><strong>Retarders מתקדמים לקיץ</strong></td><td>אובדן בטון בחום ישראלי (35–45°C)</td><td>עבודה עם ספק מוספים; בדיקת מתכונים</td><td>הפחתת 1–2% אובדן בטון</td></tr>
+      <tr><td><strong>מעבדה מרושתת</strong></td><td>בקרה ריכוזית = איכות + חיסכון</td><td>חיבור מעבדות קיימות + מערכת תיעוד</td><td>הפחתת תלונות; שיפור NPS</td></tr>
+      <tr><td><strong>כניסה למחצבות</strong></td><td>מחסור צפוי; אבטחת אספקה</td><td>ניתוח כדאיות + סקירת מחצבות זמינות</td><td>10–20% חיסכון בעלות אגרגטים</td></tr>
+    </table></div>
+    <div class="callout info"><span class="callout-icon">📌</span><div><strong>פער 42%:</strong> מחקר IEOM (2024) על מפעלי בטון מובא מצא פער של 42% בין זמני אספקה בסימולציה לבין ביצוע בפועל. המשמעות: פוטנציאל עצום לשיפור תפעולי שוטף <strong>ללא השקעה טכנולוגית</strong> — רק ניהול טוב יותר. <a href="https://www.ieomsociety.org" target="_blank">IEOM Society, 2024</a></div></div>
+    <div class="kpi-grid">
+      <div class="kpi-card blue"><div class="val">OEE</div><div class="lbl">יעד: 75% שנה 2 → 85% שנה 10</div><div class="src">NRMCA Benchmark</div></div>
+      <div class="kpi-card blue"><div class="val">98%</div><div class="lbl">On-Time Delivery — יעד שנה 5</div><div class="src">רדימיקס ישראל</div></div>
+      <div class="kpi-card blue"><div class="val">&lt;0.5%</div><div class="lbl">דחיות באתר — יעד</div></div>
+      <div class="kpi-card blue"><div class="val">74</div><div class="lbl">NPS — Benchmark CEMEX</div><div class="src">CEMEX 2024</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PART D: PRECAST DEEP-DIVE -->
+<div id="div-precast" class="chap-divider bg-green">
+  <span class="cn">ד</span>
+  <div><div class="ct">התייחסות ספציפית — מפעלי הטרומי</div>
+  <div class="cs">הזדמנויות ייחודיות לישראל, מוצרים בעדיפות גבוהה, ואסטרטגיית צמיחה</div></div>
+</div>
+<section>
+<div class="section-card stripe-green">
+  <div class="card-header"><h2>מפעלי הטרומי — אסטרטגיה וצמיחה לעשור</h2></div>
+  <div class="card-body">
+    <p>שיכון ובינוי תעשיות מפעילה <strong>4 קווי ייצור</strong> לייצור לוח"דים ואלמנטי גשר. שוק הטרומי בישראל עומד בפתחה של צמיחה חדה ב-2025–2030, מונעת על ידי:</p>
+    <ul>
+      <li><strong>מטרו תל אביב ($49 מיליארד):</strong> ביקוש ענק לסגמנטי TBM (~200/יום), אדני רכבת, מבני תחנות</li>
+      <li><strong>שיקום הדרום והצפון (₪32.5 מיליארד):</strong> 25,000–40,000 יחידות נפגעות; לחץ למהירות = טרומי</li>
+      <li><strong>81,000+ התחלות בנייה (2024):</strong> ביקוש מתמשך ללוח"דים, מדרגות, ממ"דים</li>
+    </ul>
+
+    <h3>הזדמנויות מוצרי עדיפות גבוהה</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>מוצר</th><th>ביקוש ישראלי</th><th>מחסום כניסה</th><th>פוטנציאל</th></tr>
+      <tr><td><strong>סגמנטי TBM למטרו</strong></td><td>מטרו תל אביב; ~20 TBMs; פתיחה 2032; דיוק ±0.5 מ"מ</td><td>השקעה ייעודית; שותפות טכנולוגית</td><td>עשרות מיליוני ₪/שנה; <a href="https://www.enr.com/articles/62509-major-procurement-process-begins-for-israels-49b-tel-aviv-metro" target="_blank">ENR 2024</a></td></tr>
+      <tr><td><strong>קירות אקוסטיים</strong></td><td>כבישים 6, 1, 4; מסילות; רגולציית רעש</td><td>קו ייצור פאנלים; אישור</td><td>₪50–200M/שנה; <a href="https://precast.org/products/sound-walls/" target="_blank">NPCA Sound Walls</a></td></tr>
+      <tr><td><strong>יחידות אמבטיה PBU</strong></td><td>מלונות, מעונות סטודנטים, שיקום מהיר</td><td>שינוי תקנות; DfMA</td><td>חיסכון עד 20 שבועות/פרויקט; <a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma/prefabricated-bathroom-unit" target="_blank">BCA PBU</a></td></tr>
+      <tr><td><strong>בסיסי מערכות סולאריות</strong></td><td>ישראל = שמש; תוכניות מדינה לאנרגיה</td><td>מינימלי</td><td>שוק גדל מהיר; <a href="https://thisisconcrete.com/sustainable-concrete-foundation-systems-for-wind-and-solar-industries/" target="_blank">Concreate</a></td></tr>
+      <tr><td><strong>מקלטים תת-קרקעיים</strong></td><td>ישראל = ייחודי; פיקו"ע; שוק בגידול</td><td>אישורים; מוניטין</td><td>₪10–50M/שנה; <a href="https://atlassurvivalshelters.com/precast-concrete-shelters/" target="_blank">Atlas Shelters</a></td></tr>
+      <tr><td><strong>מדרגות סדרתיות</strong></td><td>81,000+ יח"ד/שנה; תקן אחיד</td><td>תבניות סטנדרטיות; מינימלי</td><td>נפח גדול + מרווח טוב</td></tr>
+    </table></div>
+
+    <h3>יתרונות תחרותיים של שיכון ובינוי תעשיות בטרומי</h3>
+    <div class="division-grid">
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>יתרונות קיימים</h4>
+        <ul>
+          <li>4 קווי ייצור פעילים — ניסיון ייצורי</li>
+          <li>חלק מקבוצת שיכון ובינוי — גישה לפרויקטים פנימיים</li>
+          <li>שם מוכר ומוניטין בענף</li>
+          <li>ייצור לפי דרישה (Custom) + סדרתי</li>
+          <li>מיקום: ~20 אקר — מרחב להרחבה</li>
+        </ul>
+      </div>
+      <div class="division-block precast">
+        <h4><span class="div-icon p">T</span>פערים לסגירה</h4>
+        <ul>
+          <li>קיבולת (~540K מ"ר/שנה של אשקריט) — צורך בהרחבה</li>
+          <li>מוצרים חדשים: TBM segments דורשים השקעה ייעודית</li>
+          <li>BIM integration — עדיין חסר</li>
+          <li>Design-Assist capability — פיתוח נדרש</li>
+          <li>פורטל לקוח + RFID — לא קיים</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card green"><div class="val">$168B</div><div class="lbl">שוק הטרומי הגלובלי 2024</div><div class="src">Grand View Research</div></div>
+      <div class="kpi-card green"><div class="val">6.6%</div><div class="lbl">CAGR גלובלי עד 2031</div><div class="src">GlobeNewsWire 2026</div></div>
+      <div class="kpi-card green"><div class="val">₪4B</div><div class="lbl">שוק ישראל — הערכה</div></div>
+      <div class="kpi-card green"><div class="val">4.5%</div><div class="lbl">CAGR ישראל עד 2030</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PART E: ROADMAP -->
+<div id="roadmap" class="chap-divider bg-orange">
+  <span class="cn">ה</span>
+  <div><div class="ct">תוכנית לעשור — אבני דרך</div>
+  <div class="cs">4 שלבים: יסוד → התייעלות → צמיחה → מצוינות</div></div>
+</div>
+<section>
+<div class="section-card stripe-orange">
+  <div class="card-header"><h2>מפת הדרכים 2026–2036</h2></div>
+  <div class="card-body">
+    <div class="timeline">
+      <div class="tl-item c-blue">
+        <div class="tl-dot" style="color:var(--blue)"></div>
+        <div class="tl-label" style="color:var(--blue)">שלב א׳ — שנים 1–2</div>
+        <div class="tl-title">יסוד וממשל</div>
+        <div class="tl-body">
+          <strong>בטון:</strong> הגדרת Profit Center → P&L חטיבתי → דשבורד KPIs (10 מדדים) → מיפוי עלות למ"ק → סקר בטיחות<br>
+          <strong>טרומי:</strong> מינוי מנהל חטיבה → הגדרת KPIs ייצוריים → חיבור BIM → הטמעת RFID בקווי ייצור קיימים → זיהוי מוצרי עדיפות
+        </div>
+      </div>
+      <div class="tl-item c-green">
+        <div class="tl-dot" style="color:var(--green)"></div>
+        <div class="tl-label" style="color:var(--green)">שלב ב׳ — שנים 2–4</div>
+        <div class="tl-title">התייעלות</div>
+        <div class="tl-body">
+          <strong>בטון:</strong> דיספצ'ינג AI + GPS → מערכת איכות מרכזית → תוכנית Lean (5S, Kaizen) → OEE &gt;75%<br>
+          <strong>טרומי:</strong> חיישני ריפוי IoT → תבניות 3D מודפסות ראשונות → פיילוט Design-Assist → ניצול מצע &gt;75%
+        </div>
+      </div>
+      <div class="tl-item c-orange">
+        <div class="tl-dot" style="color:var(--orange)"></div>
+        <div class="tl-label" style="color:var(--orange)">שלב ג׳ — שנים 4–7</div>
+        <div class="tl-title">צמיחה וחדשנות</div>
+        <div class="tl-body">
+          <strong>בטון:</strong> פורטל לקוח דיגיטלי → AI לאופטימיזציית מתכונים (Giatec) → IoT + תחזוקה מנבאת → מוצרי בטון ירוק<br>
+          <strong>טרומי:</strong> קו ייצור TBM Segments (מטרו) → UHPC first elements → פורטל לקוח + RFID end-to-end
+        </div>
+      </div>
+      <div class="tl-item c-purple">
+        <div class="tl-dot" style="color:var(--purple)"></div>
+        <div class="tl-label" style="color:var(--purple)">שלב ד׳ — שנים 7–10</div>
+        <div class="tl-title">מצוינות ומנהיגות</div>
+        <div class="tl-body">
+          <strong>בטון:</strong> OEE &gt;85% → NPS &gt;60 → Digital Twin → הובלה בענף בישראל<br>
+          <strong>טרומי:</strong> PBU/PPVC first project → ניצול מצע &gt;85% → מרכז מצוינות טרומי לקבוצה
+        </div>
+      </div>
+    </div>
+
+    <h3>טבלת KPIs מרכזת — יעדים לעשור</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>קטגוריה</th><th>KPI</th><th>יעד שנה 2</th><th>יעד שנה 5</th><th>יעד שנה 10</th></tr>
+      <tr><td>אסטרטגיה</td><td>Contribution Margin</td><td>&gt;20%</td><td>&gt;25%</td><td>&gt;30%</td></tr>
+      <tr><td>פיננסים</td><td>EBITDA Margin</td><td>&gt;10%</td><td>&gt;15%</td><td>&gt;18%</td></tr>
+      <tr><td>תפעול (בטון)</td><td>OEE</td><td>70%</td><td>80%</td><td>&gt;85%</td></tr>
+      <tr><td>תפעול (טרומי)</td><td>ניצול מצע</td><td>70%</td><td>78%</td><td>&gt;85%</td></tr>
+      <tr><td>לוגיסטיקה</td><td>On-Time Delivery</td><td>90%</td><td>&gt;95%</td><td>&gt;97%</td></tr>
+      <tr><td>איכות</td><td>דחיות באתר</td><td>&lt;2%</td><td>&lt;1%</td><td>&lt;0.5%</td></tr>
+      <tr><td>מידע</td><td>נתונים אוטומטיים</td><td>40%</td><td>70%</td><td>&gt;90%</td></tr>
+      <tr><td>מסחר</td><td>NPS</td><td>Baseline</td><td>&gt;40</td><td>&gt;60</td></tr>
+      <tr><td>משאבי אנוש</td><td>Turnover</td><td>&lt;20%</td><td>&lt;15%</td><td>&lt;12%</td></tr>
+      <tr><td>בטיחות</td><td>LTIR</td><td>&lt;3</td><td>&lt;1.5</td><td>&lt;1.0</td></tr>
+      <tr><td>חדשנות</td><td>פרויקטי שיפור/שנה</td><td>3</td><td>8</td><td>12+</td></tr>
+      <tr><td>סביבה</td><td>CO₂ ליחידה (ירידה)</td><td>Baseline</td><td>-10%</td><td>-20%</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="chap-divider bg-gray">
+  <span class="cn">ו</span>
+  <div><div class="ct">מילון מונחים</div></div>
+</div>
+<section>
+<div class="section-card stripe-gray">
+  <div class="card-header"><h2>מילון מונחים מקיף</h2></div>
+  <div class="card-body">
+    <div class="tbl-wrap"><table>
+      <tr><th>מונח</th><th>הסבר</th><th>רלוונטי ל</th></tr>
+      <tr><td><strong>Profit Center</strong></td><td>יחידה עסקית שמדווחת על רווח (הכנסות פחות הוצאות) ונמדדת ב-Contribution Margin / EBITDA / ROI</td><td>שניהם</td></tr>
+      <tr><td><strong>OEE</strong></td><td>Overall Equipment Effectiveness — זמינות × ביצועים × איכות. מדד יעילות ציוד כוללת. Benchmark: &gt;85%</td><td>בטון</td></tr>
+      <tr><td><strong>Bed Utilization</strong></td><td>ניצול מצע — % מזמן מצע הייצור עם יציקה פעילה. המקביל ל-OEE בטרומי</td><td>טרומי</td></tr>
+      <tr><td><strong>COGS</strong></td><td>Cost of Goods Sold — עלות המכר: כל העלויות הישירות לייצור ואספקת יחידה</td><td>שניהם</td></tr>
+      <tr><td><strong>SCMs</strong></td><td>Supplementary Cementitious Materials — חומרים מצמנטיים משלימים: אפר פחם, סיגים, סיליקה פיום. מחליפים חלק מהצמנט</td><td>בטון</td></tr>
+      <tr><td><strong>Transfer Pricing</strong></td><td>מחירי העברה — מחיר מכירה פנימי לפרויקטים בתוך הקבוצה, המשקף מחיר שוק (arm's length)</td><td>שניהם</td></tr>
+      <tr><td><strong>DfMA</strong></td><td>Design for Manufacturing and Assembly — תכנון המיועד לייצור מפעלי ולהרכבה מהירה באתר</td><td>טרומי</td></tr>
+      <tr><td><strong>Design-Assist</strong></td><td>מעורבות יצרן הטרומי בשלב התכנון לפני גמר עיצוב — מאפשר אופטימיזציה של אלמנטים</td><td>טרומי</td></tr>
+      <tr><td><strong>FPC</strong></td><td>Factory Production Control — בקרת ייצור במפעל; מחויב לפי EN 13369 ו-CE marking</td><td>טרומי</td></tr>
+      <tr><td><strong>LTIR</strong></td><td>Lost Time Incident Rate — שיעור תאונות עם ימי היעדרות לכל מיליון שעות עבודה</td><td>שניהם</td></tr>
+      <tr><td><strong>eTicketing</strong></td><td>תעודת משלוח אלקטרונית — חתימה דיגיטלית על טאבלט, נתונים עולים בזמן אמת</td><td>בטון</td></tr>
+      <tr><td><strong>UHPC</strong></td><td>Ultra-High Performance Concrete — בטון עם חוזק &gt;150 MPa; מאפשר אלמנטים דקים ועמידים יותר</td><td>טרומי</td></tr>
+      <tr><td><strong>TBM Segments</strong></td><td>טבעות מנהרה — מקטעי בטון המרכיבים את דפנות המנהרה בחציית TBM. דיוק ±0.5 מ"מ</td><td>טרומי</td></tr>
+      <tr><td><strong>RFID</strong></td><td>Radio Frequency Identification — תג מזהה להטמעה באלמנט; מאפשר מעקב ממפעל עד אתר</td><td>טרומי</td></tr>
+      <tr><td><strong>Near Miss</strong></td><td>אירוע שכמעט גרם לתאונה — דיווח Near Miss הוא מדד חיובי לתרבות בטיחות</td><td>שניהם</td></tr>
+      <tr><td><strong>Slump</strong></td><td>שקיעה — בדיקת עבידות בטון טרי. B-30: 12–16 ס"מ; SCC: מעל 60 ס"מ (Slump Flow)</td><td>בטון</td></tr>
+      <tr><td><strong>NPS</strong></td><td>Net Promoter Score — % ממליצים פחות % מתנגדים. CEMEX = 74. יעד: &gt;50</td><td>שניהם</td></tr>
+      <tr><td><strong>PBU</strong></td><td>Prefabricated Bathroom Unit — יחידת אמבטיה מוגמרת המיוצרת במפעל ומותקנת שלמה</td><td>טרומי</td></tr>
+      <tr><td><strong>CBAM</strong></td><td>Carbon Border Adjustment Mechanism — מנגנון הגבולות הפחמני של האיחוד האירופי; עשוי להשפיע על מחירי צמנט</td><td>שניהם</td></tr>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<!-- SOURCES -->
+<div id="sources" class="chap-divider bg-gray">
+  <span class="cn">ז</span>
+  <div><div class="ct">מקורות</div></div>
+</div>
+<section>
+<div class="section-card stripe-gray">
+  <div class="card-header"><h2>מקורות וקישורים</h2></div>
+  <div class="card-body">
+    <h3>מחקרי תעשייה וניהול בינלאומיים</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>מקור</th><th>נושא</th><th>קישור</th></tr>
+      <tr><td>Deloitte Smart Manufacturing Survey 2025</td><td>Smart Factory, תפוקה, פריון</td><td><a href="https://www.deloitte.com" target="_blank">deloitte.com</a></td></tr>
+      <tr><td>Bain Digital Lean Playbook</td><td>Digital Lean, הפחתת עלויות</td><td><a href="https://www.bain.com" target="_blank">bain.com</a></td></tr>
+      <tr><td>BCG 2024 – Process Industries</td><td>עלויות, EBITDA, end-to-end analysis</td><td><a href="https://www.bcg.com/publications/2024/new-approach-to-cost-and-growth-in-process-companies" target="_blank">bcg.com</a></td></tr>
+      <tr><td>McKinsey 2025 – SCMs</td><td>חומרים מצמנטיים משלימים</td><td><a href="https://www.mckinsey.com/industries/engineering-construction-and-building-materials" target="_blank">mckinsey.com</a></td></tr>
+      <tr><td>NPCA – Precast/Prestressed Concrete Institute</td><td>Best practices, safety, FPC</td><td><a href="https://www.npca.org" target="_blank">npca.org</a></td></tr>
+      <tr><td>PCI – Precast Concrete Institute</td><td>Design standards, plant certification</td><td><a href="https://www.pci.org" target="_blank">pci.org</a></td></tr>
+      <tr><td>BCA Singapore – DfMA</td><td>Design for Manufacturing, PBU, PPVC</td><td><a href="https://www1.bca.gov.sg/buildsg/productivity/design-for-manufacturing-and-assembly-dfma" target="_blank">bca.gov.sg</a></td></tr>
+      <tr><td>Grand View Research – Precast Market</td><td>שוק הטרומי הגלובלי 2024–2030</td><td><a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">grandviewresearch.com</a></td></tr>
+      <tr><td>GlobeNewsWire – Precast Market 2031</td><td>תחזית שוק 6.6% CAGR</td><td><a href="https://www.globenewswire.com/news-release/2026/01/22/3223619/28124/en/Precast-Concrete-Industry-Set-for-6-6-CAGR-Through-2031-Amidst-Green-Building-Boom.html" target="_blank">globenewswire.com</a></td></tr>
+      <tr><td>NRMCA – National Ready Mixed Concrete Association</td><td>OEE benchmarks, fleet utilization</td><td><a href="https://www.nrmca.org" target="_blank">nrmca.org</a></td></tr>
+      <tr><td>IEOM Society 2024</td><td>פער 42% בתפעול מפעלי בטון</td><td><a href="https://www.ieomsociety.org" target="_blank">ieomsociety.org</a></td></tr>
+    </table></div>
+
+    <h3>חברות גלובליות</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>חברה</th><th>קישור</th></tr>
+      <tr><td>CEMEX – Integrated Report 2024 + Cemex Go</td><td><a href="https://www.cemex.com/w/cemex-showcases-significant-operational-and-sustainability-advancements-in-its-2024-integrated-report" target="_blank">cemex.com (דוח 2024)</a> | <a href="https://www.cemexusa.com/-/cemex-completes-deployment-of-cemex-go-with-customers-worldwide" target="_blank">cemexusa.com (Cemex Go)</a></td></tr>
+      <tr><td>Heidelberg Materials – Strategy 2030</td><td><a href="https://www.heidelbergmaterials.com/en/strategy" target="_blank">heidelbergmaterials.com</a></td></tr>
+      <tr><td>Holcim – ECOPact בטון ירוק</td><td><a href="https://www.holcim.com/what-we-do/our-building-solutions/ready-mix-concrete/ecopact" target="_blank">holcim.com/ecopact</a></td></tr>
+      <tr><td>Tindall Corporation – Precast USA</td><td><a href="https://www.tindallcorp.com" target="_blank">tindallcorp.com</a></td></tr>
+      <tr><td>Gulf Precast – UAE</td><td><a href="https://www.gulfprecast.ae" target="_blank">gulfprecast.ae</a></td></tr>
+      <tr><td>FP McCann – בריטניה (יצרן טרומי גדול, חדשנות + קיימות)</td><td><a href="https://fpmccann.co.uk/about-us-2/" target="_blank">fpmccann.co.uk</a> | <a href="https://www.irishnews.com/news/business/precast-concrete-giant-fp-mccann-invests-90m-in-expanding-manufacturing-operations-ORUL6ZKN75EELIB5WFSYFESJDA/" target="_blank">השקעת £90M (Irish News)</a></td></tr>
+      <tr><td>Webuild Roboplant – איטליה (אוטומציה מלאה, סגמנטי מנהרה)</td><td><a href="https://www.webuildgroup.com/en/roboplant-automated-environmentally-friendly-pre-cast-concrete-segment-factory/" target="_blank">webuildgroup.com/roboplant</a></td></tr>
+      <tr><td>High Concrete Group – ארה"ב (פיבוט לטרומי אדריכלי, $8M)</td><td><a href="https://www.highconcrete.com/" target="_blank">highconcrete.com</a> | <a href="https://www.globenewswire.com/news-release/2019/07/17/1884176/0/en/High-Concrete-Group-Kicks-off-8-Million-Manufacturing-Revitalization-Aimed-at-Architectural-Precast-Market.html" target="_blank">GlobeNewswire 2019</a></td></tr>
+      <tr><td>Elematic – ציוד וטכנולוגיה לטרומי</td><td><a href="https://www.elematic.com" target="_blank">elematic.com</a></td></tr>
+    </table></div>
+
+    <h3>טכנולוגיה ודיגיטל</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>מוצר/חברה</th><th>קישור</th></tr>
+      <tr><td>Linkoper – AI Dispatch לבטון</td><td><a href="https://www.linkoper.com" target="_blank">linkoper.com</a></td></tr>
+      <tr><td>Command Alkon – Cloud Platform</td><td><a href="https://www.commandalkon.com" target="_blank">commandalkon.com</a></td></tr>
+      <tr><td>Giatec SmartMix – AI מתכונים</td><td><a href="https://www.giatecscientific.com" target="_blank">giatecscientific.com</a></td></tr>
+      <tr><td>CarbonCure – הזרקת CO₂</td><td><a href="https://www.carboncure.com" target="_blank">carboncure.com</a></td></tr>
+      <tr><td>Elematic EMMA – ניהול ייצור טרומי</td><td><a href="https://www.elematic.com" target="_blank">elematic.com</a></td></tr>
+      <tr><td>Uptake – תחזוקה מנבאת</td><td><a href="https://www.uptake.com" target="_blank">uptake.com</a></td></tr>
+      <tr><td>Microsoft – CEMEX Technical Xpert Copilot</td><td><a href="https://news.microsoft.com/source/latam/features/ai/cemex-technical-xpert-copilot/?lang=en" target="_blank">news.microsoft.com</a></td></tr>
+    </table></div>
+
+    <h3>ישראל</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>מקור</th><th>קישור</th></tr>
+      <tr><td>מכון התקנים הישראלי (ת"י 118, ת"י 26)</td><td><a href="https://www.sii.org.il" target="_blank">sii.org.il</a></td></tr>
+      <tr><td>ישראבטון</td><td><a href="https://www.israbeton.co.il" target="_blank">israbeton.co.il</a></td></tr>
+      <tr><td>רמט טרום</td><td><a href="https://www.ramet-trom.co.il" target="_blank">ramet-trom.co.il</a></td></tr>
+      <tr><td>אשקריט</td><td><a href="https://ashcrete.ashtromconstruction.co.il" target="_blank">ashcrete.ashtromconstruction.co.il</a></td></tr>
+      <tr><td>שיכון ובינוי תעשיות</td><td><a href="https://sobindustry.shikunbinui.com" target="_blank">sobindustry.shikunbinui.com</a></td></tr>
+      <tr><td>ENR – מטרו תל אביב $49B</td><td><a href="https://www.enr.com/articles/62509-major-procurement-process-begins-for-israels-49b-tel-aviv-metro" target="_blank">enr.com</a></td></tr>
+      <tr><td>המוסד לבטיחות ולגיהות</td><td><a href="https://www.osh.org.il" target="_blank">osh.org.il</a></td></tr>
+    </table></div>
+
+    <div style="margin-top:24px;padding:16px;background:#f7f8fa;border-radius:8px;font-size:.82rem;color:#718096;text-align:center;">
+      <em>מסמך זה מהווה תשתית אסטרטגית מקיפה לניהול שתי חטיבות הייצור של שיכון ובינוי תעשיות. יש להתאים את צעדי היישום לגודל החטיבה, לתקציב, ולאילוצי הקבוצה, ולעדכן את התוכנית מדי שנה בהתאם לתוצאות ולתנאי השוק.</em><br><br>
+      <strong>מרץ 2026</strong>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+</div><!-- end layout -->
+
+<script>
+// Progress bar
+const ms = document.getElementById('main-scroll');
+const pb = document.getElementById('progress-bar');
+const btt = document.getElementById('btt');
+ms.addEventListener('scroll', () => {
+  const pct = (ms.scrollTop / (ms.scrollHeight - ms.clientHeight)) * 100;
+  pb.style.width = pct + '%';
+  btt.classList.toggle('show', ms.scrollTop > 300);
+  // Highlight active nav
+  document.querySelectorAll('.nav-chapter, .nav-sub').forEach(a => {
+    const id = a.getAttribute('href')?.replace('#','');
+    if(!id) return;
+    const el = document.getElementById(id);
+    if(!el) return;
+    const top = el.getBoundingClientRect().top - ms.getBoundingClientRect().top;
+    if(top >= -20 && top < 200) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>
