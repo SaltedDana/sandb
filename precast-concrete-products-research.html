@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 מוצרי בטון טרום - מחקר מקיף</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --green: #27ae60;
+            --blue: #2980b9;
+            --purple: #8e44ad;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: var(--light-bg);
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .hero .subtitle {
+            font-size: 1.15em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Market stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 25px 40px;
+            background: white;
+            border-bottom: 3px solid var(--accent);
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat .number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .stat .label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Overview section */
+        .overview {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+        .overview h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .overview p {
+            margin-bottom: 12px;
+        }
+        .overview a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+        .overview a:hover {
+            text-decoration: underline;
+        }
+
+        /* Category legend */
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .legend-dot.cat-a { background: var(--green); }
+        .legend-dot.cat-b { background: var(--blue); }
+        .legend-dot.cat-c { background: var(--purple); }
+
+        /* Section headers */
+        .section-header {
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin: 35px 0 20px;
+            color: white;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        .section-header.cat-a { background: linear-gradient(135deg, var(--green), #2ecc71); }
+        .section-header.cat-b { background: linear-gradient(135deg, var(--blue), #3498db); }
+        .section-header.cat-c { background: linear-gradient(135deg, var(--purple), #9b59b6); }
+        .section-header small {
+            font-weight: 400;
+            font-size: 0.65em;
+            opacity: 0.9;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Product cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px 24px;
+            box-shadow: var(--card-shadow);
+            border-right: 5px solid var(--green);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .product-card.cat-b { border-right-color: var(--blue); }
+        .product-card.cat-c { border-right-color: var(--purple); }
+
+        .product-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .product-num {
+            background: var(--green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .cat-b .product-num { background: var(--blue); }
+        .cat-c .product-num { background: var(--purple); }
+
+        .product-name-he {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .product-name-en {
+            font-size: 0.85em;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .product-desc {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #eef5fc;
+            transition: background 0.15s;
+        }
+        .product-link:hover {
+            background: #d4e8f8;
+        }
+
+        /* Opportunities table */
+        .opportunities {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 35px;
+            box-shadow: var(--card-shadow);
+        }
+        .opportunities h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .opp-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .opp-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            text-align: right;
+            font-size: 0.9em;
+        }
+        .opp-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95em;
+        }
+        .opp-table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+        .opp-table tr:hover td {
+            background: #fff3e0;
+        }
+        .opp-num {
+            background: var(--accent);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        /* Sources */
+        .sources {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: var(--card-shadow);
+        }
+        .sources h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .sources ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+        .sources li a {
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sources li a:hover {
+            text-decoration: underline;
+        }
+        .sources li::before {
+            content: "\1F517 ";
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        /* Filter buttons */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .filter-btn:hover { background: #f0f0f0; }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .filter-btn.active-a { background: var(--green); color: white; border-color: var(--green); }
+        .filter-btn.active-b { background: var(--blue); color: white; border-color: var(--blue); }
+        .filter-btn.active-c { background: var(--purple); color: white; border-color: var(--purple); }
+
+        /* Search */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            font-size: 1em;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .search-box input:focus {
+            border-color: var(--accent);
+        }
+
+        .hidden { display: none !important; }
+
+        /* Market Chart */
+        .market-chart-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+        .market-chart-section h2 {
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+        .market-chart-section .chart-subtitle {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 25px;
+        }
+        .chart-layout {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .donut-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            flex-shrink: 0;
+        }
+        .donut-container svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .donut-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .donut-center-text .big {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        .donut-center-text .small {
+            font-size: 0.8em;
+            color: #888;
+        }
+        .chart-legend-list {
+            list-style: none;
+            flex: 1;
+            min-width: 280px;
+        }
+        .chart-legend-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            transition: background 0.15s;
+        }
+        .chart-legend-list li:hover {
+            background: #f5f5f5;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+        .legend-info {
+            flex: 1;
+        }
+        .legend-info .company-name {
+            font-weight: 700;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .legend-info .company-details {
+            font-size: 0.8em;
+            color: #888;
+        }
+        .legend-pct {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: auto;
+            min-width: 65px;
+            text-align: left;
+        }
+
+        /* Print */
+        @media print {
+            .hero { padding: 30px; }
+            .filters, .search-box { display: none; }
+            .product-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            .product-card:hover { transform: none; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero { padding: 30px 20px; }
+            .hero h1 { font-size: 1.6em; }
+            .stats-bar { gap: 20px; padding: 20px; }
+            .stat .number { font-size: 1.3em; }
+            .product-card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>100 מוצרי בטון טרום (Precast Concrete)</h1>
+    <div class="subtitle">מחקר מקיף - מוצרי מדף הנמצאים בשימוש נרחב בעולם, ששווה למפעל לייצר בכמויות כי תמיד יהיה ביקוש מרשויות, חברות בנייה ותשתיות</div>
+</div>
+
+<div class="stats-bar">
+    <div class="stat">
+        <div class="number">$133B</div>
+        <div class="label">שוק עולמי 2025</div>
+    </div>
+    <div class="stat">
+        <div class="number">$212B</div>
+        <div class="label">תחזית 2032</div>
+    </div>
+    <div class="stat">
+        <div class="number">6.9%</div>
+        <div class="label">צמיחה שנתית</div>
+    </div>
+    <div class="stat">
+        <div class="number">~200</div>
+        <div class="label">מפעלי בטון בישראל</div>
+    </div>
+    <div class="stat">
+        <div class="number">~55</div>
+        <div class="label">חברות בענף</div>
+    </div>
+    <div class="stat">
+        <div class="number">100</div>
+        <div class="label">מוצרים במחקר</div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Overview -->
+    <div class="overview">
+        <h2>סקירה כללית</h2>
+        <p>שוק הבטון הטרום העולמי הוערך ב-133 מיליארד דולר ב-2025 וצפוי להגיע ל-212 מיליארד דולר ב-2032. בישראל פועלים <strong>כ-200 מפעלי בטון</strong> בבעלות <strong>~55 חברות</strong> שונות (מתוכם ~125 באינטגרציה עם מחצבה). שחקנים מרכזיים: <a href="https://readymix.co.il/" target="_blank">רדימיקס</a> (~60 מפעלים), הנסון (~24), <a href="https://www.shapir.co.il/" target="_blank">שפיר</a> (~18), <a href="https://sobindustry.shikunbinui.com/" target="_blank">שיכון ובינוי</a> (~10 מפעלים, ~1 מיליון מ"ק/שנה), ישראבטון (~10), <a href="https://www.bar-el27.co.il/" target="_blank">ר.א.ד</a> (~5), מחצבות כפר גלעדי ועוד ~40 חברות נוספות.</p>
+        <div class="legend">
+            <div class="legend-item"><span class="legend-dot cat-a"></span> א' - קיים ומיוצר בישראל (35)</div>
+            <div class="legend-item"><span class="legend-dot cat-b"></span> ב' - קיים בעולם, פוטנציאל לישראל (35)</div>
+            <div class="legend-item"><span class="legend-dot cat-c"></span> ג' - חדשני / מתפתח (30)</div>
+        </div>
+    </div>
+
+    <!-- Market Share Chart -->
+    <div class="market-chart-section">
+        <h2>נתח שוק משוער - בטון מובא בישראל</h2>
+        <div class="chart-subtitle">הערכה 2024 | ~200 מפעלי בטון בבעלות ~55 חברות | ~125 באינטגרציה עם מחצבה<br>מקור: דוח הצוות הבינמשרדי לכרייה וחציבה (2021) + הערכות שוק</div>
+        <div class="chart-layout">
+
+            <!-- SVG Donut Chart -->
+            <div class="donut-container">
+                <!--
+                    Total: ~200 factories, ~55 companies
+                    circumference = 2*pi*90 = 565.5
+                    רדימיקס   30%  => 169.6   offset: 0
+                    הנסון     20%  => 113.1   offset: -169.6
+                    שפיר      15%  => 84.8    offset: -282.7
+                    שיכון ובינוי 8% => 45.2   offset: -367.5
+                    ישראבטון  10%  => 56.5    offset: -412.7
+                    ר.א.ד     4%   => 22.6   offset: -469.2
+                    כפר גלעדי 3%   => 17.0   offset: -491.8
+                    אחרים    10%   => 56.5   offset: -508.8
+                -->
+                <svg viewBox="0 0 240 240">
+                    <!-- רדימיקס 30% - dark blue -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#2c3e6b" stroke-width="42"
+                        stroke-dasharray="169.6 395.9" stroke-dashoffset="0"/>
+                    <!-- הנסון 20% - medium blue -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#3b6fb5" stroke-width="42"
+                        stroke-dasharray="113.1 452.4" stroke-dashoffset="-169.6"/>
+                    <!-- שפיר 15% - light blue -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#5ba0d9" stroke-width="42"
+                        stroke-dasharray="84.8 480.7" stroke-dashoffset="-282.7"/>
+                    <!-- שיכון ובינוי 8% - teal -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#1abc9c" stroke-width="42"
+                        stroke-dasharray="45.2 520.3" stroke-dashoffset="-367.5"/>
+                    <!-- ישראבטון 10% - orange -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#e67e22" stroke-width="42"
+                        stroke-dasharray="56.5 509" stroke-dashoffset="-412.7"/>
+                    <!-- ר.א.ד 4% - green -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#27ae60" stroke-width="42"
+                        stroke-dasharray="22.6 542.9" stroke-dashoffset="-469.2"/>
+                    <!-- כפר גלעדי 3% - dark green -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#1a7a42" stroke-width="42"
+                        stroke-dasharray="17 548.5" stroke-dashoffset="-491.8"/>
+                    <!-- אחרים ~10% - grey -->
+                    <circle cx="120" cy="120" r="90" fill="none" stroke="#95a5a6" stroke-width="42"
+                        stroke-dasharray="56.5 509" stroke-dashoffset="-508.8"/>
+                </svg>
+                <div class="donut-center-text">
+                    <span class="big">~200</span>
+                    <span class="small">מפעלי בטון<br>~55 חברות</span>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <ul class="chart-legend-list">
+                <li>
+                    <span class="legend-color" style="background:#2c3e6b"></span>
+                    <div class="legend-info">
+                        <div class="company-name">רדימיקס</div>
+                        <div class="company-details">~60 מפעלים | השחקן הגדול בישראל | אינטגרציה עם מחצבות</div>
+                    </div>
+                    <span class="legend-pct">30-35%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#3b6fb5"></span>
+                    <div class="legend-info">
+                        <div class="company-name">הנסון</div>
+                        <div class="company-details">~24 מפעלים | אינטגרציה אנכית עם מחצבות</div>
+                    </div>
+                    <span class="legend-pct">20-25%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#5ba0d9"></span>
+                    <div class="legend-info">
+                        <div class="company-name">שפיר</div>
+                        <div class="company-details">~18 מפעלים | מחצבות + בטון + אספלט + תשתיות</div>
+                    </div>
+                    <span class="legend-pct">15-20%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#1abc9c"></span>
+                    <div class="legend-info">
+                        <div class="company-name">שיכון ובינוי (סולל בונה)</div>
+                        <div class="company-details">~10 מפעלים | ~1 מיליון מ"ק ייצור בשנה | מפעל טרומי מוביל</div>
+                    </div>
+                    <span class="legend-pct">7-9%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#e67e22"></span>
+                    <div class="legend-info">
+                        <div class="company-name">ישראבטון</div>
+                        <div class="company-details">~10 מפעלים</div>
+                    </div>
+                    <span class="legend-pct">10-12%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#27ae60"></span>
+                    <div class="legend-info">
+                        <div class="company-name">ר.א.ד</div>
+                        <div class="company-details">~5 מפעלים</div>
+                    </div>
+                    <span class="legend-pct">3-5%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#1a7a42"></span>
+                    <div class="legend-info">
+                        <div class="company-name">מחצבות כפר גלעדי</div>
+                        <div class="company-details">מחזיקה עתודות משמעותיות | אינטגרציה עם מחצבות</div>
+                    </div>
+                    <span class="legend-pct">~3%</span>
+                </li>
+                <li>
+                    <span class="legend-color" style="background:#95a5a6"></span>
+                    <div class="legend-info">
+                        <div class="company-name">אחרים (~40 חברות)</div>
+                        <div class="company-details">~73 מפעלים | עצמאיים ואזוריים | ~75 ללא אינטגרציה עם מחצבה</div>
+                    </div>
+                    <span class="legend-pct">~10%</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="חיפוש מוצר...">
+    </div>
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">הכל (100)</button>
+        <button class="filter-btn" data-filter="a">א' - ישראל (35)</button>
+        <button class="filter-btn" data-filter="b">ב' - עולמי (35)</button>
+        <button class="filter-btn" data-filter="c">ג' - חדשני (30)</button>
+    </div>
+
+    <!-- Category A -->
+    <div class="section-header cat-a" data-cat="a">א' - מוצרים מיוצרים בישראל<small>מוצרים שכבר מיוצרים במפעלים ישראליים בכמויות</small></div>
+    <div class="products-grid" id="grid-a">
+
+        <div class="product-card" data-cat="a" data-search="צינורות ביוב מבטון מזוין Reinforced Concrete Sewer Pipes">
+            <div class="product-header">
+                <span class="product-num">1</span>
+                <span class="product-name-he">צינורות ביוב מבטון מזוין</span>
+                <span class="product-name-en">Reinforced Concrete Sewer Pipes</span>
+            </div>
+            <p class="product-desc">צינורות בקטרים שונים (300-2400 מ"מ) להולכת שפכים ומי גשמים. מוצר בסיסי ביותר - כל עיר, כל שכונה חדשה צריכה צינורות ביוב. מיוצר בישראל ע"י רדימיקס, שפיר ואחרים.</p>
+            <a class="product-link" href="https://precast.org/products/pipes/" target="_blank">NPCA - Pipes &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="שוחות ביקורת Manholes">
+            <div class="product-header">
+                <span class="product-num">2</span>
+                <span class="product-name-he">שוחות ביקורת</span>
+                <span class="product-name-en">Manholes</span>
+            </div>
+            <p class="product-desc">תאים מבטון טרום בקטרים 60-300 ס"מ, המשמשים כנקודות גישה למערכות ביוב וניקוז. כל רחוב חדש דורש שוחות. מיוצר בהיקף נרחב בישראל.</p>
+            <a class="product-link" href="https://precast.org/products/manholes/" target="_blank">NPCA - Manholes &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="צינורות ניקוז מי גשמים Storm Drainage Pipes">
+            <div class="product-header">
+                <span class="product-num">3</span>
+                <span class="product-name-he">צינורות ניקוז מי גשמים</span>
+                <span class="product-name-en">Storm Drainage Pipes</span>
+            </div>
+            <p class="product-desc">צינורות מבטון מזוין להולכת מי נגר עילי. שונים מצינורות ביוב בהגדרות עמידות ובדרישות. ביקוש קבוע מרשויות ומקבלנים.</p>
+            <a class="product-link" href="https://hub.countymaterials.com/products/concrete-pipe-a-precast" target="_blank">County Materials &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="תעלות ניקוז Drainage Channels">
+            <div class="product-header">
+                <span class="product-num">4</span>
+                <span class="product-name-he">תעלות ניקוז</span>
+                <span class="product-name-en">Drainage Channels</span>
+            </div>
+            <p class="product-desc">תעלות U-Shape מבטון טרום לניקוז מי גשמים לאורך כבישים, חניונים ואזורי תעשייה. מיוצרות ע"י רדימיקס ובר-אל.</p>
+            <a class="product-link" href="https://abtdrains.com/product-category/precast-trench-drain/" target="_blank">ABT Drains &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אבני שפה ומדרכה Curbs and Kerbs">
+            <div class="product-header">
+                <span class="product-num">5</span>
+                <span class="product-name-he">אבני שפה ומדרכה</span>
+                <span class="product-name-en">Curbs and Kerbs</span>
+            </div>
+            <p class="product-desc">אבני שפה סטנדרטיות המגדירות את קצה הכביש מול המדרכה. מוצר מדף קלאסי - כל פרויקט כבישים צורך אלפי מטרים.</p>
+            <a class="product-link" href="https://globalprecast.co.za/special-products/" target="_blank">Global Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אבני מרצפות משתלבות Interlocking Pavers">
+            <div class="product-header">
+                <span class="product-num">6</span>
+                <span class="product-name-he">אבני מרצפות משתלבות</span>
+                <span class="product-name-en">Interlocking Pavers</span>
+            </div>
+            <p class="product-desc">אבני ריצוף להנחה ללא מלט, בצורות ודוגמאות שונות. שימוש נרחב במדרכות, חניונים, שבילים ומרחבים ציבוריים. מיוצרות בהיקפים גדולים בישראל.</p>
+            <a class="product-link" href="https://www.mpaprecast.org/Paving/SuDS.aspx" target="_blank">MPA Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מכסי שוחות Manhole Covers and Frames">
+            <div class="product-header">
+                <span class="product-num">7</span>
+                <span class="product-name-he">מכסי שוחות</span>
+                <span class="product-name-en">Manhole Covers and Frames</span>
+            </div>
+            <p class="product-desc">מכסים מבטון (ולעיתים שילוב מתכת-בטון) לשוחות ביקורת. דרישה מתמדת מכל פרויקט תשתיות.</p>
+            <a class="product-link" href="https://www.jensenprecast.com/products/categories/sanitary-and-storm-manholes/" target="_blank">Jensen Infrastructure &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="עמודי תאורה בסיסים Light Pole Bases">
+            <div class="product-header">
+                <span class="product-num">8</span>
+                <span class="product-name-he">עמודי תאורה - בסיסים</span>
+                <span class="product-name-en">Light Pole Bases</span>
+            </div>
+            <p class="product-desc">בסיסי בטון טרום להתקנת עמודי תאורת רחוב. מוצר סטנדרטי בכל פרויקט דרכים ופיתוח.</p>
+            <a class="product-link" href="https://www.utilitystructures.com/concrete-poles/" target="_blank">Utility Structures &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מעקות בטיחות לכבישים מחסומי ג'רזי Jersey Barriers">
+            <div class="product-header">
+                <span class="product-num">9</span>
+                <span class="product-name-he">מחסומי ג'רזי</span>
+                <span class="product-name-en">Jersey Barriers</span>
+            </div>
+            <p class="product-desc">מחסומי בטון בצורת "T" הפוך, המשמשים להפרדת נתיבים, הגנה על אתרי בנייה וחסימות זמניות. שימוש יומיומי בכל פרויקט תשתיות.</p>
+            <a class="product-link" href="https://www.fortmiller.com/products/wall/" target="_blank">Fort Miller Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="תאי בקרה לתקשורת וחשמל Communication Electrical Manholes">
+            <div class="product-header">
+                <span class="product-num">10</span>
+                <span class="product-name-he">תאי בקרה לתקשורת וחשמל</span>
+                <span class="product-name-en">Communication/Electrical Manholes</span>
+            </div>
+            <p class="product-desc">תאים תת-קרקעיים לגישה לכבלי חשמל ותקשורת. עם התרחבות תשתיות הסיבים האופטיים - ביקוש גובר.</p>
+            <a class="product-link" href="https://www.amconco.com/utility-products/utility-vaults/" target="_blank">AMCON &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אלמנטי קירות טרומיים Precast Wall Panels">
+            <div class="product-header">
+                <span class="product-num">11</span>
+                <span class="product-name-he">אלמנטי קירות טרומיים</span>
+                <span class="product-name-en">Precast Wall Panels</span>
+            </div>
+            <p class="product-desc">פאנלים מבטון מזוין לקירות חוץ ופנים של מבנים. מיוצרים ע"י סולל בונה תעשיות, ביתנית ואחרים.</p>
+            <a class="product-link" href="https://www.elematic.com/learn-precast/what-is-precast-concrete/precast-products/" target="_blank">Elematic &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="קורות טרומיות Precast Beams">
+            <div class="product-header">
+                <span class="product-num">12</span>
+                <span class="product-name-he">קורות טרומיות</span>
+                <span class="product-name-en">Precast Beams</span>
+            </div>
+            <p class="product-desc">קורות מבטון דרוך לגשרים, חניונים ומבני תעשייה. מיוצרות במפעלי טרום בישראל.</p>
+            <a class="product-link" href="https://www.highconcrete.com/blog/precast-concrete-components/" target="_blank">High Concrete &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="עמודים טרומיים Precast Columns">
+            <div class="product-header">
+                <span class="product-num">13</span>
+                <span class="product-name-he">עמודים טרומיים</span>
+                <span class="product-name-en">Precast Columns</span>
+            </div>
+            <p class="product-desc">עמודי בטון מזוין מוכנים מראש למבנים מסחריים, תעשייתיים וחניונים. מייעלים את הבנייה משמעותית.</p>
+            <a class="product-link" href="https://elebia.com/precast-concrete-components/" target="_blank">Elebia &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="תקרות חלולות פלטות צלעות Hollow Core Slabs">
+            <div class="product-header">
+                <span class="product-num">14</span>
+                <span class="product-name-he">תקרות חלולות - פלטות צלעות</span>
+                <span class="product-name-en">Hollow Core Slabs</span>
+            </div>
+            <p class="product-desc">פלטות בטון דרוך חלולות המשמשות כתקרות/רצפות. חוסכות משקל ומשפרות בידוד. מיוצרות בהיקף נרחב בישראל.</p>
+            <a class="product-link" href="https://www.elematic.com/learn-precast/what-is-precast-concrete/precast-products/" target="_blank">Elematic &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מדרגות טרומיות Precast Stairs">
+            <div class="product-header">
+                <span class="product-num">15</span>
+                <span class="product-name-he">מדרגות טרומיות</span>
+                <span class="product-name-en">Precast Stairs</span>
+            </div>
+            <p class="product-desc">גרמי מדרגות שלמים או בחלקים, מוכנים להרכבה. חוסכים זמן בנייה משמעותי.</p>
+            <a class="product-link" href="https://nitterhouseconcrete.com/guide-to-precast-concrete/" target="_blank">Nitterhouse &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="משטחי שנאים Transformer Pads">
+            <div class="product-header">
+                <span class="product-num">16</span>
+                <span class="product-name-he">משטחי שנאים</span>
+                <span class="product-name-en">Transformer Pads</span>
+            </div>
+            <p class="product-desc">פלטות בטון מהונדסות להצבת שנאי חשמל. מוצר סטנדרטי שכל חברת חשמל רוכשת.</p>
+            <a class="product-link" href="https://www.lindsayprecast.com/transformer-vaults-pads" target="_blank">Lindsay Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="בורות ספיגה בורות רקב Septic Tanks">
+            <div class="product-header">
+                <span class="product-num">17</span>
+                <span class="product-name-he">בורות ספיגה / בורות רקב</span>
+                <span class="product-name-en">Septic Tanks</span>
+            </div>
+            <p class="product-desc">מיכלי בטון תת-קרקעיים לטיפול בשפכים באזורים לא מחוברים לביוב. נפוצים באזורים כפריים ובישובים קטנים.</p>
+            <a class="product-link" href="https://sheaconcrete.com/products/precast-concrete-residential-septic-tanks/" target="_blank">Shea Concrete &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מפרידי שומנים Grease Interceptors Traps">
+            <div class="product-header">
+                <span class="product-num">18</span>
+                <span class="product-name-he">מפרידי שומנים</span>
+                <span class="product-name-en">Grease Interceptors/Traps</span>
+            </div>
+            <p class="product-desc">מתקנים לעצירת שומנים לפני כניסתם למערכת הביוב. חובה במסעדות, בתי מלון ומפעלי מזון.</p>
+            <a class="product-link" href="https://precast.org/products/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="קירות תמך Retaining Walls">
+            <div class="product-header">
+                <span class="product-num">19</span>
+                <span class="product-name-he">קירות תמך</span>
+                <span class="product-name-en">Retaining Walls</span>
+            </div>
+            <p class="product-desc">קירות בטון טרום להחזקת קרקע במפלסים שונים. שימוש נרחב בכבישים, חניונים ופרויקטי פיתוח.</p>
+            <a class="product-link" href="https://lhvprecast.com/products/retaining-wall-systems/" target="_blank">LHV Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מעביר מים תעלות Box Culverts">
+            <div class="product-header">
+                <span class="product-num">20</span>
+                <span class="product-name-he">מעביר מים / תעלות</span>
+                <span class="product-name-en">Box Culverts</span>
+            </div>
+            <p class="product-desc">מבנה מלבני מבטון טרום להעברת מים מתחת לכבישים ומסילות. מוצר תשתיתי חיוני.</p>
+            <a class="product-link" href="https://precast.org/products/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אלמנטי גדר בטון Concrete Fence Panels">
+            <div class="product-header">
+                <span class="product-num">21</span>
+                <span class="product-name-he">אלמנטי גדר בטון</span>
+                <span class="product-name-en">Concrete Fence Panels</span>
+            </div>
+            <p class="product-desc">פאנלים ועמודי גדר מבטון לגידור שטחים תעשייתיים, מסחריים וביטחוניים.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/" target="_blank">Permacast Walls &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="תאי שאיבה תחנות שאיבה Pump Stations Lift Stations">
+            <div class="product-header">
+                <span class="product-num">22</span>
+                <span class="product-name-he">תאי שאיבה / תחנות שאיבה</span>
+                <span class="product-name-en">Pump Stations / Lift Stations</span>
+            </div>
+            <p class="product-desc">תאים מבטון טרום המכילים משאבות להעלאת שפכים או מי גשמים. מיוצרים בישראל ע"י רדימיקס.</p>
+            <a class="product-link" href="https://precast.org/products/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מכולות פסולת שקועות Underground Waste Containers">
+            <div class="product-header">
+                <span class="product-num">23</span>
+                <span class="product-name-he">מכולות פסולת שקועות</span>
+                <span class="product-name-en">Underground Waste Containers</span>
+            </div>
+            <p class="product-desc">מכולות בטון שקועות באדמה לאיסוף פסולת עירוני. מיוצרות בישראל - רדימיקס מייצרת מוצר זה.</p>
+            <a class="product-link" href="https://readymix.co.il/" target="_blank">רדימיקס &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אלמנטי מנהור סגמנטים למנהרות Tunnel Lining Segments">
+            <div class="product-header">
+                <span class="product-num">24</span>
+                <span class="product-name-he">סגמנטים למנהרות</span>
+                <span class="product-name-en">Tunnel Lining Segments</span>
+            </div>
+            <p class="product-desc">טבעות בטון טרום לציפוי מנהרות שנחפרות ע"י TBM. יוצרו בישראל עבור פרויקטי הרכבת הקלה והמנהרות.</p>
+            <a class="product-link" href="https://tunnelingonline.com/innovations-precast-concrete-segmental-linings-case-studies/" target="_blank">Tunneling Online &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אלמנטים לקבורה רבת שכבות Layered Burial Elements">
+            <div class="product-header">
+                <span class="product-num">25</span>
+                <span class="product-name-he">אלמנטים לקבורה רבת שכבות</span>
+                <span class="product-name-en">Layered Burial Elements</span>
+            </div>
+            <p class="product-desc">מבני בטון טרום לקבורה רבת שכבות, פתרון ייחודי לישראל בשל מחסור בקרקע. רדימיקס מייצרת מוצר זה.</p>
+            <a class="product-link" href="https://readymix.co.il/wp-content/themes/readymix/catalogs/readymix2023/" target="_blank">רדימיקס - קטלוג &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מפריד שמנים Oil Separators">
+            <div class="product-header">
+                <span class="product-num">26</span>
+                <span class="product-name-he">מפריד שמנים</span>
+                <span class="product-name-en">Oil Separators</span>
+            </div>
+            <p class="product-desc">מתקן בטון טרום להפרדת שמנים ודלקים ממי גשמים. חובה בתחנות דלק, חניונים ואזורי תעשייה.</p>
+            <a class="product-link" href="https://readymix.co.il/" target="_blank">רדימיקס &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אדניות בטון עירוניות Concrete Planters">
+            <div class="product-header">
+                <span class="product-num">27</span>
+                <span class="product-name-he">אדניות בטון עירוניות</span>
+                <span class="product-name-en">Concrete Planters</span>
+            </div>
+            <p class="product-desc">אדניות בטון גדולות לנוי עירוני - שדרות, כיכרות ומרכזי ערים. גם משמשות כמחסום אנטי-רכב.</p>
+            <a class="product-link" href="https://www.reliance-foundry.com/bollard/concrete-bollards" target="_blank">Reliance Foundry &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="עמודי חשמל מבטון Concrete Utility Poles">
+            <div class="product-header">
+                <span class="product-num">28</span>
+                <span class="product-name-he">עמודי חשמל מבטון</span>
+                <span class="product-name-en">Concrete Utility Poles</span>
+            </div>
+            <p class="product-desc">עמודי בטון דרוך לקווי חשמל ותאורה. עמידים יותר מעמודי עץ, נפוצים בישראל.</p>
+            <a class="product-link" href="https://www.utilitystructures.com/concrete-poles/" target="_blank">Utility Structures &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="פלטות גשר Bridge Deck Panels">
+            <div class="product-header">
+                <span class="product-num">29</span>
+                <span class="product-name-he">פלטות גשר</span>
+                <span class="product-name-en">Bridge Deck Panels</span>
+            </div>
+            <p class="product-desc">פאנלי סיפון לגשרים, מיוצרים במפעל ומורכבים באתר. מאיצים את בניית הגשרים.</p>
+            <a class="product-link" href="https://www.fortmiller.com/product/bridge/precast-deck-panels/" target="_blank">Fort Miller Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="מבני בטון מודולריים Modular Precast Buildings">
+            <div class="product-header">
+                <span class="product-num">30</span>
+                <span class="product-name-he">מבני בטון מודולריים</span>
+                <span class="product-name-en">Modular Precast Buildings</span>
+            </div>
+            <p class="product-desc">מבנים שלמים המורכבים מפאנלים טרומיים - למחסנים, מבני ציבור, ותעשייה. ביתנית וסולל בונה מייצרים בישראל.</p>
+            <a class="product-link" href="https://www.bitanit.co.il/prefabricated-factory/" target="_blank">ביתנית &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אלמנטי הגנה מבטון לצהל Military Protective Elements">
+            <div class="product-header">
+                <span class="product-num">31</span>
+                <span class="product-name-he">אלמנטי הגנה מבטון לצה"ל</span>
+                <span class="product-name-en">Military Protective Elements</span>
+            </div>
+            <p class="product-desc">מבני בטון טרום למיגון ולהגנה, מוזמנים ע"י משרד הביטחון. ייחודי לישראל. רדימיקס מייצרת אלמנטים למשרד הביטחון.</p>
+            <a class="product-link" href="https://readymix.co.il/" target="_blank">רדימיקס &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="שוחות קולטניות למי גשם Catch Basins Curb Inlets">
+            <div class="product-header">
+                <span class="product-num">32</span>
+                <span class="product-name-he">שוחות קולטניות למי גשם</span>
+                <span class="product-name-en">Catch Basins / Curb Inlets</span>
+            </div>
+            <p class="product-desc">תאי קליטה לקליטת מי גשם מהכביש והכוונתם למערכת הניקוז. מוצר בסיסי בכל פרויקט כבישים.</p>
+            <a class="product-link" href="https://sheaconcrete.com/products/manholes-catch-basins/" target="_blank">Shea Concrete &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="קורות T כפולות Double Tees">
+            <div class="product-header">
+                <span class="product-num">33</span>
+                <span class="product-name-he">קורות T כפולות</span>
+                <span class="product-name-en">Double Tees</span>
+            </div>
+            <p class="product-desc">אלמנטי רצפה/גג בצורת TT, נפוצים בחניונים ומבני תעשייה. טווח פרישה גדול עם משקל יחסית נמוך.</p>
+            <a class="product-link" href="https://www.highconcrete.com/blog/precast-concrete-components/" target="_blank">High Concrete &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="אדנים למסילות רכבת Railroad Ties Sleepers">
+            <div class="product-header">
+                <span class="product-num">34</span>
+                <span class="product-name-he">אדנים למסילות רכבת</span>
+                <span class="product-name-en">Railroad Ties / Sleepers</span>
+            </div>
+            <p class="product-desc">אדני בטון דרוך להנחת מסילות רכבת. עמידים משמעותית מאדני עץ. מיוצרים בהתאם לפרויקטי רכבת בישראל.</p>
+            <a class="product-link" href="https://premierprecast.com/precast-concrete-applications/" target="_blank">Premier Precast &larr;</a>
+        </div>
+
+        <div class="product-card" data-cat="a" data-search="גשרוני מעבר תלת צדדיים 3-Sided Culverts">
+            <div class="product-header">
+                <span class="product-num">35</span>
+                <span class="product-name-he">גשרוני מעבר תלת-צדדיים</span>
+                <span class="product-name-en">3-Sided Culverts</span>
+            </div>
+            <p class="product-desc">מבנה בטון בצורת U הפוך (3 צדדים, ללא רצפה), המשמש כמעבר מים או מעבר תת-קרקעי. נפוץ בפרויקטי כבישים.</p>
+            <a class="product-link" href="https://precast.org/products/" target="_blank">NPCA &larr;</a>
+        </div>
+    </div>
+
+    <!-- Category B -->
+    <div class="section-header cat-b" data-cat="b">ב' - מוצרים נפוצים בעולם, פוטנציאל לייצור בישראל<small>מוצרים בשימוש נרחב בעולם אך לא מיוצרים בקנה מידה תעשייתי בישראל</small></div>
+    <div class="products-grid" id="grid-b">
+
+        <div class="product-card cat-b" data-cat="b" data-search="קירות אקוסטיים לכבישים מהירים Highway Sound Noise Walls">
+            <div class="product-header">
+                <span class="product-num">36</span>
+                <span class="product-name-he">קירות אקוסטיים לכבישים מהירים</span>
+                <span class="product-name-en">Highway Sound/Noise Walls</span>
+            </div>
+            <p class="product-desc">קירות בטון מונעי רעש לאורך כבישים מהירים ומסילות רכבת. נפוצים מאוד בארה"ב ואירופה. בישראל - ביקוש הולך וגובר עם התרחבות הכבישים.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/permacast-products/sound-walls" target="_blank">Permacast &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="חדרי כלוא טרומיים למתקני כליאה Precast Prison Cells">
+            <div class="product-header">
+                <span class="product-num">37</span>
+                <span class="product-name-he">חדרי כלוא טרומיים</span>
+                <span class="product-name-en">Precast Prison Cells</span>
+            </div>
+            <p class="product-desc">תאי מעצר שלמים (קירות, תקרה, רצפה ואינסטלציה) מיוצרים במפעל ומורכבים באתר. חוסכים עד 40% מזמן הבנייה. נפוצים בארה"ב.</p>
+            <a class="product-link" href="https://oldcastleinfrastructure.com/product/modular-precast-cells/" target="_blank">Oldcastle &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="כספות תת-קרקעיות לתשתיות Utility Vaults">
+            <div class="product-header">
+                <span class="product-num">38</span>
+                <span class="product-name-he">כספות תת-קרקעיות לתשתיות</span>
+                <span class="product-name-en">Utility Vaults</span>
+            </div>
+            <p class="product-desc">חדרים תת-קרקעיים מבטון להגנה על תשתיות חשמל, מים, גז ותקשורת. כל 400-500 מטר בכבלים תת-קרקעיים. שוק ענק בארה"ב.</p>
+            <a class="product-link" href="https://www.jensenprecast.com/products/categories/utility-vaults-and-accessories/" target="_blank">Jensen Infrastructure &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מקלטי סופות טורנדו Storm Shelters Safe Rooms">
+            <div class="product-header">
+                <span class="product-num">39</span>
+                <span class="product-name-he">מקלטי סופות/טורנדו</span>
+                <span class="product-name-en">Storm Shelters / Safe Rooms</span>
+            </div>
+            <p class="product-desc">חדרי מקלט מבטון טרום העומדים בסטנדרטי FEMA. נפוצים מאוד בדרום ארה"ב. בישראל - הרלוונטיות היא למקלטים / חדרי מיגון.</p>
+            <a class="product-link" href="https://precast.org/blog/precast-concrete-safe-rooms-shelter-from-the-storm/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מערכות ניהול מי גשמים StormCapture Stormwater Detention Retention">
+            <div class="product-header">
+                <span class="product-num">40</span>
+                <span class="product-name-he">מערכות ניהול מי גשמים</span>
+                <span class="product-name-en">Stormwater Detention/Retention</span>
+            </div>
+            <p class="product-desc">מודולים מבטון טרום תת-קרקעיים לאגירת/עיכוב מי נגר, מותקנים מתחת לחניונים וכבישים. טכנולוגיה מתקדמת מאוד, נפוצה בארה"ב.</p>
+            <a class="product-link" href="https://oldcastleinfrastructure.com/brands/stormcapture/" target="_blank">StormCapture &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="צינורות איסוף מי גשמים Rainwater Harvesting Cisterns">
+            <div class="product-header">
+                <span class="product-num">41</span>
+                <span class="product-name-he">מיכלי איסוף מי גשמים</span>
+                <span class="product-name-en">Rainwater Harvesting Cisterns</span>
+            </div>
+            <p class="product-desc">מיכלי בטון תת-קרקעיים לאיסוף ושימוש חוזר במי גשמים. בנפחים 2,000-55,000 ליטר. רלוונטי מאוד לישראל (מחסור במים).</p>
+            <a class="product-link" href="https://www.rainbrothers.com/store/Precast-Concrete-Underground-Cisterns-c73647283" target="_blank">Rain Brothers &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="טטרפודים אלמנטי שבירת גלים Tetrapods Armor Units">
+            <div class="product-header">
+                <span class="product-num">42</span>
+                <span class="product-name-he">טטרפודים ואלמנטי שבירת גלים</span>
+                <span class="product-name-en">Tetrapods &amp; Armor Units</span>
+            </div>
+            <p class="product-desc">בלוקי בטון בצורות מיוחדות להגנה על חופים ושוברי גלים. נפוצים ביפן, הולנד ובכל מדינה עם קו חוף. רלוונטי לישראל עם 190 ק"מ חוף.</p>
+            <a class="product-link" href="https://en.wikipedia.org/wiki/Tetrapod_(structure)" target="_blank">Wikipedia &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="קירות ים חומות ים Precast Seawalls">
+            <div class="product-header">
+                <span class="product-num">43</span>
+                <span class="product-name-he">קירות ים / חומות ים</span>
+                <span class="product-name-en">Precast Seawalls</span>
+            </div>
+            <p class="product-desc">פאנלי בטון טרום להגנה על קו החוף מפני סחף ושחיקה. מתוכננים לעמוד בתנאים ימיים קשים. נפוצים בבריטניה והולנד.</p>
+            <a class="product-link" href="https://www.jpconcrete.co.uk/seawalls-coastal-defences/" target="_blank">JP Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="בלוקים משתלבים ענקיים בלוקי לגו Interlocking LEGO Blocks">
+            <div class="product-header">
+                <span class="product-num">44</span>
+                <span class="product-name-he">בלוקי "לגו" משתלבים ענקיים</span>
+                <span class="product-name-en">Interlocking LEGO Blocks</span>
+            </div>
+            <p class="product-desc">בלוקי בטון ענקיים (1.6x0.8x0.8 מ') המשתלבים ללא מלט. לבניית קירות, מחסנים, חסימות ומחסומים זמניים. פופולריים מאוד באירופה.</p>
+            <a class="product-link" href="https://www.legioblock.com/en/" target="_blank">Legioblock &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="יחידות דירות מודולריות מבטון PPVC Volumetric Precast Modules">
+            <div class="product-header">
+                <span class="product-num">45</span>
+                <span class="product-name-he">יחידות דירות מודולריות (PPVC)</span>
+                <span class="product-name-en">Volumetric Precast Modules</span>
+            </div>
+            <p class="product-desc">חדרים שלמים (כולל אינסטלציה, חשמל וגימורים) מיוצרים במפעל. סינגפור חייבה שימוש בטכנולוגיה זו. טרנד עולמי עולה.</p>
+            <a class="product-link" href="https://www.prilhofer.com/modular-buildings-precast-concrete-elements" target="_blank">Prilhofer &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="פודי אמבטיות Bathroom Pods">
+            <div class="product-header">
+                <span class="product-num">46</span>
+                <span class="product-name-he">פודי אמבטיות</span>
+                <span class="product-name-en">Bathroom Pods</span>
+            </div>
+            <p class="product-desc">יחידות אמבטיה שלמות מבטון, מיוצרות במפעל עם כל האינסטלציה והגימורים. לבתי מלון, מעונות סטודנטים ובתי חולים.</p>
+            <a class="product-link" href="https://www.ratec.org/cn-en/products/3d-moulds" target="_blank">RATEC &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="בסיסי כונני רוח מבטון Wind Turbine Tower Sections">
+            <div class="product-header">
+                <span class="product-num">47</span>
+                <span class="product-name-he">מקטעי מגדלי טורבינות רוח</span>
+                <span class="product-name-en">Wind Turbine Tower Sections</span>
+            </div>
+            <p class="product-desc">מקטעי בטון טרום למגדלי טורבינות רוח. מאפשרים מגדלים גבוהים יותר מפלדה. 3,000+ מגדלים הותקנו בעולם.</p>
+            <a class="product-link" href="https://www.esteyco.com/en/proyectos-esteyco/proprietary-technologies/precast-concrete-wind-turbine-towers/" target="_blank">Esteyco &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="אבני ריצוף חדירות Permeable Pavers">
+            <div class="product-header">
+                <span class="product-num">48</span>
+                <span class="product-name-he">אבני ריצוף חדירות</span>
+                <span class="product-name-en">Permeable Pavers</span>
+            </div>
+            <p class="product-desc">אבני ריצוף המאפשרות חלחול מי גשמים לקרקע, מונעות הצפות ומפחיתות נגר. חלק ממערכות SuDS. נפוצות באירופה.</p>
+            <a class="product-link" href="https://www.mpaprecast.org/Paving/SuDS.aspx" target="_blank">MPA Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="אלמנטי גשר מקטעיים Segmental Bridge Elements">
+            <div class="product-header">
+                <span class="product-num">49</span>
+                <span class="product-name-he">אלמנטי גשר מקטעיים</span>
+                <span class="product-name-en">Segmental Bridge Elements</span>
+            </div>
+            <p class="product-desc">גשרים הנבנים ממקטעי בטון טרום המורכבים זה לזה. טכנולוגיה מתקדמת לגשרים ארוכים.</p>
+            <a class="product-link" href="https://www.pci.org/PCI/PCI/Design_Resources/Transportation_Engineering_Resources/Precast_Bridge_Decks.aspx" target="_blank">PCI &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מזחים ורציפים ימיים Marine Docks Piers">
+            <div class="product-header">
+                <span class="product-num">50</span>
+                <span class="product-name-he">מזחים ורציפים ימיים</span>
+                <span class="product-name-en">Marine Docks &amp; Piers</span>
+            </div>
+            <p class="product-desc">אלמנטי בטון טרום לבניית מזחים ורציפים. עמידים בפני מי ים ולחציים הידראוליים.</p>
+            <a class="product-link" href="https://heldenfels.com/marine-industrial/" target="_blank">Heldenfels &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="תעלות כבלים Cable Troughs">
+            <div class="product-header">
+                <span class="product-num">51</span>
+                <span class="product-name-he">תעלות כבלים</span>
+                <span class="product-name-en">Cable Troughs</span>
+            </div>
+            <p class="product-desc">תעלות בטון U-Shape להנחת כבלי חשמל ותקשורת מתחת לקרקע, עם מכסים נשלפים לגישה. פופולריים מאוד באירופה.</p>
+            <a class="product-link" href="https://traceyconcrete.com/products/infrastructure/cable-trough/" target="_blank">Tracey Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="יריעות אצבע פאנלים מבוטנים ACB Articulating Concrete Block Mats">
+            <div class="product-header">
+                <span class="product-num">52</span>
+                <span class="product-name-he">מחצלות בלוקי בטון (ACB)</span>
+                <span class="product-name-en">Articulating Concrete Block Mats</span>
+            </div>
+            <p class="product-desc">מחצלות של בלוקי בטון מחוברים בכבלים, להגנה על גדות נהרות, חופים ומדרונות מפני שחיקה. נפוצים בארה"ב והולנד.</p>
+            <a class="product-link" href="https://baselok.com/geocell/" target="_blank">BaseLok &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="קירות T-WALL T-WALL Retaining System">
+            <div class="product-header">
+                <span class="product-num">53</span>
+                <span class="product-name-he">קירות T-WALL</span>
+                <span class="product-name-en">T-WALL Retaining System</span>
+            </div>
+            <p class="product-desc">מערכת קירות תמך מתקדמת בצורת T, ללא צורך בחיזוק גיאוסינתטי. גובה עד 14 מטר. נפוצה מאוד בארה"ב.</p>
+            <a class="product-link" href="https://reinforcedearth.com/products/retaining-walls/precast-modular-retaining-wall/t-wall/" target="_blank">Reinforced Earth &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="פודי חדרי מלון Hotel Room Pods">
+            <div class="product-header">
+                <span class="product-num">54</span>
+                <span class="product-name-he">פודי חדרי מלון</span>
+                <span class="product-name-en">Hotel Room Pods</span>
+            </div>
+            <p class="product-desc">חדרי מלון שלמים (כולל חדר רחצה) מיוצרים במפעל ומורכבים באתר. חוסכים עד 50% מזמן הבנייה.</p>
+            <a class="product-link" href="https://katerra.com/mea/products/" target="_blank">Katerra &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="ספסלי האכלה לבקר Cattle Feed Bunks">
+            <div class="product-header">
+                <span class="product-num">55</span>
+                <span class="product-name-he">ספסלי האכלה לבקר</span>
+                <span class="product-name-en">Cattle Feed Bunks</span>
+            </div>
+            <p class="product-desc">שוקות בטון בצורת J או H להאכלת בקר. עמידים בפני קורוזיה ותנאי שדה. שוק חקלאי ענק בארה"ב ואוסטרליה.</p>
+            <a class="product-link" href="https://wieserconcrete.com/product/feed-bunk/" target="_blank">Wieser Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="סורגות למעבר בקר Cattle Guards">
+            <div class="product-header">
+                <span class="product-num">56</span>
+                <span class="product-name-he">סורגות למעבר בקר</span>
+                <span class="product-name-en">Cattle Guards</span>
+            </div>
+            <p class="product-desc">רשתות בטון טרום המותקנות בפתחי גדרות למעבר כלי רכב תוך מניעת מעבר בעלי חיים. מוצר סטנדרטי בחוות.</p>
+            <a class="product-link" href="https://siprecast.com/farm-products/" target="_blank">SI Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="רפפות בטון לרפתות Livestock Slats">
+            <div class="product-header">
+                <span class="product-num">57</span>
+                <span class="product-name-he">רפפות בטון לרפתות</span>
+                <span class="product-name-en">Livestock Slats</span>
+            </div>
+            <p class="product-desc">לוחות בטון מחורצים לרצפות רפתות, מאפשרים ניקוז זבל. שוק ענק באירלנד, הולנד ודנמרק.</p>
+            <a class="product-link" href="https://precast.org/products/specialty-products/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="כספות קבורה Burial Vaults">
+            <div class="product-header">
+                <span class="product-num">58</span>
+                <span class="product-name-he">כספות קבורה</span>
+                <span class="product-name-en">Burial Vaults</span>
+            </div>
+            <p class="product-desc">מיכלי בטון מזוין להגנה על ארונות קבורה תת-קרקעיים. מחויבים בחוק ברוב מדינות ארה"ב. שוק של מיליונים ליחידה בשנה.</p>
+            <a class="product-link" href="https://tributeinc.com/precast-products/outer-burial-containers-vaults/" target="_blank">Tribute Companies &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="קולומבריום נישות לאפר Columbarium Niches">
+            <div class="product-header">
+                <span class="product-num">59</span>
+                <span class="product-name-he">קולומבריום - נישות לאפר</span>
+                <span class="product-name-en">Columbarium Niches</span>
+            </div>
+            <p class="product-desc">מבני בטון מודולריים עם נישות לאחסון כדי אפר. ביקוש עולמי גובר עם עלייה בשריפת גופות.</p>
+            <a class="product-link" href="https://tributeinc.com/precast-products/columbarium-niches/" target="_blank">Tribute Companies &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="יציעי אצטדיון מדרגות טריבונה Stadium Bleachers Risers">
+            <div class="product-header">
+                <span class="product-num">60</span>
+                <span class="product-name-he">יציעי אצטדיון</span>
+                <span class="product-name-en">Stadium Bleachers/Risers</span>
+            </div>
+            <p class="product-desc">מדרגות ויציעים מבטון דרוך לאצטדיונים, אולמות ספורט ותיאטראות. טווח פרישה עד 8.5 מטר.</p>
+            <a class="product-link" href="https://nitterhouseconcrete.com/precast-concrete-products/precast-concrete-stadium-risers/" target="_blank">Nitterhouse &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מוזיאולומים Mausoleums">
+            <div class="product-header">
+                <span class="product-num">61</span>
+                <span class="product-name-he">מוזיאולומים</span>
+                <span class="product-name-en">Mausoleums</span>
+            </div>
+            <p class="product-desc">מבני קבורה עיליים מבטון טרום, בתצורות של קבר בודד עד מבנים רב-תאיים. שוק יציב בארה"ב ואירופה.</p>
+            <a class="product-link" href="https://www.columbariumusa.com/cemetery-crypts/" target="_blank">Columbarium USA &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="כלונסאות מבטון דרוך Prestressed Concrete Piles">
+            <div class="product-header">
+                <span class="product-num">62</span>
+                <span class="product-name-he">כלונסאות מבטון דרוך</span>
+                <span class="product-name-en">Prestressed Concrete Piles</span>
+            </div>
+            <p class="product-desc">כלונסאות מבטון דרוך ליסודות עמוקים - גשרים, מבנים ומרינות. עמידים מאוד בפני קורוזיה.</p>
+            <a class="product-link" href="https://www.pcigulfsouth.org/blog/2022/10/30/precast-bridges" target="_blank">PCI Gulf South &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="בולרדים מבטון Concrete Bollards">
+            <div class="product-header">
+                <span class="product-num">63</span>
+                <span class="product-name-he">בולרדים מבטון</span>
+                <span class="product-name-en">Concrete Bollards</span>
+            </div>
+            <p class="product-desc">עמודוני הגנה לשטחים ציבוריים - מניעת כניסת רכב, הגנת הולכים, עיצוב עירוני. שוק גדל עם התגברות הדאגה לביטחון.</p>
+            <a class="product-link" href="https://www.reliance-foundry.com/bollard/concrete-bollards" target="_blank">Reliance Foundry &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מערכות קירות MSE Mechanically Stabilized Earth Walls">
+            <div class="product-header">
+                <span class="product-num">64</span>
+                <span class="product-name-he">מערכות קירות MSE</span>
+                <span class="product-name-en">Mechanically Stabilized Earth Walls</span>
+            </div>
+            <p class="product-desc">פאנלי חזית מבטון בשילוב חיזוק קרקע, לקירות תמך בגובה עד 18 מטר. נפוצים מאוד בפרויקטי כבישים עולמיים.</p>
+            <a class="product-link" href="https://www.geoquest-group.us/reinforced-earth/traffic-barrier-and-coping/" target="_blank">Geoquest &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="בונקרים לסילאז חקלאי Bunker Silos">
+            <div class="product-header">
+                <span class="product-num">65</span>
+                <span class="product-name-he">בונקרים לסילאז' חקלאי</span>
+                <span class="product-name-en">Bunker Silos</span>
+            </div>
+            <p class="product-desc">קירות בטון טרום לאחסון מזון בעלי חיים (סילאז'). מבנה פשוט אך קריטי לחוות בקר וחלב.</p>
+            <a class="product-link" href="https://siprecast.com/farm-products/" target="_blank">SI Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מאגרי מים טרומיים Precast Water Tanks Cisterns">
+            <div class="product-header">
+                <span class="product-num">66</span>
+                <span class="product-name-he">מאגרי מים טרומיים</span>
+                <span class="product-name-en">Precast Water Tanks/Cisterns</span>
+            </div>
+            <p class="product-desc">מיכלי מים תת-קרקעיים בנפח 2,000-200,000 ליטר. לאחסון מי שתייה, כיבוי אש ומי השקיה.</p>
+            <a class="product-link" href="https://wieserconcrete.com/products/product-guide/septic-storage-tanks/" target="_blank">Wieser Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="עמודי גפנים מבטון Concrete Vineyard Posts">
+            <div class="product-header">
+                <span class="product-num">67</span>
+                <span class="product-name-he">עמודי גפנים מבטון</span>
+                <span class="product-name-en">Concrete Vineyard Posts</span>
+            </div>
+            <p class="product-desc">עמודי בטון להדלית גפנים בכרמים. עמידים 50+ שנה לעומת עמודי עץ. נפוצים בצרפת ואיטליה. רלוונטי ליקבי ישראל.</p>
+            <a class="product-link" href="https://allenconcrete.co.uk/fencing/barrel-posts/" target="_blank">Allen Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="פאנלים לחומות שיטפון Flood Defence Walls">
+            <div class="product-header">
+                <span class="product-num">68</span>
+                <span class="product-name-he">פאנלים לחומות שיטפון</span>
+                <span class="product-name-en">Flood Defence Walls</span>
+            </div>
+            <p class="product-desc">פאנלי בטון טרום להגנה מפני שיטפונות. נפוצים בהולנד, בריטניה וגרמניה.</p>
+            <a class="product-link" href="https://poundfield.com/bespoke-precast-concrete/marine-coastal/" target="_blank">Poundfield Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מסגרות בית משתלבות Precast Concrete Home Panels">
+            <div class="product-header">
+                <span class="product-num">69</span>
+                <span class="product-name-he">פאנלים לבתי מגורים</span>
+                <span class="product-name-en">Precast Concrete Home Panels</span>
+            </div>
+            <p class="product-desc">פאנלי קיר, רצפה ותקרה לבנייה מהירה של בתים. בית שלם ניתן להרכבה ב-60 יום. טרנד עולמי עולה.</p>
+            <a class="product-link" href="https://www.hexxhome.com/" target="_blank">HexxHome &larr;</a>
+        </div>
+
+        <div class="product-card cat-b" data-cat="b" data-search="מגננים חומות בליסטיות Ballistic Blast Walls">
+            <div class="product-header">
+                <span class="product-num">70</span>
+                <span class="product-name-he">חומות בליסטיות</span>
+                <span class="product-name-en">Ballistic/Blast Walls</span>
+            </div>
+            <p class="product-desc">קירות בטון עבים לעמידות בפני ירי ופיצוצים. למתקנים צבאיים, שגרירויות ותשתיות קריטיות.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/industries/precast-concrete-walls-energy-industry" target="_blank">Permacast &larr;</a>
+        </div>
+    </div>
+
+    <!-- Category C -->
+    <div class="section-header cat-c" data-cat="c">ג' - מוצרים חדשניים ומתפתחים בעולם<small>מוצרים חדשניים שהולכים ותופסים תאוצה בשוק העולמי</small></div>
+    <div class="products-grid" id="grid-c">
+
+        <div class="product-card cat-c" data-cat="c" data-search="מגדלי טורבינות רוח היברידיים Hybrid Wind Turbine Towers">
+            <div class="product-header">
+                <span class="product-num">71</span>
+                <span class="product-name-he">מגדלי רוח היברידיים</span>
+                <span class="product-name-en">Hybrid Wind Turbine Towers</span>
+            </div>
+            <p class="product-desc">שילוב של בטון טרום (בחלק התחתון) ופלדה (בחלק העליון). מאפשרים מגדלים של 140+ מטר.</p>
+            <a class="product-link" href="https://www.manaprecast.com/news/precast-moulds-hybrid-wind-turbine-towers/" target="_blank">Mana Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מגדלי Hexcrete לטורבינות רוח Hexcrete Wind Towers">
+            <div class="product-header">
+                <span class="product-num">72</span>
+                <span class="product-name-he">מגדלי Hexcrete</span>
+                <span class="product-name-en">Hexcrete Wind Towers</span>
+            </div>
+            <p class="product-desc">מגדלים משושים מבטון חזק במיוחד, מאפשרים גובה 140 מטר. פיתוח של אוניברסיטת Iowa State.</p>
+            <a class="product-link" href="https://www.news.iastate.edu/news/iowa-state-engineers-test-taller-wind-turbine-towers-made-precast-concrete" target="_blank">Iowa State &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="בתי מגורים מודולריים מבטון Prefab Concrete Housing">
+            <div class="product-header">
+                <span class="product-num">73</span>
+                <span class="product-name-he">בתים מודולריים מבטון</span>
+                <span class="product-name-en">Prefab Concrete Housing</span>
+            </div>
+            <p class="product-desc">בתים בעלות $75,000+ שמיוצרים במפעל ומותקנים ביום אחד. פתרון למשבר הדיור.</p>
+            <a class="product-link" href="https://www.usaprecasthomes.com/" target="_blank">USA Precast Homes &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מרכזי נתונים מודולריים Modular Data Center Enclosures">
+            <div class="product-header">
+                <span class="product-num">74</span>
+                <span class="product-name-he">מרכזי נתונים מודולריים</span>
+                <span class="product-name-en">Modular Data Center Enclosures</span>
+            </div>
+            <p class="product-desc">חדרי שרתים מבטון טרום עם בידוד, מיזוג ואבטחה מובנים. ביקוש עצום עם הגידול בענן ו-AI.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/industries/precast-concrete-walls-energy-industry" target="_blank">Permacast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="כיתות לימוד מודולריות Modular Classroom Units">
+            <div class="product-header">
+                <span class="product-num">75</span>
+                <span class="product-name-he">כיתות לימוד מודולריות</span>
+                <span class="product-name-en">Modular Classroom Units</span>
+            </div>
+            <p class="product-desc">כיתות לימוד שלמות מבטון טרום - במקום קרוואנים. עמידות, מבודדות ומהירות התקנה.</p>
+            <a class="product-link" href="https://www.pci.org/PCI/Design_Resources/About_Precast/Modular_Components.aspx" target="_blank">PCI &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="משטחי ריצוף מהירי התקנה לכבישים Precast Concrete Pavement Slabs">
+            <div class="product-header">
+                <span class="product-num">76</span>
+                <span class="product-name-he">לוחות כביש מהירי התקנה</span>
+                <span class="product-name-en">Precast Concrete Pavement Slabs</span>
+            </div>
+            <p class="product-desc">לוחות כביש מבטון טרום להחלפה מהירה של כבישים פגועים. מותקנים בלילה ופתוחים לתנועה בבוקר.</p>
+            <a class="product-link" href="https://precast.org/wp-content/uploads/100423_Products_OverviewofPrecastConcreteforPavementApplications.pdf" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="אלמנטי בטון ביומימטיים לחופים Biomimicry Coastal Elements">
+            <div class="product-header">
+                <span class="product-num">77</span>
+                <span class="product-name-he">אלמנטים ביומימטיים לחופים</span>
+                <span class="product-name-en">Biomimicry Coastal Elements</span>
+            </div>
+            <p class="product-desc">אלמנטי בטון עם משטחים מחקים טבע - מעודדים התפתחות בתי גידול ימיים. שילוב אקולוגיה ותשתיות.</p>
+            <a class="product-link" href="https://poundfield.com/bespoke-precast-concrete/marine-coastal/" target="_blank">Poundfield &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות סינון ביולוגי מבטון Bioretention Biofiltration Chambers">
+            <div class="product-header">
+                <span class="product-num">78</span>
+                <span class="product-name-he">תאי סינון ביולוגי</span>
+                <span class="product-name-en">Bioretention/Biofiltration Chambers</span>
+            </div>
+            <p class="product-desc">תאי בטון טרום עם שכבות סינון טבעיות לטיפול במי נגר. חלק ממערכות SuDS.</p>
+            <a class="product-link" href="https://concretepandp.com/sustainable-solutions-effective-stormwater-management/" target="_blank">Concrete P&amp;P &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מבנים תת-קרקעיים למקלטים אזרחיים Underground Bunker Shelters">
+            <div class="product-header">
+                <span class="product-num">79</span>
+                <span class="product-name-he">מקלטים תת-קרקעיים טרומיים</span>
+                <span class="product-name-en">Underground Bunker Shelters</span>
+            </div>
+            <p class="product-desc">מקלטים תת-קרקעיים מבטון טרום, מוכנים מראש. רלוונטי מאוד לישראל. שוק בצמיחה.</p>
+            <a class="product-link" href="https://atlassurvivalshelters.com/precast-concrete-shelters/" target="_blank">Atlas Survival &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מנהרות כבלים מוכנות Precast Cable Tunnels">
+            <div class="product-header">
+                <span class="product-num">80</span>
+                <span class="product-name-he">מנהרות כבלים מוכנות</span>
+                <span class="product-name-en">Precast Cable Tunnels</span>
+            </div>
+            <p class="product-desc">מנהרות שלמות מבטון טרום להעברת כבלי חשמל ותקשורת. מחליפות חפירות מסורתיות. נפוצות ביפן וסינגפור.</p>
+            <a class="product-link" href="https://www.advanceconcreteproducts.com/product/precast-concrete-tanks/" target="_blank">Advance Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות חנייה אוטומטית מבטון Precast Automated Parking">
+            <div class="product-header">
+                <span class="product-num">81</span>
+                <span class="product-name-he">חניונים אוטומטיים מבטון</span>
+                <span class="product-name-en">Precast Automated Parking</span>
+            </div>
+            <p class="product-desc">חניונים אוטומטיים שבנויים מאלמנטי בטון טרום סטנדרטיים. שילוב רובוטיקה ובנייה טרומית.</p>
+            <a class="product-link" href="https://www.highconcrete.com/imagevault/publishedmedia/89kpamdsfqya0sgee360/Hi_StadiumBro_9.pdf" target="_blank">High Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="קירות ירוקים קירות צמחייה מבטון Green Living Wall Panels">
+            <div class="product-header">
+                <span class="product-num">82</span>
+                <span class="product-name-he">קירות ירוקים / צמחייה</span>
+                <span class="product-name-en">Green/Living Wall Panels</span>
+            </div>
+            <p class="product-desc">פאנלי בטון עם כיסים מובנים לשתילת צמחייה. שילוב ירוק בבנייה עירונית.</p>
+            <a class="product-link" href="https://www.converge.io/blog/precast-concrete-the-complete-guide" target="_blank">Converge &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="רהיטי חוץ מבטון Concrete Street Furniture">
+            <div class="product-header">
+                <span class="product-num">83</span>
+                <span class="product-name-he">ריהוט רחוב מבטון</span>
+                <span class="product-name-en">Concrete Street Furniture</span>
+            </div>
+            <p class="product-desc">ספסלים, שולחנות פיקניק, מתקני אופניים ופחי אשפה מבטון. ריהוט עירוני עמיד לכל מזג אוויר.</p>
+            <a class="product-link" href="https://www.broxap.com/bollards/concrete-bollards.html" target="_blank">Broxap &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="תאי Doublewal לקירות תמך Doublewal Retaining Cells">
+            <div class="product-header">
+                <span class="product-num">84</span>
+                <span class="product-name-he">תאי Doublewal</span>
+                <span class="product-name-en">Doublewal Retaining Cells</span>
+            </div>
+            <p class="product-desc">מערכת קירות תמך עם שתי דפנות בטון ומילוי פנימי, יוצרת קיר כבידה. טכנולוגיה ייחודית ויעילה.</p>
+            <a class="product-link" href="https://unitedconcrete.com/doublewal-retaining-walls/" target="_blank">United Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מעברי חיות בר Wildlife Crossing Structures">
+            <div class="product-header">
+                <span class="product-num">85</span>
+                <span class="product-name-he">מעברי חיות בר</span>
+                <span class="product-name-en">Wildlife Crossing Structures</span>
+            </div>
+            <p class="product-desc">מנהרות ומעברים עיליים מבטון טרום לחיות בר מעל/מתחת לכבישים. נושא אקולוגי חם.</p>
+            <a class="product-link" href="https://www.fhwa.dot.gov/bridge/tunnel/pubs/hif20036.pdf" target="_blank">FHWA &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מודולי בטון לחקלאות אנכית Vertical Farming Modules">
+            <div class="product-header">
+                <span class="product-num">86</span>
+                <span class="product-name-he">מודולים לחקלאות אנכית</span>
+                <span class="product-name-en">Vertical Farming Modules</span>
+            </div>
+            <p class="product-desc">מבני בטון מודולריים עם בידוד ותשתיות מובנות לחוות גידול אנכיות. טרנד מתפתח.</p>
+            <a class="product-link" href="https://www.prilhofer.com/modular-buildings-precast-concrete-elements" target="_blank">Prilhofer &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות ניקוז EnviroKeeper Advanced Stormwater Treatment">
+            <div class="product-header">
+                <span class="product-num">87</span>
+                <span class="product-name-he">מערכות EnviroKeeper</span>
+                <span class="product-name-en">Advanced Stormwater Treatment</span>
+            </div>
+            <p class="product-desc">מערכות בטון טרום מודולריות לטיפול במי נגר מזוהמים. כוללות פילטרים ומפרידי משקעים.</p>
+            <a class="product-link" href="https://lbfoster.com/infrastructure/precast-concrete-products/envirokeeper-stormwater-management" target="_blank">L.B. Foster &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מבני תחנות טעינה לרכב חשמלי EV Charging Station Enclosures">
+            <div class="product-header">
+                <span class="product-num">88</span>
+                <span class="product-name-he">מבני תחנות טעינה חשמלית</span>
+                <span class="product-name-en">EV Charging Station Enclosures</span>
+            </div>
+            <p class="product-desc">מבנים מבטון טרום להגנה על תשתיות טעינת רכב חשמלי. שוק צומח מהר מאוד.</p>
+            <a class="product-link" href="https://www.leesburgconcrete.com/products/precast-concrete-buildings/custom-precast-buildings" target="_blank">Leesburg Concrete &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="סכרים זעירים מפלי מים מבטון Precast Weirs Check Dams">
+            <div class="product-header">
+                <span class="product-num">89</span>
+                <span class="product-name-he">סכרים זעירים מבטון</span>
+                <span class="product-name-en">Precast Weirs and Check Dams</span>
+            </div>
+            <p class="product-desc">סכרים קטנים מבטון טרום לשליטה בזרימת נחלים ומניעת סחף קרקע. רלוונטי לנחלי ישראל.</p>
+            <a class="product-link" href="https://jrprecast.com/products/drainage-storm-water-management/" target="_blank">JR Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="גשרים מודולריים להרכבה מהירה Rapid Deploy Modular Bridges">
+            <div class="product-header">
+                <span class="product-num">90</span>
+                <span class="product-name-he">גשרים מודולריים מהירים</span>
+                <span class="product-name-en">Rapid-Deploy Modular Bridges</span>
+            </div>
+            <p class="product-desc">גשרים שלמים מאלמנטי בטון טרום, מורכבים בימים במקום חודשים. לחירום ולפיתוח כפרי.</p>
+            <a class="product-link" href="https://www.fortmiller.com/products/bridge/" target="_blank">Fort Miller &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות מחילה Crib Wall Systems">
+            <div class="product-header">
+                <span class="product-num">91</span>
+                <span class="product-name-he">מערכות מחילה (Crib Wall)</span>
+                <span class="product-name-en">Crib Wall Systems</span>
+            </div>
+            <p class="product-desc">קירות תמך מאלמנטי בטון יוצרים מבנה תא פתוח הממולא באדמה/אבנים. ניתן לשתילת צמחייה.</p>
+            <a class="product-link" href="https://precast.org/wp-content/uploads/100223_Products_RetainingWallTechnicalBrochure.pdf" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="בלוקי KOLOS להגנת חופים KOLOS Armor Units">
+            <div class="product-header">
+                <span class="product-num">92</span>
+                <span class="product-name-he">בלוקי KOLOS</span>
+                <span class="product-name-en">KOLOS Armor Units</span>
+            </div>
+            <p class="product-desc">דור חדש של אלמנטי שבירת גלים שפותחו בהודו (2010). יעילים יותר מטטרפודים ודורשים פחות בטון.</p>
+            <a class="product-link" href="https://www.sciencedirect.com/topics/engineering/armour-unit" target="_blank">ScienceDirect &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="פונטונים צפים מבטון Floating Concrete Pontoons">
+            <div class="product-header">
+                <span class="product-num">93</span>
+                <span class="product-name-he">פונטונים צפים מבטון</span>
+                <span class="product-name-en">Floating Concrete Pontoons</span>
+            </div>
+            <p class="product-desc">רציפים צפים מבטון טרום למרינות, נמלים ותחנות מים. עמידים יותר מפלסטיק ועץ.</p>
+            <a class="product-link" href="https://precast.org/products/specialty-products/" target="_blank">NPCA &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות הגנה מפני התפרצות Blast Resistant Precast Panels">
+            <div class="product-header">
+                <span class="product-num">94</span>
+                <span class="product-name-he">פאנלים עמידי פיצוץ</span>
+                <span class="product-name-en">Blast-Resistant Precast Panels</span>
+            </div>
+            <p class="product-desc">פאנלים מעוצבים לספוג גלי הדף מפיצוצים. לתשתיות נפט וגז, מתקנים כימיים ומתקנים צבאיים.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/permacast-products" target="_blank">Permacast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="תעלות בטון מתוחות מראש Prestressed Concrete Channels">
+            <div class="product-header">
+                <span class="product-num">95</span>
+                <span class="product-name-he">תעלות השקיה דרוכות</span>
+                <span class="product-name-en">Prestressed Concrete Channels</span>
+            </div>
+            <p class="product-desc">תעלות השקיה גדולות מבטון דרוך לפרויקטי מים והשקיה. נפוצות באוסטרליה ובהודו.</p>
+            <a class="product-link" href="https://constrofacilitator.com/different-types-of-precast-concrete-products/" target="_blank">Constro Facilitator &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מערכות הרכבה סולארית מבטון Concrete Solar Panel Foundations">
+            <div class="product-header">
+                <span class="product-num">96</span>
+                <span class="product-name-he">בסיסי מערכות סולאריות</span>
+                <span class="product-name-en">Concrete Solar Panel Foundations</span>
+            </div>
+            <p class="product-desc">בסיסי בטון טרום למערכות סולאריות קרקעיות. יציבים, כבדים ואינם דורשים עיגון. רלוונטי מאוד לישראל.</p>
+            <a class="product-link" href="https://thisisconcrete.com/sustainable-concrete-foundation-systems-for-wind-and-solar-industries/" target="_blank">Concreate &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="חדרי בטון לתחנות משנה חשמליות Substation Enclosures">
+            <div class="product-header">
+                <span class="product-num">97</span>
+                <span class="product-name-he">מבני תחנות משנה חשמליות</span>
+                <span class="product-name-en">Substation Enclosures</span>
+            </div>
+            <p class="product-desc">מבני בטון סגורים להגנה על ציוד חשמלי. עמידים בפני אש, מזג אוויר וונדליזם.</p>
+            <a class="product-link" href="https://www.permacastwalls.com/industries/precast-concrete-walls-energy-industry" target="_blank">Permacast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="שוחות שסתומים תאי בקרה למים Valve Chambers">
+            <div class="product-header">
+                <span class="product-num">98</span>
+                <span class="product-name-he">תאי בקרה למים</span>
+                <span class="product-name-en">Valve Chambers</span>
+            </div>
+            <p class="product-desc">תאי בטון טרום לגישה לשסתומי מים ראשיים. מוצר תשתיתי בסיסי שכל רשות מים רוכשת.</p>
+            <a class="product-link" href="https://www.lindsayprecast.com/sanitary-storm-sewer" target="_blank">Lindsay Precast &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="מודולי בטון לדיור הומלסים Micro Housing Concrete Pods">
+            <div class="product-header">
+                <span class="product-num">99</span>
+                <span class="product-name-he">מודולי מיקרו-דיור</span>
+                <span class="product-name-en">Micro-Housing Concrete Pods</span>
+            </div>
+            <p class="product-desc">יחידות מגורים קטנות (12-20 מ"ר) מבטון טרום, מיועדות לפתרון מהיר למחוסרי דיור. טרנד חברתי מתפתח.</p>
+            <a class="product-link" href="https://www.ecocasthomes.com/precast-homes" target="_blank">Ecocast Homes &larr;</a>
+        </div>
+
+        <div class="product-card cat-c" data-cat="c" data-search="בטון מוזרק בגרפן NanoCONS Graphene Enhanced Precast">
+            <div class="product-header">
+                <span class="product-num">100</span>
+                <span class="product-name-he">בטון מוזרק בגרפן - NanoCONS</span>
+                <span class="product-name-en">Graphene-Enhanced Precast</span>
+            </div>
+            <p class="product-desc">טכנולוגיה חדשה (2024) של Gerdau Graphene - תוסף גרפן לבטון טרום המשפר חוזק, מפחית נקבוביות וחוסך 20% מים. שינוי מהותי בתעשייה.</p>
+            <a class="product-link" href="https://www.globenewswire.com/news-release/2026/01/22/3223619/28124/en/Precast-Concrete-Industry-Set-for-6-6-CAGR-Through-2031-Amidst-Green-Building-Boom.html" target="_blank">GlobeNewsWire &larr;</a>
+        </div>
+    </div>
+
+    <!-- Opportunities Table -->
+    <div class="opportunities">
+        <h2>הזדמנויות עיקריות לישראל</h2>
+        <p style="margin-bottom:18px; color:#666;">מוצרים עם פוטנציאל גבוה במיוחד לייצור מקומי בישראל</p>
+        <table class="opp-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>מוצר</th>
+                    <th>סיבה / הזדמנות</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="opp-num">36</span></td><td>קירות אקוסטיים</td><td>התרחבות כבישים מהירים + רגולציה</td></tr>
+                <tr><td><span class="opp-num">40</span></td><td>מערכות ניהול מי גשמים</td><td>מחסור במים + שיטפונות חוזרים</td></tr>
+                <tr><td><span class="opp-num">41</span></td><td>מיכלי איסוף מי גשמים</td><td>מחסור במים - רלוונטי ביותר</td></tr>
+                <tr><td><span class="opp-num">42</span></td><td>טטרפודים / אלמנטי שבירת גלים</td><td>190 ק"מ חוף ים תיכון</td></tr>
+                <tr><td><span class="opp-num">44</span></td><td>בלוקי "לגו" משתלבים</td><td>בנייה מהירה, חסימות, אחסון</td></tr>
+                <tr><td><span class="opp-num">45</span></td><td>יחידות דירות מודולריות PPVC</td><td>משבר דיור חמור</td></tr>
+                <tr><td><span class="opp-num">46</span></td><td>פודי אמבטיות</td><td>בניית מלונות + מעונות סטודנטים</td></tr>
+                <tr><td><span class="opp-num">47</span></td><td>מגדלי טורבינות רוח</td><td>אנרגיות מתחדשות</td></tr>
+                <tr><td><span class="opp-num">48</span></td><td>אבני ריצוף חדירות</td><td>שיטפונות עירוניים</td></tr>
+                <tr><td><span class="opp-num">73</span></td><td>בתים מודולריים</td><td>משבר דיור</td></tr>
+                <tr><td><span class="opp-num">79</span></td><td>מקלטים תת-קרקעיים</td><td>ביטחון</td></tr>
+                <tr><td><span class="opp-num">96</span></td><td>בסיסי סולאריים</td><td>אנרגיית שמש</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sources -->
+    <div class="sources">
+        <h2>מקורות עיקריים</h2>
+        <ul>
+            <li><a href="https://precast.org/products/" target="_blank">NPCA - National Precast Concrete Association</a></li>
+            <li><a href="https://www.pci.org/" target="_blank">PCI - Precast/Prestressed Concrete Institute</a></li>
+            <li><a href="https://readymix.co.il/" target="_blank">רדימיקס ישראל</a></li>
+            <li><a href="https://www.shapir.co.il/" target="_blank">שפיר - תחום בטון</a></li>
+            <li><a href="https://www.bar-el27.co.il/" target="_blank">בר-אל 27 תעשיות</a></li>
+            <li><a href="https://www.elematic.com/learn-precast/what-is-precast-concrete/precast-products/" target="_blank">Elematic - Precast Products</a></li>
+            <li><a href="https://www.grandviewresearch.com/industry-analysis/precast-concrete-market" target="_blank">Grand View Research - Precast Market</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Precast_concrete" target="_blank">Wikipedia - Precast Concrete</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        מחקר מוצרי בטון טרום | פברואר 2026
+    </div>
+
+</div>
+
+<script>
+    // Filter buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const allCards = document.querySelectorAll('.product-card');
+    const sectionHeaders = document.querySelectorAll('.section-header');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.className = 'filter-btn');
+            const filter = btn.dataset.filter;
+            if (filter === 'all') btn.classList.add('active');
+            else btn.classList.add('active-' + filter);
+
+            allCards.forEach(card => {
+                if (filter === 'all' || card.dataset.cat === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            sectionHeaders.forEach(header => {
+                if (filter === 'all' || header.dataset.cat === filter) {
+                    header.classList.remove('hidden');
+                } else {
+                    header.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // Search
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim().toLowerCase();
+        // Reset filter buttons
+        filterBtns.forEach(b => b.className = 'filter-btn');
+        filterBtns[0].classList.add('active');
+        sectionHeaders.forEach(h => h.classList.remove('hidden'));
+
+        allCards.forEach(card => {
+            const searchText = (card.dataset.search + ' ' + card.querySelector('.product-desc').textContent).toLowerCase();
+            if (!query || searchText.includes(query)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
